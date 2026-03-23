@@ -5,8 +5,8 @@ const Footer = () => {
     <footer className="bg-foreground w-full py-16 border-t border-primary-foreground/10">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8">
         <div className="col-span-1">
-          <Link className="text-xl font-headline font-bold text-primary-foreground italic block mb-6" to="/">
-            Whizunik
+          <Link className="text-xl font-body font-semibold text-primary-foreground block mb-6" to="/">
+            Whiz-Unik
           </Link>
           <p className="text-primary-foreground/50 text-sm leading-relaxed mb-6">
             Institutional-grade capital advisory for the modern middle market.
@@ -16,7 +16,11 @@ const Footer = () => {
         <div>
           <h5 className="text-primary-foreground font-bold mb-6 text-sm uppercase tracking-wider">Services</h5>
           <ul className="space-y-4">
-            {["Working Capital", "Growth Debt", "M&A Strategy", "Capital Planning"].map((item) => (
+            {[
+              "Working Capital & Liquidity",
+              "Structured Growth Capital",
+              "Capital Strategy & Market Readiness",
+            ].map((item) => (
               <li key={item}>
                 <Link className="text-primary-foreground/50 hover:text-primary-foreground transition-colors hover:translate-x-1 inline-block text-sm" to="/services">
                   {item}
@@ -30,7 +34,6 @@ const Footer = () => {
           <h5 className="text-primary-foreground font-bold mb-6 text-sm uppercase tracking-wider">Company</h5>
           <ul className="space-y-4">
             <li><Link className="text-primary-foreground/50 hover:text-primary-foreground transition-colors hover:translate-x-1 inline-block text-sm" to="/about">About Us</Link></li>
-            <li><a className="text-primary-foreground/50 hover:text-primary-foreground transition-colors hover:translate-x-1 inline-block text-sm" href="#">Careers</a></li>
             <li><Link className="text-primary-foreground/50 hover:text-primary-foreground transition-colors hover:translate-x-1 inline-block text-sm" to="/contact">Contact Us</Link></li>
             <li><Link className="text-primary-foreground/50 hover:text-primary-foreground transition-colors hover:translate-x-1 inline-block text-sm" to="/insights">Insights</Link></li>
           </ul>

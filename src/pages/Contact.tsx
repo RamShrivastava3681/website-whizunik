@@ -43,7 +43,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-bold text-on-secondary-fixed mb-1">Email</h4>
                     <a href="mailto:info@whizunik.com" className="text-on-surface-variant hover:text-primary transition-colors">
-                      info@whizunik.com
+                      sankalp@whizunik.com
                     </a>
                   </div>
                 </div>
@@ -54,7 +54,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-on-secondary-fixed mb-1">Phone</h4>
-                    <p className="text-on-surface-variant">(123) 456-7890</p>
+                    <p className="text-on-surface-variant">+91-7045941942</p>
                   </div>
                 </div>
 
@@ -63,8 +63,11 @@ const Contact = () => {
                     <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-on-secondary-fixed mb-1">Global Locations</h4>
-                    <p className="text-on-surface-variant">London · New York · Singapore · Zurich</p>
+                    <h4 className="font-bold text-on-secondary-fixed mb-1">Address</h4>
+                    <p className="text-on-surface-variant">
+                      Whizunik, 16th &amp; 17th floor, Max Towers, Plot no C-001A, Sector 16 B,
+                      DND flyway, Noida, 201301
+                    </p>
                   </div>
                 </div>
               </div>

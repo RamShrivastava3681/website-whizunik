@@ -1,8 +1,8 @@
 const steps = [
-  { num: "01", title: "Diagnostic", desc: "Deep-dive assessment of financials and growth trajectories." },
-  { num: "02", title: "Structuring", desc: "Designing the optimal mix of credit, debt, and equity instruments." },
-  { num: "03", title: "Origination", desc: "Leveraging our network of 150+ institutional capital providers." },
-  { num: "04", title: "Execution", desc: "Rigorous due diligence management through to capital funding." },
+  { num: "01", title: "Understand", desc: "Understand the business and cash flows" },
+  { num: "02", title: "Identify", desc: "Identify capital constraints" },
+  { num: "03", title: "Design", desc: "Design the structure" },
+  { num: "04", title: "Execute", desc: "Execute with capital partners" },
 ];
 
 const LifecycleSection = () => {
@@ -10,10 +10,7 @@ const LifecycleSection = () => {
     <section className="py-32 bg-surface-container text-on-surface overflow-hidden">
       <div className="max-w-7xl mx-auto px-8">
         <div className="mb-20 text-center">
-          <h2 className="serif-headline text-4xl mb-6">The Whizunik Lifecycle</h2>
-          <p className="text-on-surface/60 max-w-2xl mx-auto">
-            From diagnostic to deployment, we follow a rigorous institutional framework to ensure capital certainty.
-          </p>
+          <h2 className="serif-headline text-4xl mb-6">How We Work</h2>
         </div>
 
         <div className="relative">

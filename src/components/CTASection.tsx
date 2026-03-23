@@ -1,20 +1,21 @@
 const CTASection = () => {
   return (
     <section className="py-24 max-w-7xl mx-auto px-8 mb-32">
-      <div className="bg-primary-container rounded-3xl p-16 relative overflow-hidden flex flex-col items-center text-center">
+      <div className="bg-primary-container rounded-3xl p-16 relative overflow-hidden">
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-primary-foreground/5 rounded-[2rem]"></div>
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 bg-foreground/5 rounded-[2rem]"></div>
 
         <h2 className="serif-headline text-4xl md:text-5xl text-primary-foreground mb-8 relative z-10">
-          Ready to scale your capital stack?
+          Why Whizunik
         </h2>
-        <p className="text-primary-foreground/80 text-lg max-w-2xl mb-12 relative z-10">
-          Join 40+ growth-stage businesses who have restructured their financial future
-          with Whizunik.
+        <p className="text-primary-foreground text-2xl md:text-3xl font-headline italic max-w-3xl mb-6 relative z-10">
+          Most advisors arrange capital. We structure it.
         </p>
-        <button className="bg-primary-foreground text-primary px-10 py-5 rounded-xl text-lg font-extrabold hover:bg-surface-container transition-all shadow-xl relative z-10">
-          Schedule a Consultation
-        </button>
+        <p className="text-primary-foreground/85 text-lg max-w-4xl relative z-10 leading-relaxed">
+          Our approach is grounded in understanding how businesses actually operate —
+          designing capital solutions that are aligned with cash flows, growth plans,
+          and long-term objectives.
+        </p>
       </div>
     </section>
   );

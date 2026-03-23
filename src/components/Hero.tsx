@@ -7,23 +7,21 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-8 w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
         <div className="md:col-span-8 lg:col-span-7">
           <span className="inline-block text-primary font-bold tracking-widest uppercase text-xs mb-6">
-            Strategic Capital Partner
+            Hero
           </span>
           <h1 className="serif-headline text-5xl md:text-7xl text-on-secondary-fixed font-medium leading-[1.1] mb-8">
-            The Capital Advisory Firm for{" "}
+            Structured Capital Advisory for{" "}
             <span className="text-primary italic">Growth-Stage</span> Businesses
           </h1>
           <p className="text-on-surface-variant text-lg max-w-xl mb-10 leading-relaxed">
-            Navigating complex financial landscapes with institutional precision and
-            entrepreneurial agility. We secure the liquidity you need to scale.
+            We work with founders and management teams to structure working capital,
+            growth capital, and long-term capital strategies — aligned to how their
+            businesses actually operate and scale.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <button className="bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-all flex items-center justify-center gap-2 group">
               Let's Talk
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="border border-outline-variant text-on-secondary-fixed px-8 py-4 rounded-lg text-lg font-semibold hover:bg-surface-container-low transition-all">
-              View Methodology
             </button>
           </div>
         </div>
