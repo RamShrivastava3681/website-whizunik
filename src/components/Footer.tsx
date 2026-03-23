@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-on-secondary-fixed w-full py-16 border-t border-primary-foreground/10">
+    <footer className="bg-foreground w-full py-16 border-t border-primary-foreground/10">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8">
         <div className="col-span-1">
           <Link className="text-xl font-headline font-bold text-primary-foreground italic block mb-6" to="/">

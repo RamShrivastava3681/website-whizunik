@@ -16,8 +16,12 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant shadow-sm">
       <div className="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
-        <Link className="text-2xl font-headline font-bold text-primary italic" to="/">
-          Whizunik
+        <Link className="inline-flex items-center" to="/" aria-label="Whizunik home">
+          <img
+            src="/logo-vertical-light%20(2).png"
+            alt="Whizunik"
+            className="h-20 w-auto"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center space-x-10">

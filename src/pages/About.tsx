@@ -1,8 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import aboutImage from "@/assets/about-architecture.jpg";
-import julianImage from "@/assets/julian-portrait.jpg";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 const About = () => {
   return (
@@ -70,11 +69,11 @@ const About = () => {
                 <span className="text-primary font-bold text-xs uppercase tracking-widest block mb-4">
                   Leadership
                 </span>
-                <h2 className="text-5xl font-headline text-on-secondary-fixed mb-8">Julian Thorne</h2>
-                <p className="text-on-secondary-fixed font-semibold text-lg mb-6">Managing Partner</p>
+                <h2 className="text-5xl font-headline text-on-secondary-fixed mb-8">Sankalp Kumar</h2>
+                <p className="text-on-secondary-fixed font-semibold text-lg mb-6">Founder of Whizunik</p>
                 <div className="space-y-4 text-on-surface-variant leading-relaxed">
                   <p>
-                    With over two decades of experience in institutional strategy, Julian Thorne
+                    With over two decades of experience in institutional strategy, Sankalp
                     brings a perspective that bridges classical academic rigor with contemporary
                     market agility.
                   </p>
@@ -84,10 +83,6 @@ const About = () => {
                   </p>
                 </div>
                 <div className="mt-12 flex space-x-6">
-                  <a className="text-primary hover:text-on-secondary-fixed transition-colors flex items-center gap-2 group" href="#">
-                    <span className="text-sm font-bold uppercase tracking-wider">Biography</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </a>
                   <a className="text-primary hover:text-on-secondary-fixed transition-colors flex items-center gap-2 group" href="#">
                     <span className="text-sm font-bold uppercase tracking-wider">LinkedIn</span>
                     <ExternalLink className="w-4 h-4" />
@@ -99,9 +94,9 @@ const About = () => {
                   <div className="absolute inset-0 bg-primary/5 -translate-x-6 translate-y-6 rounded-xl"></div>
                   <div className="relative aspect-square md:aspect-video bg-surface-container-highest rounded-xl overflow-hidden">
                     <img
-                      alt="Julian Thorne Portrait"
-                      className="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
-                      src={julianImage}
+                      alt="Sankalp Kumar Portrait"
+                      className="object-contain w-full h-full"
+                      src="/Confident%20professional%20in%20office%20setting.png"
                     />
                   </div>
                 </div>
