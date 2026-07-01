@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 220 15% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 12%;
+
+    --primary: 243 92% 48%;
+    /* Original Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --primary-container: 243 92% 56%;
+    --primary-container-foreground: 0 0% 100%;
+
+    --secondary: 216 30% 40%;
+    --secondary-foreground: 0 0% 100%;
+
+    --secondary-fixed: 220 15% 12%;
+    /* Charcoal */
+    --on-secondary-fixed: 0 0% 98%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 210 20% 96%;
+    --accent-foreground: 220 15% 12%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 243 92% 48%;
+
+    --radius: 0.125rem;
+
+    --surface: 0 0% 98%;
+    --surface-container: 210 20% 96%;
+    --surface-container-low: 210 20% 98%;
+    --surface-container-lowest: 0 0% 100%;
+    --surface-container-high: 210 20% 93%;
+    --surface-container-highest: 210 20% 90%;
+    --on-surface: 220 15% 12%;
+    --on-surface-variant: 215 16% 47%;
+    --outline: 214 32% 80%;
+    --outline-variant: 214 32% 91%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased selection:bg-primary/20 selection:text-primary;
+    background-color: #f9f9fb;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-headline tracking-tighter;
+    color: #1a1b1e;
+  }
+}
+
+@layer components {
+  .serif-headline {
+    font-family: 'Newsreader', serif;
+    @apply tracking-tight font-medium;
+  }
+
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-black/5;
+  }
+
+  .blue-gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary/40;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    pointer-events: none;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
