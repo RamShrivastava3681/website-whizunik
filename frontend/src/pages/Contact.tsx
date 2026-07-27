@@ -32,7 +32,7 @@ const Contact = () => {
 
     const contactApiUrl =
       (import.meta.env.VITE_CONTACT_API_URL as string | undefined) ||
-      "http://localhost:8787/api/contact";
+      "http://localhost:9898/api/contact";
 
     setIsSubmitting(true);
 
