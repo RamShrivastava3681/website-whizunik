@@ -348,9 +348,18 @@ const HowCommandWorks = () => {
                   </motion.div>
                 ))}
               </div>
-              <p className="text-center text-[11px] text-black/40 mt-4 italic">
-                *Click an action button to test interactive queue clearance.
-              </p>
+              <div className="flex items-center justify-between mt-4 pt-3 border-t border-black/5 text-[11px] text-black/50">
+                <span className="italic">*Click an action button to test interactive queue clearance.</span>
+                {queueItems.some((i) => i.completed) && (
+                  <button
+                    type="button"
+                    onClick={() => setQueueItems(initialQueueItems)}
+                    className="text-primary hover:underline font-bold uppercase tracking-wider text-[10px] cursor-pointer"
+                  >
+                    Reset Demo
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>

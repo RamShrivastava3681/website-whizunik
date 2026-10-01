@@ -153,6 +153,49 @@ const HeroStory = () => {
             </a>
           </Magnetic>
         </motion.div>
+
+        {/* Live Ecosystem Pulse Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.8, ease: "easeOut" }}
+          className="mt-12 sm:mt-16 max-w-4xl p-4 sm:p-5 rounded-3xl bg-neutral-50/90 border border-black/10 backdrop-blur-md shadow-sm"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-black/5 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+              </span>
+              <span className="font-bold text-black uppercase tracking-wider text-[11px]">
+                One Connected Operating Flow
+              </span>
+            </div>
+            <span className="text-black/50 text-[11px] font-medium">
+              6 Workspaces • Zero Disconnects • Real-Time Handoffs
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+            {[
+              { name: "Sales", desc: "Order Logged" },
+              { name: "Procurement", desc: "PO Linked" },
+              { name: "Checker", desc: "Policy Locked" },
+              { name: "Finance", desc: "Actuals Realized" },
+              { name: "Warehouse", desc: "GRN Verified" },
+              { name: "Management", desc: "Executive View" },
+            ].map((node) => (
+              <motion.div
+                key={node.name}
+                whileHover={{ y: -2, scale: 1.02 }}
+                className="p-2.5 rounded-xl bg-white border border-black/5 text-center shadow-2xs hover:border-primary/40 hover:shadow-xs transition-all"
+              >
+                <p className="font-bold text-black text-xs">{node.name}</p>
+                <p className="text-[10px] text-primary font-medium mt-0.5">{node.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
 
       {/* Scroll indicator */}

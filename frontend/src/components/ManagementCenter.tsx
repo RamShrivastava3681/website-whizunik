@@ -80,11 +80,19 @@ const ManagementCenter = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
             {commandCenterMetrics.map((item) => (
-              <div key={item.label} className="p-5 rounded-2xl bg-white border border-black/10 hover:border-primary/40 hover:shadow-xs transition-all">
-                <p className="text-black/50 text-xs font-bold uppercase tracking-wider mb-2">{item.label}</p>
+              <motion.div
+                key={item.label}
+                whileHover={{ y: -4, scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+                className="p-5 rounded-2xl bg-white border border-black/10 hover:border-primary/40 hover:shadow-md transition-all group"
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-black/50 text-xs font-bold uppercase tracking-wider">{item.label}</p>
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/30 group-hover:bg-primary transition-colors" />
+                </div>
                 <p className="text-xl sm:text-2xl font-bold text-black tracking-tight mb-1">{item.val}</p>
                 <p className="text-black/55 text-[11px] leading-tight font-medium">{item.sub}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
 

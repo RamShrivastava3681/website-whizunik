@@ -72,7 +72,6 @@ const Footer = () => {
             <ul className="space-y-4">
               <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/">Overview</Link></li>
               <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/#how-it-works">How It Works</Link></li>
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/#solutions">Solutions</Link></li>
               <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/contact">Walkthrough</Link></li>
             </ul>
           </div>

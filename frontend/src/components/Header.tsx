@@ -7,7 +7,6 @@ import { createPortal } from "react-dom";
 const navLinks = [
   { label: "Command", path: "/" },
   { label: "How It Works", path: "/#how-it-works" },
-  { label: "Solutions", path: "/#solutions" },
   { label: "Strategic Advisory", path: "/services" },
   { label: "About", path: "/about" },
 ];

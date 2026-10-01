@@ -128,51 +128,110 @@ const OperationalControl = () => {
               <div className="mb-6">
                 <div className="flex items-center justify-between flex-wrap gap-4 mb-2">
                   <h4 className="text-xl font-bold text-black tracking-tight">Sales</h4>
-                  <div className="flex bg-black/5 p-1 rounded-full border border-black/10">
-                    <button
-                      onClick={() => setActiveWorkflowTab("credit")}
-                      className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
-                        activeWorkflowTab === "credit" ? "bg-primary text-white shadow-sm" : "text-black/60 hover:text-black"
-                      }`}
-                    >
-                      Credit Terms
-                    </button>
-                    <button
-                      onClick={() => setActiveWorkflowTab("advance")}
-                      className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
-                        activeWorkflowTab === "advance" ? "bg-primary text-white shadow-sm" : "text-black/60 hover:text-black"
-                      }`}
-                    >
-                      Advance Terms
-                    </button>
-                  </div>
+                <div className="flex bg-black/5 p-1 rounded-full border border-black/10 relative">
+                  <button
+                    onClick={() => setActiveWorkflowTab("credit")}
+                    className={`relative z-10 px-4 py-1.5 rounded-full text-xs font-bold transition-colors cursor-pointer ${
+                      activeWorkflowTab === "credit" ? "text-white" : "text-black/60 hover:text-black"
+                    }`}
+                  >
+                    Credit Terms
+                    {activeWorkflowTab === "credit" && (
+                      <motion.div
+                        layoutId="workflowActivePill"
+                        className="absolute inset-0 bg-primary rounded-full -z-10 shadow-sm"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                  <button
+                    onClick={() => setActiveWorkflowTab("advance")}
+                    className={`relative z-10 px-4 py-1.5 rounded-full text-xs font-bold transition-colors cursor-pointer ${
+                      activeWorkflowTab === "advance" ? "text-white" : "text-black/60 hover:text-black"
+                    }`}
+                  >
+                    Advance Terms
+                    {activeWorkflowTab === "advance" && (
+                      <motion.div
+                        layoutId="workflowActivePill"
+                        className="absolute inset-0 bg-primary rounded-full -z-10 shadow-sm"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                  </button>
                 </div>
-                <div className="text-xs font-mono text-primary font-bold bg-primary/10 px-3 py-1.5 rounded-xl mb-3">
-                  Sales Order → Customer Acceptance → Checker → Invoice → Payment → Warehouse → Dispatch
-                </div>
-                <p className="text-black/65 text-xs">Payment terms determine the route.</p>
               </div>
+              <div className="text-xs font-mono text-primary font-bold bg-primary/10 px-3.5 py-2 rounded-xl mb-3 flex items-center gap-2 overflow-x-auto">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping shrink-0" />
+                <span>Sales Order → Customer Acceptance → Checker → Invoice → Payment → Warehouse → Dispatch</span>
+              </div>
+              <p className="text-black/65 text-xs font-medium mb-4">Payment terms determine the route.</p>
+            </div>
 
-              {activeWorkflowTab === "credit" ? (
-                <div className="space-y-3">
-                  <div className="p-4 rounded-2xl bg-white border border-black/5 flex flex-wrap items-center justify-between gap-2">
-                    <span className="font-mono text-xs font-bold text-primary">Credit Terms Route:</span>
-                    <span className="text-xs sm:text-sm font-semibold">Sales Order → Approval → Final Invoice → Collection → Dispatch</span>
+            {activeWorkflowTab === "credit" ? (
+                <motion.div
+                  key="credit"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-3"
+                >
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    {[
+                      { step: "01", name: "Sales Order", note: "Created" },
+                      { step: "02", name: "Approval", note: "Checker Gate" },
+                      { step: "03", name: "Final Invoice", note: "Issued" },
+                      { step: "04", name: "Collection", note: "Treasury" },
+                      { step: "05", name: "Dispatch", note: "Warehouse" },
+                    ].map((item, i) => (
+                      <div key={item.step} className="p-3 rounded-xl bg-white border border-black/10 text-center shadow-2xs">
+                        <span className="text-[10px] font-mono font-bold text-primary">{item.step}</span>
+                        <p className="text-xs font-bold text-black mt-0.5">{item.name}</p>
+                        <span className="text-[9px] text-black/50 font-medium">{item.note}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-primary/5 border border-primary/20 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-primary">Credit Terms Route:</span>
+                    <span className="text-black/80 font-medium">Sales Order → Approval → Final Invoice → Collection → Dispatch</span>
                   </div>
                   <p className="text-xs text-black/55 italic">
                     The appropriate actions are released as the required business events occur.
                   </p>
-                </div>
+                </motion.div>
               ) : (
-                <div className="space-y-3">
-                  <div className="p-4 rounded-2xl bg-white border border-black/5 flex flex-wrap items-center justify-between gap-2">
-                    <span className="font-mono text-xs font-bold text-primary">Advance Terms Route:</span>
-                    <span className="text-xs sm:text-sm font-semibold">Sales Order → Approval → Proforma → Advance Received → Final Invoice → Dispatch</span>
+                <motion.div
+                  key="advance"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-3"
+                >
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    {[
+                      { step: "01", name: "Sales Order", note: "Created" },
+                      { step: "02", name: "Approval", note: "Checker Gate" },
+                      { step: "03", name: "Proforma", note: "Advance Request" },
+                      { step: "04", name: "Advance Recd", note: "Bank Proof" },
+                      { step: "05", name: "Final Invoice", note: "Dispatch Gate" },
+                    ].map((item) => (
+                      <div key={item.step} className="p-3 rounded-xl bg-white border border-black/10 text-center shadow-2xs">
+                        <span className="text-[10px] font-mono font-bold text-primary">{item.step}</span>
+                        <p className="text-xs font-bold text-black mt-0.5">{item.name}</p>
+                        <span className="text-[9px] text-black/50 font-medium">{item.note}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-primary/5 border border-primary/20 flex items-center justify-between text-xs">
+                    <span className="font-semibold text-primary">Advance Terms Route:</span>
+                    <span className="text-black/80 font-medium">Sales Order → Approval → Proforma → Advance Received → Final Invoice → Dispatch</span>
                   </div>
                   <p className="text-xs text-black/55 italic">
                     The appropriate actions are released as the required business events occur.
                   </p>
-                </div>
+                </motion.div>
               )}
             </div>
 
