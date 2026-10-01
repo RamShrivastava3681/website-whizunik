@@ -187,14 +187,22 @@ const ManagementCenter = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {implementationSteps.map((item) => (
-              <div key={item.name} className="p-6 rounded-3xl bg-neutral-50 border border-black/10 hover:border-primary/40 hover:shadow-xs transition-all flex flex-col justify-between">
+            {implementationSteps.map((item, idx) => (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.08, ease: "easeOut" }}
+                whileHover={{ y: -3 }}
+                className="p-6 rounded-3xl bg-neutral-50 border border-black/10 hover:border-primary/40 hover:shadow-xs transition-all flex flex-col justify-between"
+              >
                 <div>
                   <span className="font-mono text-primary text-xs font-bold tracking-wider">{item.step}</span>
                   <h4 className="text-black font-bold text-xl mt-1 mb-2 tracking-tight">{item.name}</h4>
                   <p className="text-black/60 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

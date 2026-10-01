@@ -126,18 +126,28 @@ const Services = () => {
               </p>
 
               <div className="space-y-4">
-                {businessServices.map((item) => {
+                {businessServices.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <div key={item.title} className="p-4 rounded-2xl bg-white border border-black/5 hover:border-primary/30 transition-colors">
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+                      whileHover={{ y: -3 }}
+                      className="p-4 rounded-2xl bg-white border border-black/5 hover:border-primary/40 hover:shadow-[0_8px_20px_rgba(47,99,255,0.08)] transition-all duration-300 group cursor-default"
+                    >
                       <div className="flex items-start gap-3">
-                        <Icon size={18} className="text-primary shrink-0 mt-1" />
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                          <Icon size={16} />
+                        </div>
                         <div>
-                          <h4 className="font-bold text-black text-sm sm:text-base mb-1">{item.title}</h4>
+                          <h4 className="font-bold text-black text-sm sm:text-base mb-1 group-hover:text-primary transition-colors duration-200">{item.title}</h4>
                           <p className="text-black/65 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
@@ -165,18 +175,28 @@ const Services = () => {
               </p>
 
               <div className="space-y-4">
-                {fundServices.map((item) => {
+                {fundServices.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <div key={item.title} className="p-4 rounded-2xl bg-white border border-black/5 hover:border-primary/30 transition-colors">
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+                      whileHover={{ y: -3 }}
+                      className="p-4 rounded-2xl bg-white border border-black/5 hover:border-primary/40 hover:shadow-[0_8px_20px_rgba(47,99,255,0.08)] transition-all duration-300 group cursor-default"
+                    >
                       <div className="flex items-start gap-3">
-                        <Icon size={18} className="text-primary shrink-0 mt-1" />
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                          <Icon size={16} />
+                        </div>
                         <div>
-                          <h4 className="font-bold text-black text-sm sm:text-base mb-1">{item.title}</h4>
+                          <h4 className="font-bold text-black text-sm sm:text-base mb-1 group-hover:text-primary transition-colors duration-200">{item.title}</h4>
                           <p className="text-black/65 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
