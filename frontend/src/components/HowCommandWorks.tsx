@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   FileCheck2, 
   ArrowRight, 
-  ArrowDown,
   CheckCircle2, 
   Layers, 
   ListTodo, 
@@ -14,7 +13,10 @@ import {
   Warehouse, 
   LineChart,
   Check,
-  Sparkles
+  Sparkles,
+  GitFork,
+  ArrowUpRight,
+  ChevronRight
 } from "lucide-react";
 
 const flowSteps = [
@@ -107,52 +109,8 @@ const departmentViews = [
   },
 ];
 
-const connectedQueueStages = [
-  {
-    step: "01",
-    role: "Sales Queue",
-    icon: ShoppingCart,
-    tag: "Commercial Inception",
-    task: "Sales Order Verified & Signed",
-    desc: "Customer signs acceptance terms. The transaction automatically lands in the Checker's queue.",
-    handoff: "Auto-routes to Checker Queue with commercial terms locked",
-    nextDept: "Checker Desk",
-  },
-  {
-    step: "02",
-    role: "Checker Queue",
-    icon: ShieldCheck,
-    tag: "Audit Gate",
-    task: "Policy & Margin Approval",
-    desc: "Checker validates payment terms and credit limit. Approval instantly unlocks the operational route.",
-    handoff: "Auto-routes to Warehouse Fulfillment Queue",
-    nextDept: "Warehouse Desk",
-  },
-  {
-    step: "03",
-    role: "Warehouse Queue",
-    icon: Warehouse,
-    tag: "Physical Gate",
-    task: "Stock Allocation & Dock GRN",
-    desc: "Warehouse allocates authentic stock and performs physical dispatch or goods receipt verification.",
-    handoff: "Auto-routes to Finance Invoicing Queue",
-    nextDept: "Finance Desk",
-  },
-  {
-    step: "04",
-    role: "Finance Queue",
-    icon: Coins,
-    tag: "Settlement Gate",
-    task: "Tax Invoice & Cash Realization",
-    desc: "Finance releases the verified tax invoice and matches realized bank credit in Treasury.",
-    handoff: "Completed cycle reconciles into Management Ledger",
-    nextDept: "Management",
-  },
-];
-
 const HowCommandWorks = () => {
   const [activeDept, setActiveDept] = useState(departmentViews[0].id);
-  const [activeQueueStep, setActiveQueueStep] = useState<number>(0);
 
   const currentDept = departmentViews.find((d) => d.id === activeDept) || departmentViews[0];
   const DeptIcon = currentDept.icon;
@@ -278,147 +236,111 @@ const HowCommandWorks = () => {
           </motion.div>
         </div>
 
-        {/* SECTION: MY QUEUE (INTERACTIVE SIMULATION) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center mb-20 md:mb-28">
-          <div className="lg:col-span-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-[10px] uppercase tracking-widest mb-4">
-              <ListTodo size={12} />
+        {/* SECTION: MY QUEUE - 4 CORE PRINCIPLES BENTO GRID */}
+        <div className="mb-24 md:mb-32">
+          {/* Section Header */}
+          <div className="max-w-3xl mb-10">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 text-primary font-bold text-[11px] uppercase tracking-widest mb-4">
+              <ListTodo size={13} />
               <span>My Queue</span>
             </div>
-            <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black mb-6 leading-tight">
+            <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black mb-5 leading-tight">
               Everyone knows <span className="text-primary font-light italic">what to do next.</span>
             </h3>
-            <p className="text-black/75 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+            <p className="text-black/75 text-sm sm:text-base leading-relaxed mb-4 font-normal">
               Every department works from its own workspace. Every user works from <strong>My Queue</strong>. It shows each user the actions currently waiting for them, based on their role and where each transaction stands.
             </p>
-            <p className="text-black/75 text-sm sm:text-base leading-relaxed mb-8 font-normal">
-              Select <strong>Action</strong>, and WhizUnik takes the user directly to the next required workflow step.
+            <p className="text-primary font-bold text-sm sm:text-base">
+              Select <em>Action</em>, and WhizUnik takes the user directly to the next required workflow step.
             </p>
+          </div>
 
-            <div className="space-y-3">
-              {[
-                "The workflow creates the work queue.",
-                "No separate task tracker.",
-                "No searching for the transaction.",
-                "Clear ownership of what happens next.",
-              ].map((text) => (
-                <div key={text} className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
-                  <span className="text-black/80 text-xs sm:text-sm font-medium">{text}</span>
-                </div>
-              ))}
+          {/* Connected Flow Strip */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-black/10 shadow-xs mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-black/50 shrink-0">
+              Direct Workflow Navigation
+            </span>
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-black/85">
+              <span className="px-3 py-1.5 rounded-xl bg-white border border-black/10 shadow-2xs">
+                01 Role Workspace
+              </span>
+              <ChevronRight size={14} className="text-primary shrink-0" />
+              <span className="px-3 py-1.5 rounded-xl bg-white border border-primary/30 text-primary font-bold shadow-2xs">
+                02 My Queue Action
+              </span>
+              <ChevronRight size={14} className="text-primary shrink-0" />
+              <span className="px-3 py-1.5 rounded-xl bg-white border border-black/10 shadow-2xs">
+                03 Select Action
+              </span>
+              <ChevronRight size={14} className="text-primary shrink-0" />
+              <span className="px-3 py-1.5 rounded-xl bg-primary text-white font-bold shadow-xs">
+                04 Next Step Unlocked
+              </span>
             </div>
           </div>
 
-          <div className="lg:col-span-7">
-            {/* Connected Transaction Queue Chain */}
-            <div className="rounded-3xl border border-black/10 bg-neutral-50/70 p-6 sm:p-8 shadow-sm relative overflow-hidden">
-              <div className="flex items-center justify-between pb-4 border-b border-black/10 mb-6 flex-wrap gap-2">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shadow-xs">
-                    <ListTodo size={20} />
-                  </div>
+          {/* 4-Card Bento Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+            {[
+              {
+                num: "01",
+                title: "The workflow creates the work queue.",
+                desc: "Business events and transaction progress automatically populate each user's queue. No manager needs to manually assign tasks or track deadlines.",
+                tag: "Autonomous Queueing",
+                icon: GitFork,
+              },
+              {
+                num: "02",
+                title: "No separate task tracker.",
+                desc: "Eliminates third-party to-do lists, disconnected spreadsheets, and chase-up messages. The live transaction engine is the single operational truth.",
+                tag: "Single Platform",
+                icon: Layers,
+              },
+              {
+                num: "03",
+                title: "No searching for the transaction.",
+                desc: "Clicking 'Action' opens the exact transaction record with all upstream commercial and tax data already pre-filled and locked.",
+                tag: "Instant Deep-Link",
+                icon: ArrowUpRight,
+              },
+              {
+                num: "04",
+                title: "Clear ownership of what happens next.",
+                desc: "Every step has an assigned role with zero ambiguity. Responsibility transitions automatically as verification gates are completed.",
+                tag: "Complete Accountability",
+                icon: CheckCircle2,
+              },
+            ].map((card) => {
+              const Icon = card.icon;
+              return (
+                <motion.div
+                  key={card.num}
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className="p-6 sm:p-7 rounded-3xl bg-neutral-50/70 border border-black/10 hover:border-primary/40 hover:bg-white hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                >
                   <div>
-                    <h5 className="text-black font-bold text-sm sm:text-base tracking-tight">
-                      The Connected Workflow Queue
-                    </h5>
-                    <p className="text-black/50 text-[11px] font-medium">
-                      How an action in one queue directly links to the next
+                    <div className="flex items-center justify-between gap-3 mb-5">
+                      <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                        <Icon size={20} />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white border border-black/5 text-primary">
+                        {card.tag}
+                      </span>
+                    </div>
+                    <span className="font-mono text-xs font-bold text-primary mb-1 block">
+                      Principle {card.num}
+                    </span>
+                    <h4 className="text-black font-bold text-lg sm:text-xl tracking-tight mb-2 group-hover:text-primary transition-colors">
+                      {card.title}
+                    </h4>
+                    <p className="text-black/70 text-xs sm:text-sm leading-relaxed">
+                      {card.desc}
                     </p>
                   </div>
-                </div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  Live Connected Chain
-                </span>
-              </div>
-
-              {/* Connected Stepper with Visual Links */}
-              <div className="space-y-3 relative">
-                {connectedQueueStages.map((stage, idx) => {
-                  const Icon = stage.icon;
-                  const isSelected = activeQueueStep === idx;
-
-                  return (
-                    <div key={stage.step} className="relative">
-                      {/* Queue Stage Card */}
-                      <div
-                        onClick={() => setActiveQueueStep(idx)}
-                        className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
-                          isSelected
-                            ? "bg-white border-primary shadow-md ring-1 ring-primary/30"
-                            : "bg-white/80 border-black/10 hover:border-primary/40 hover:bg-white shadow-2xs"
-                        }`}
-                      >
-                        <div className="flex items-start gap-3.5 sm:gap-4">
-                          <div
-                            className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                              isSelected
-                                ? "bg-primary text-white shadow-xs"
-                                : "bg-neutral-100 text-black/60 group-hover:text-primary"
-                            }`}
-                          >
-                            <Icon size={19} />
-                          </div>
-
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
-                              <div className="flex items-center gap-2">
-                                <span className="font-mono text-xs font-bold text-primary px-1.5 py-0.5 rounded bg-primary/10">
-                                  Stage {stage.step}
-                                </span>
-                                <h4 className="font-bold text-black text-sm sm:text-base tracking-tight">
-                                  {stage.role}
-                                </h4>
-                              </div>
-                              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/5 text-black/60">
-                                {stage.tag}
-                              </span>
-                            </div>
-
-                            <p className="text-black font-semibold text-xs sm:text-sm mb-1">
-                              {stage.task}
-                            </p>
-                            <p className="text-black/65 text-xs leading-relaxed">
-                              {stage.desc}
-                            </p>
-
-                            {/* Direct Link Badge */}
-                            <div className="mt-3 pt-2.5 border-t border-black/5 flex items-center justify-between gap-2 text-xs flex-wrap">
-                              <div className="flex items-center gap-1.5 text-primary font-bold text-[11px]">
-                                <ArrowRight size={13} className="shrink-0" />
-                                <span>Link: {stage.handoff}</span>
-                              </div>
-                              <span className="text-[10px] font-semibold text-black/50">
-                                Target: {stage.nextDept}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Visible Connecting Arrow Link Between Stages */}
-                      {idx < connectedQueueStages.length - 1 && (
-                        <div className="flex justify-center py-1">
-                          <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/5 text-primary text-[10px] font-bold">
-                            <ArrowDown size={11} className="animate-bounce" />
-                            <span>Workflow links to next queue</span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Bottom Quote from Document */}
-              <div className="mt-5 p-3.5 rounded-xl bg-primary/5 border border-primary/20 text-xs text-black/75 flex items-center gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
-                <span>
-                  <strong>Document Principle:</strong> <em>"Select Action, and WhizUnik takes the user directly to the next required workflow step — the workflow creates the work queue."</em>
-                </span>
-              </div>
-            </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
