@@ -1,47 +1,66 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, Package, Warehouse, FileText, CreditCard, ArrowRight, Sparkles, AlertCircle, CheckCircle2 } from "lucide-react";
+import { 
+  ShoppingCart, 
+  Package, 
+  Warehouse, 
+  FileText, 
+  CreditCard, 
+  ArrowRight, 
+  Sparkles,
+  ChevronRight
+} from "lucide-react";
 
-const departmentData = [
+const timelineSteps = [
   {
+    step: "01",
     role: "Sales",
     icon: ShoppingCart,
     status: "Knows what has been ordered",
-    siloedDetail: "Customer orders and expectations logged in CRM / emails.",
-    connectedDetail: "Customer orders release directly to Procurement & Warehouse queues without re-entry.",
+    connection: "Customer orders and commercial terms flow directly to Procurement and Warehouse queues without manual re-entry.",
+    handoffTo: "Procurement & Warehouse",
+    metric: "Instant Hand-off",
   },
   {
+    step: "02",
     role: "Procurement",
     icon: Package,
     status: "Knows what needs to be purchased",
-    siloedDetail: "Supplier purchase orders tracked in independent spreadsheets.",
-    connectedDetail: "Purchase Orders link directly to confirmed commercial demand with full traceability.",
+    connection: "Purchase Orders link directly to confirmed commercial demand, preventing stockouts and runaway commitments.",
+    handoffTo: "Warehouse & Treasury",
+    metric: "Traceable POs",
   },
   {
+    step: "03",
     role: "Warehouse",
     icon: Warehouse,
     status: "Knows what has physically arrived",
-    siloedDetail: "Physical stock receipts managed on local tally registers.",
-    connectedDetail: "Dock inspection generates authentic GRN — instantly updating available inventory.",
+    connection: "Dock inspection verifies physical receipts and issues authentic GRN — updating real-time inventory instantly.",
+    handoffTo: "Finance & Sales",
+    metric: "Verified GRN Gate",
   },
   {
+    step: "04",
     role: "Finance",
     icon: FileText,
     status: "Knows what has been invoiced",
-    siloedDetail: "Invoices generated separately in accounting software.",
-    connectedDetail: "Invoices unlock smoothly as verified milestones and Checker approvals are completed.",
+    connection: "Commercial invoices are released only when verified delivery milestones and Checker approvals are completed.",
+    handoffTo: "Treasury",
+    metric: "Milestone-Gated",
   },
   {
+    step: "05",
     role: "Treasury",
     icon: CreditCard,
     status: "Knows what has actually been paid",
-    siloedDetail: "Bank portals checked daily to confirm actual realized cash.",
-    connectedDetail: "Treasury records realized bank remittances, updating actual available cash instantly.",
+    connection: "Realized bank remittances are reconciled directly, giving management real-time visibility into actual available cash.",
+    handoffTo: "Management Command",
+    metric: "Realized Cash",
   },
 ];
 
 const ProblemSection = () => {
-  const [viewMode, setViewMode] = useState<"siloed" | "connected">("connected");
+  const [activeStep, setActiveStep] = useState<number>(0);
 
   return (
     <section className="relative overflow-hidden py-20 md:py-28 bg-white" id="problem">
@@ -90,111 +109,131 @@ const ProblemSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Interactive Department Disconnect vs Connected Cards */}
+          {/* Right Column: Interactive Department Timeline */}
           <div className="relative">
             <div className="absolute -inset-4 bg-primary/5 blur-2xl pointer-events-none rounded-3xl" />
 
-            {/* Interactive Mode Toggle */}
-            <div className="flex items-center justify-between mb-4 bg-neutral-100 p-1.5 rounded-2xl border border-black/5 relative z-10 shadow-2xs">
-              <button
-                type="button"
-                onClick={() => setViewMode("siloed")}
-                className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                  viewMode === "siloed"
-                    ? "bg-white text-black shadow-xs border border-black/5"
-                    : "text-black/55 hover:text-black"
-                }`}
-              >
-                <AlertCircle size={13} className={viewMode === "siloed" ? "text-amber-600" : ""} />
-                <span>Without WhizUnik (Siloed)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewMode("connected")}
-                className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-                  viewMode === "connected"
-                    ? "bg-primary text-white shadow-xs"
-                    : "text-black/55 hover:text-black"
-                }`}
-              >
-                <Sparkles size={13} />
-                <span>With WhizUnik Command</span>
-              </button>
+            {/* Timeline Header Bar */}
+            <div className="flex items-center justify-between gap-3 mb-5 px-1 relative z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
+                  Interactive Operating Timeline
+                </span>
+              </div>
+              <span className="text-[11px] text-black/50 font-medium hidden sm:inline">
+                Click any stage to trace flow
+              </span>
             </div>
 
-            {/* Cards Stack */}
-            <div className="space-y-3 relative z-10">
-              {departmentData.map((item, index) => {
+            {/* Timeline track container */}
+            <div className="relative pl-7 sm:pl-9 space-y-3.5 z-10">
+              {/* Continuous vertical timeline connector track line */}
+              <div className="absolute left-[13px] sm:left-[17px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-primary via-primary/40 to-primary/10" />
+
+              {timelineSteps.map((item, index) => {
                 const Icon = item.icon;
-                const isConnected = viewMode === "connected";
+                const isActive = activeStep === index;
 
                 return (
-                  <motion.div
-                    key={item.role}
-                    layout
-                    initial={{ opacity: 0, x: 25 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.4, delay: index * 0.08 }}
-                    whileHover={{ x: 4 }}
-                    className={`relative p-4 sm:p-5 rounded-2xl border transition-all duration-300 ${
-                      isConnected
-                        ? "bg-white border-primary/25 shadow-sm hover:shadow-md hover:border-primary/50"
-                        : "bg-white/80 border-black/10 shadow-2xs hover:border-black/20"
-                    }`}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                          isConnected
-                            ? "bg-primary/10 text-primary"
-                            : "bg-black/5 text-black/60"
-                        }`}
-                      >
-                        <Icon size={20} />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between mb-1">
-                          <h4 className="text-black font-bold text-sm sm:text-base tracking-tight">
-                            {item.role}
-                          </h4>
-                          <span
-                            className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full transition-colors flex items-center gap-1 ${
-                              isConnected
-                                ? "bg-primary/10 text-primary"
-                                : "bg-black/5 text-black/60"
-                            }`}
-                          >
-                            {isConnected ? (
-                              <>
-                                <CheckCircle2 size={11} />
-                                <span>Connected Flow</span>
-                              </>
-                            ) : (
-                              <span>Siloed</span>
-                            )}
-                          </span>
+                  <div key={item.role} className="relative">
+                    {/* Glowing Timeline Node Button */}
+                    <button
+                      type="button"
+                      onClick={() => setActiveStep(index)}
+                      aria-label={`Select ${item.role} stage`}
+                      className={`absolute -left-[27px] sm:-left-[35px] top-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all duration-300 z-20 cursor-pointer ${
+                        isActive
+                          ? "bg-primary text-white ring-4 ring-primary/25 shadow-[0_0_20px_rgba(47,99,255,0.55)] scale-110"
+                          : "bg-white text-black/60 border-2 border-black/15 hover:border-primary/50 hover:text-primary hover:scale-105 shadow-2xs"
+                      }`}
+                    >
+                      {item.step}
+                    </button>
+
+                    {/* Timeline Step Card */}
+                    <div
+                      onClick={() => setActiveStep(index)}
+                      className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden group ${
+                        isActive
+                          ? "bg-white border-primary shadow-[0_12px_32px_rgba(47,99,255,0.14)] ring-1 ring-primary/30 -translate-y-0.5"
+                          : "bg-white/85 border-black/10 shadow-2xs hover:bg-white hover:border-primary/30 hover:shadow-xs"
+                      }`}
+                    >
+                      {/* Radiant glow light in active state */}
+                      {isActive && (
+                        <div className="absolute -top-12 -right-12 w-48 h-48 bg-gradient-to-bl from-primary/15 via-primary/5 to-transparent rounded-full blur-2xl pointer-events-none" />
+                      )}
+
+                      <div className="flex items-start gap-3.5 sm:gap-4 relative z-10">
+                        {/* Department Icon */}
+                        <div
+                          className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
+                            isActive
+                              ? "bg-primary text-white shadow-[0_0_16px_rgba(47,99,255,0.35)] scale-105"
+                              : "bg-neutral-100 text-black/60 group-hover:text-primary group-hover:bg-primary/10"
+                          }`}
+                        >
+                          <Icon size={19} />
                         </div>
-                        <p className="text-black/85 font-semibold text-xs sm:text-sm leading-snug">
-                          {item.status}
-                        </p>
-                        <AnimatePresence mode="wait">
-                          <motion.p
-                            key={isConnected ? "conn" : "silo"}
-                            initial={{ opacity: 0, y: 3 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -3 }}
-                            transition={{ duration: 0.2 }}
-                            className={`text-[11px] sm:text-xs mt-1 leading-relaxed ${
-                              isConnected ? "text-primary/80 font-medium" : "text-black/50"
-                            }`}
-                          >
-                            {isConnected ? item.connectedDetail : item.siloedDetail}
-                          </motion.p>
-                        </AnimatePresence>
+
+                        <div className="flex-1 min-w-0">
+                          {/* Top Row: Title + Handoff Badge */}
+                          <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
+                            <div className="flex items-center gap-2">
+                              <h4 className={`font-bold text-sm sm:text-base tracking-tight transition-colors ${
+                                isActive ? "text-primary" : "text-black group-hover:text-primary"
+                              }`}>
+                                {item.role}
+                              </h4>
+                              {isActive && (
+                                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                                  <Sparkles size={10} />
+                                  Active Flow
+                                </span>
+                              )}
+                            </div>
+
+                            <span
+                              className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full transition-all ${
+                                isActive
+                                  ? "bg-primary text-white shadow-2xs"
+                                  : "bg-black/5 text-black/55 group-hover:bg-primary/10 group-hover:text-primary"
+                              }`}
+                            >
+                              {isActive ? `Handoff › ${item.handoffTo}` : item.metric}
+                            </span>
+                          </div>
+
+                          {/* Primary Status (Official Word Doc text) */}
+                          <p className="text-black/85 font-semibold text-xs sm:text-sm leading-snug">
+                            {item.status}
+                          </p>
+
+                          {/* Animated Radiant Handoff Details */}
+                          <AnimatePresence>
+                            {isActive && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                                animate={{ opacity: 1, height: "auto", marginTop: 10 }}
+                                exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                                transition={{ duration: 0.25, ease: "easeOut" }}
+                                className="overflow-hidden"
+                              >
+                                <div className="pt-2.5 border-t border-primary/20 flex items-start gap-2 bg-primary/[0.03] p-2.5 rounded-xl border border-primary/10">
+                                  <ArrowRight size={13} className="text-primary mt-0.5 shrink-0" />
+                                  <p className="text-[11px] sm:text-xs text-black/80 font-medium leading-relaxed">
+                                    <strong className="text-primary font-bold">WhizUnik Connection: </strong>
+                                    {item.connection}
+                                  </p>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
