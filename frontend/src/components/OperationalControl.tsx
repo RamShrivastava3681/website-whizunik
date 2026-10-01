@@ -9,8 +9,35 @@ import {
   ArrowDownLeft, 
   ArrowUpRight, 
   GitFork, 
-  ShieldAlert 
+  ShieldAlert,
+  ChevronRight,
+  FileText,
+  UserCheck,
+  ShieldCheck,
+  Receipt,
+  CreditCard,
+  Package
 } from "lucide-react";
+
+const salesLifecycleSteps = [
+  { step: "01", name: "Sales Order", desc: "Order booked", icon: FileText },
+  { step: "02", name: "Customer Acceptance", desc: "Terms accepted", icon: UserCheck },
+  { step: "03", name: "Checker", desc: "Audit approval", icon: ShieldCheck },
+  { step: "04", name: "Invoice", desc: "Commercial bill", icon: Receipt },
+  { step: "05", name: "Payment", desc: "Funds verified", icon: CreditCard },
+  { step: "06", name: "Warehouse", desc: "Stock staging", icon: Package },
+  { step: "07", name: "Dispatch", desc: "Physical release", icon: Truck },
+];
+
+const procurementLifecycleSteps = [
+  "Supplier",
+  "Purchase Order",
+  "Checker",
+  "Supplier Invoice",
+  "Treasury",
+  "Goods Receipt",
+  "GRN",
+];
 
 const controlPillars = [
   {
@@ -161,11 +188,57 @@ const OperationalControl = () => {
                   </button>
                 </div>
               </div>
-              <div className="text-xs font-mono text-primary font-bold bg-primary/10 px-3.5 py-2 rounded-xl mb-3 flex items-center gap-2 overflow-x-auto">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-ping shrink-0" />
-                <span>Sales Order → Customer Acceptance → Checker → Invoice → Payment → Warehouse → Dispatch</span>
+              {/* Sales Standard Lifecycle Stepper Cards */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-black/10 shadow-xs mb-4 relative overflow-hidden">
+                <div className="flex items-center justify-between gap-3 mb-3.5 flex-wrap">
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary block">
+                      End-to-End Enterprise Flow
+                    </span>
+                    <h5 className="text-xs sm:text-sm font-bold text-black mt-0.5">
+                      Standard Sales Lifecycle
+                    </h5>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    7 Connected Stages
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
+                  {salesLifecycleSteps.map((stage) => {
+                    const Icon = stage.icon;
+                    return (
+                      <div
+                        key={stage.step}
+                        className="relative p-2.5 rounded-xl bg-neutral-50/80 border border-black/5 hover:border-primary/40 hover:bg-primary/[0.03] hover:shadow-xs transition-all duration-200 text-center flex flex-col items-center justify-between group cursor-default"
+                      >
+                        {/* Top row: step pill + icon */}
+                        <div className="w-full flex items-center justify-between gap-1 mb-1.5">
+                          <span className="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-white border border-black/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                            {stage.step}
+                          </span>
+                          <div className="w-5 h-5 rounded-md bg-white border border-black/10 flex items-center justify-center text-black/50 group-hover:text-primary group-hover:border-primary/30 transition-colors">
+                            <Icon size={11} />
+                          </div>
+                        </div>
+
+                        {/* Stage name */}
+                        <p className="text-[11px] font-bold text-black leading-snug my-1 group-hover:text-primary transition-colors">
+                          {stage.name}
+                        </p>
+
+                        {/* Subtitle / tag */}
+                        <span className="text-[9px] text-black/45 font-medium leading-none">
+                          {stage.desc}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-              <p className="text-black/65 text-xs font-medium mb-4">Payment terms determine the route.</p>
+
+              <p className="text-black/65 text-xs font-medium mb-3">Payment terms determine the route.</p>
             </div>
 
             {activeWorkflowTab === "credit" ? (
@@ -183,8 +256,8 @@ const OperationalControl = () => {
                       { step: "03", name: "Final Invoice", note: "Issued" },
                       { step: "04", name: "Collection", note: "Treasury" },
                       { step: "05", name: "Dispatch", note: "Warehouse" },
-                    ].map((item, i) => (
-                      <div key={item.step} className="p-3 rounded-xl bg-white border border-black/10 text-center shadow-2xs">
+                    ].map((item) => (
+                      <div key={item.step} className="p-3 rounded-xl bg-white border border-black/10 text-center shadow-2xs hover:border-primary/40 transition-colors">
                         <span className="text-[10px] font-mono font-bold text-primary">{item.step}</span>
                         <p className="text-xs font-bold text-black mt-0.5">{item.name}</p>
                         <span className="text-[9px] text-black/50 font-medium">{item.note}</span>
@@ -192,9 +265,18 @@ const OperationalControl = () => {
                     ))}
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-primary/5 border border-primary/20 flex items-center justify-between text-xs">
-                    <span className="font-semibold text-primary">Credit Terms Route:</span>
-                    <span className="text-black/80 font-medium">Sales Order → Approval → Final Invoice → Collection → Dispatch</span>
+                  <div className="p-3.5 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                    <span className="font-bold text-primary shrink-0">Credit Terms Route:</span>
+                    <div className="flex flex-wrap items-center gap-1.5 text-black/85 font-medium">
+                      {["Sales Order", "Approval", "Final Invoice", "Collection", "Dispatch"].map((step, idx) => (
+                        <div key={step} className="flex items-center gap-1.5">
+                          <span className="px-2 py-0.5 rounded-md bg-white border border-primary/20 text-[11px] font-semibold text-black">
+                            {step}
+                          </span>
+                          {idx < 4 && <ChevronRight size={12} className="text-primary/50 shrink-0" />}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <p className="text-xs text-black/55 italic">
                     The appropriate actions are released as the required business events occur.
@@ -216,7 +298,7 @@ const OperationalControl = () => {
                       { step: "04", name: "Advance Recd", note: "Bank Proof" },
                       { step: "05", name: "Final Invoice", note: "Dispatch Gate" },
                     ].map((item) => (
-                      <div key={item.step} className="p-3 rounded-xl bg-white border border-black/10 text-center shadow-2xs">
+                      <div key={item.step} className="p-3 rounded-xl bg-white border border-black/10 text-center shadow-2xs hover:border-primary/40 transition-colors">
                         <span className="text-[10px] font-mono font-bold text-primary">{item.step}</span>
                         <p className="text-xs font-bold text-black mt-0.5">{item.name}</p>
                         <span className="text-[9px] text-black/50 font-medium">{item.note}</span>
@@ -224,9 +306,18 @@ const OperationalControl = () => {
                     ))}
                   </div>
 
-                  <div className="p-3.5 rounded-xl bg-primary/5 border border-primary/20 flex items-center justify-between text-xs">
-                    <span className="font-semibold text-primary">Advance Terms Route:</span>
-                    <span className="text-black/80 font-medium">Sales Order → Approval → Proforma → Advance Received → Final Invoice → Dispatch</span>
+                  <div className="p-3.5 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                    <span className="font-bold text-primary shrink-0">Advance Terms Route:</span>
+                    <div className="flex flex-wrap items-center gap-1.5 text-black/85 font-medium">
+                      {["Sales Order", "Approval", "Proforma", "Advance Received", "Final Invoice", "Dispatch"].map((step, idx) => (
+                        <div key={step} className="flex items-center gap-1.5">
+                          <span className="px-2 py-0.5 rounded-md bg-white border border-primary/20 text-[11px] font-semibold text-black">
+                            {step}
+                          </span>
+                          {idx < 5 && <ChevronRight size={12} className="text-primary/50 shrink-0" />}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <p className="text-xs text-black/55 italic">
                     The appropriate actions are released as the required business events occur.
@@ -245,8 +336,20 @@ const OperationalControl = () => {
                 <p className="text-black/70 text-xs sm:text-sm leading-relaxed mb-3">
                   Creating a Purchase Order does not increase inventory. Stock increases only when Warehouse confirms physical receipt through the GRN.
                 </p>
-                <div className="text-[11px] font-mono text-primary font-bold bg-primary/10 px-3 py-1.5 rounded-xl block leading-relaxed">
-                  Supplier → Purchase Order → Checker → Supplier Invoice → Treasury → Goods Receipt → GRN
+                <div className="p-3 rounded-2xl bg-white border border-black/10 shadow-2xs">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {procurementLifecycleSteps.map((stage, i) => (
+                      <div key={stage} className="flex items-center gap-1.5">
+                        <span className="px-2 py-0.5 rounded-md bg-neutral-50 border border-black/5 text-[11px] font-bold text-black/85">
+                          <span className="text-[9px] font-mono text-primary mr-1">0{i + 1}</span>
+                          {stage}
+                        </span>
+                        {i < procurementLifecycleSteps.length - 1 && (
+                          <ChevronRight size={11} className="text-black/30 shrink-0" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
