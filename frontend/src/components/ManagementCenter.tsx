@@ -79,16 +79,19 @@ const ManagementCenter = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-8">
-            {commandCenterMetrics.map((item) => (
+            {commandCenterMetrics.map((item, index) => (
               <motion.div
                 key={item.label}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.35, delay: index * 0.05, ease: "easeOut" }}
                 whileHover={{ y: -4, scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-                className="p-5 rounded-2xl bg-white border border-black/10 hover:border-primary/40 hover:shadow-md transition-all group"
+                className="p-5 rounded-2xl bg-white border border-black/10 hover:border-primary/50 hover:shadow-[0_10px_25px_rgba(47,99,255,0.08)] transition-all group cursor-default"
               >
                 <div className="flex items-center justify-between mb-2">
-                  <p className="text-black/50 text-xs font-bold uppercase tracking-wider">{item.label}</p>
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary/30 group-hover:bg-primary transition-colors" />
+                  <p className="text-black/50 text-xs font-bold uppercase tracking-wider group-hover:text-primary transition-colors">{item.label}</p>
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary/30 group-hover:bg-primary group-hover:scale-125 transition-all" />
                 </div>
                 <p className="text-xl sm:text-2xl font-bold text-black tracking-tight mb-1">{item.val}</p>
                 <p className="text-black/55 text-[11px] leading-tight font-medium">{item.sub}</p>
