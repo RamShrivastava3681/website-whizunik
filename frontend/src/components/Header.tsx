@@ -94,10 +94,11 @@ const Header = () => {
           <div className="flex items-center gap-6">
             <Link
               to="/contact"
-              className="hidden md:flex bg-primary text-white px-7 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase hover:brightness-110 active:scale-95 transition-all duration-300 items-center justify-center gap-2 shadow-lg shadow-primary/20"
+              className="relative overflow-hidden hidden md:flex bg-primary text-white px-7 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase hover:shadow-[0_8px_24px_rgba(47,99,255,0.4)] hover:brightness-105 active:scale-95 transition-all duration-300 items-center justify-center gap-2 shadow-md shadow-primary/20 group"
             >
-              Request a Walkthrough
-              <ArrowUpRight size={16} />
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+              <span className="relative z-10">Request a Walkthrough</span>
+              <ArrowUpRight size={16} className="relative z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
 
             <button

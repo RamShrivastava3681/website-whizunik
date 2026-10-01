@@ -137,10 +137,11 @@ const HeroStory = () => {
           <Magnetic>
             <a
               href="/contact"
-              className="bg-primary text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:shadow-2xl hover:shadow-primary/40 active:scale-[0.98] transition-all duration-300 flex items-center gap-4 shadow-xl shadow-primary/20 group"
+              className="relative overflow-hidden bg-primary text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:shadow-[0_12px_32px_rgba(47,99,255,0.45)] hover:brightness-105 active:scale-[0.98] transition-all duration-300 flex items-center gap-4 shadow-xl shadow-primary/25 group"
             >
-              <span>Request a Walkthrough</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+              <span className="relative z-10">Request a Walkthrough</span>
+              <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
             </a>
           </Magnetic>
 

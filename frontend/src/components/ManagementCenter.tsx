@@ -243,10 +243,11 @@ const ManagementCenter = () => {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-3 px-9 py-4 sm:py-5 rounded-full bg-primary text-white text-xs sm:text-sm font-bold uppercase tracking-[0.2em] hover:shadow-2xl hover:shadow-primary/40 transition-all shadow-xl shadow-primary/20"
+            className="relative overflow-hidden inline-flex items-center gap-3 px-9 py-4 sm:py-5 rounded-full bg-primary text-white text-xs sm:text-sm font-bold uppercase tracking-[0.2em] hover:shadow-[0_16px_40px_rgba(47,99,255,0.45)] hover:brightness-105 active:scale-[0.98] transition-all duration-300 shadow-xl shadow-primary/25 group"
           >
-            <span>Request a Walkthrough</span>
-            <ArrowRight size={16} />
+            <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+            <span className="relative z-10">Request a Walkthrough</span>
+            <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
           </Link>
         </div>
 
