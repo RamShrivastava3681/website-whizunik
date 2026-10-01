@@ -206,11 +206,16 @@ const OperationalControl = () => {
                 </div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2">
-                  {salesLifecycleSteps.map((stage) => {
+                  {salesLifecycleSteps.map((stage, i) => {
                     const Icon = stage.icon;
                     return (
-                      <div
+                      <motion.div
                         key={stage.step}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.35, delay: i * 0.05, ease: "easeOut" }}
+                        whileHover={{ y: -2 }}
                         className="relative p-2.5 rounded-xl bg-neutral-50/80 border border-black/5 hover:border-primary/40 hover:bg-primary/[0.03] hover:shadow-xs transition-all duration-200 text-center flex flex-col items-center justify-between group cursor-default"
                       >
                         {/* Top row: step pill + icon */}
@@ -232,7 +237,7 @@ const OperationalControl = () => {
                         <span className="text-[9px] text-black/45 font-medium leading-none">
                           {stage.desc}
                         </span>
-                      </div>
+                      </motion.div>
                     );
                   })}
                 </div>

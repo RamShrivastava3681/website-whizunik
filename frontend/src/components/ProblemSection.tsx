@@ -105,15 +105,29 @@ const ProblemSection = () => {
 
             {/* Timeline track container */}
             <div className="relative pl-7 sm:pl-9 space-y-3.5 z-10">
-              {/* Continuous vertical timeline connector track line */}
-              <div className="absolute left-[13px] sm:left-[17px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-primary via-primary/40 to-primary/10" />
+              {/* Continuous vertical timeline connector track line with traveling pulse */}
+              <div className="absolute left-[13px] sm:left-[17px] top-6 bottom-6 w-[2px] bg-neutral-200 overflow-hidden rounded-full">
+                <motion.div
+                  animate={{ y: ["-100%", "250%"] }}
+                  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-full h-24 bg-gradient-to-b from-transparent via-primary to-transparent"
+                />
+              </div>
 
               {timelineSteps.map((item, index) => {
                 const Icon = item.icon;
                 const isActive = activeStep === index;
 
                 return (
-                  <div key={item.role} className="relative">
+                  <motion.div
+                    key={item.role}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-30px" }}
+                    transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
+                    whileHover={{ x: 3 }}
+                    className="relative"
+                  >
                     {/* Glowing Timeline Node Button */}
                     <button
                       type="button"
@@ -133,7 +147,7 @@ const ProblemSection = () => {
                       onClick={() => setActiveStep(index)}
                       className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden group ${
                         isActive
-                          ? "bg-white border-primary shadow-[0_12px_32px_rgba(47,99,255,0.14)] ring-1 ring-primary/30 -translate-y-0.5"
+                          ? "bg-white border-primary shadow-[0_12px_32px_rgba(47,99,255,0.14)] ring-1 ring-primary/30"
                           : "bg-white/85 border-black/10 shadow-2xs hover:bg-white hover:border-primary/30 hover:shadow-xs"
                       }`}
                     >
@@ -192,7 +206,7 @@ const ProblemSection = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
