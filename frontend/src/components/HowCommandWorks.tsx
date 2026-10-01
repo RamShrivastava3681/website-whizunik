@@ -106,22 +106,103 @@ const departmentViews = [
   },
 ];
 
-const initialQueueItems = [
-  { id: "SO-882", client: "Apex Logistics Ltd", status: "Advance Payment Received", action: "Record Treasury Receipt", urgency: "High", completed: false },
-  { id: "PO-409", client: "Tata Steel Supply", status: "GRN Physical Verified", action: "Release Vendor Payment", urgency: "Medium", completed: false },
-  { id: "INV-290", client: "Zenith Retail Corp", status: "Checker Approved", action: "Generate Tax Invoice", urgency: "Normal", completed: false },
+const queueDeskViews = [
+  {
+    id: "finance",
+    label: "Finance & Treasury",
+    desk: "Finance & Treasury Desk",
+    badge: "3 Pending Actions",
+    items: [
+      {
+        id: "SO-882",
+        account: "Apex Logistics Ltd",
+        detail: "Advance payment credited to HDFC bank account. Ready for Treasury release.",
+        gate: "Checker Gate",
+        time: "12m ago",
+        action: "Release Work Order",
+      },
+      {
+        id: "PO-409",
+        account: "Tata Steel Supply",
+        detail: "Dock count confirmed against physical GRN. Match verified against commercial PO.",
+        gate: "Disbursement Gate",
+        time: "34m ago",
+        action: "Authorize Payment",
+      },
+      {
+        id: "INV-290",
+        account: "Zenith Retail Corp",
+        detail: "Customer acceptance acknowledged on dispatch delivery proof. Tax invoice eligible.",
+        gate: "Commercial Gate",
+        time: "1h ago",
+        action: "Generate Invoice",
+      },
+    ],
+  },
+  {
+    id: "warehouse",
+    label: "Warehouse & Dock",
+    desk: "Warehouse & Dock Desk",
+    badge: "2 Dock Inflows",
+    items: [
+      {
+        id: "GRN-1049",
+        account: "Hindalco Metals Ltd",
+        detail: "Supplier vehicle arrived at Dock #3 with 450 units. Awaiting physical barcode count.",
+        gate: "Dock Inspection",
+        time: "8m ago",
+        action: "Confirm GRN Count",
+      },
+      {
+        id: "DSP-304",
+        account: "Paramount Infrastructure",
+        detail: "Commercial invoice approved and items packed. Dispatch gate pass verification required.",
+        gate: "Dispatch Gate",
+        time: "22m ago",
+        action: "Release Gate Pass",
+      },
+    ],
+  },
+  {
+    id: "sales",
+    label: "Sales Operations",
+    desk: "Sales Operations Desk",
+    badge: "2 Milestone Gates",
+    items: [
+      {
+        id: "SO-912",
+        account: "Blue Horizon Corp",
+        detail: "Customer signed electronic acceptance on revised quote terms. Ready for booking.",
+        gate: "Order Booking",
+        time: "5m ago",
+        action: "Book Confirmed SO",
+      },
+      {
+        id: "CA-441",
+        account: "Orbit Telecom Ltd",
+        detail: "Standard commercial credit check passed. Ready for Checker Gate review.",
+        gate: "Checker Gate",
+        time: "45m ago",
+        action: "Submit for Checker",
+      },
+    ],
+  },
 ];
 
 const HowCommandWorks = () => {
   const [activeDept, setActiveDept] = useState(departmentViews[0].id);
-  const [queueItems, setQueueItems] = useState(initialQueueItems);
+  const [activeDeskId, setActiveDeskId] = useState("finance");
+  const [activeActionFeedback, setActiveActionFeedback] = useState<string | null>(null);
+
   const currentDept = departmentViews.find((d) => d.id === activeDept) || departmentViews[0];
+  const currentDesk = queueDeskViews.find((d) => d.id === activeDeskId) || queueDeskViews[0];
   const DeptIcon = currentDept.icon;
 
-  const handleCompleteAction = (id: string) => {
-    setQueueItems((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, completed: !item.completed } : item))
-    );
+  const handleActionClick = (actionName: string) => {
+    setActiveActionFeedback(`Direct route: Opening ${actionName}`);
+    setTimeout(() => {
+      setActiveActionFeedback(null);
+    }, 2400);
   };
 
   return (
@@ -278,87 +359,110 @@ const HowCommandWorks = () => {
           </div>
 
           <div className="lg:col-span-7">
-            {/* Interactive Mockup of My Queue */}
-            <div className="rounded-3xl border border-black/10 bg-neutral-50 p-6 sm:p-8 shadow-sm relative overflow-hidden">
-              <div className="flex items-center justify-between pb-5 border-b border-black/10 mb-6">
+            {/* Enterprise Software Window of My Queue */}
+            <div className="rounded-3xl border border-black/10 bg-white shadow-md relative overflow-hidden">
+              {/* Window Title Bar */}
+              <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-black/10 bg-neutral-50/80">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                    <ListTodo size={20} />
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-black/20" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-black/20" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-black/20" />
                   </div>
-                  <div>
-                    <h5 className="text-black font-bold text-sm tracking-tight">WhizUnik Command • My Queue</h5>
-                    <p className="text-black/45 text-[10px] uppercase tracking-wider font-semibold">Role: Finance & Treasury Desk</p>
+                  <div className="h-4 w-[1px] bg-black/10 mx-1 hidden sm:block" />
+                  <div className="flex items-center gap-2">
+                    <ListTodo size={16} className="text-primary" />
+                    <span className="text-xs font-bold text-black tracking-tight">WhizUnik Command • My Queue</span>
                   </div>
                 </div>
-                <motion.span
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold"
-                >
-                  {queueItems.filter((i) => !i.completed).length} Pending Actions
-                </motion.span>
+
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 text-[10px] font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Live Ledger Sync
+                  </span>
+                </div>
               </div>
 
-              <div className="space-y-3">
-                {queueItems.map((item) => (
-                  <motion.div
+              {/* Desk Role Selector Tabs */}
+              <div className="px-5 sm:px-6 pt-4 pb-2 bg-neutral-50/40 border-b border-black/5 flex items-center justify-between flex-wrap gap-2">
+                <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/5">
+                  {queueDeskViews.map((desk) => (
+                    <button
+                      key={desk.id}
+                      type="button"
+                      onClick={() => setActiveDeskId(desk.id)}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                        activeDeskId === desk.id
+                          ? "bg-white text-black shadow-xs"
+                          : "text-black/55 hover:text-black"
+                      }`}
+                    >
+                      {desk.label}
+                    </button>
+                  ))}
+                </div>
+                <span className="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
+                  {currentDesk.badge}
+                </span>
+              </div>
+
+              {/* Queue Items List */}
+              <div className="p-5 sm:p-6 space-y-3">
+                {currentDesk.items.map((item) => (
+                  <div
                     key={item.id}
-                    layout
-                    whileHover={{ scale: 1.01 }}
-                    className={`p-4 rounded-xl border transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
-                      item.completed 
-                        ? "bg-emerald-500/5 border-emerald-500/20 opacity-70" 
-                        : "bg-white border-black/10 hover:border-primary/40 shadow-2xs"
-                    }`}
+                    className="p-4 rounded-2xl bg-neutral-50/70 border border-black/5 hover:border-primary/40 hover:bg-white hover:shadow-xs transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
                   >
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-mono text-xs font-bold text-primary">{item.id}</span>
-                        <span className="text-black/40 text-xs">•</span>
-                        <span className="text-black font-semibold text-xs sm:text-sm">{item.client}</span>
-                        {item.completed && (
-                          <span className="text-[10px] bg-emerald-500/10 text-emerald-600 font-bold px-2 py-0.5 rounded-full">
-                            Completed
-                          </span>
-                        )}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <span className="font-mono text-xs font-bold text-primary px-1.5 py-0.5 rounded bg-primary/10">
+                          {item.id}
+                        </span>
+                        <span className="text-black font-bold text-xs sm:text-sm">
+                          {item.account}
+                        </span>
+                        <span className="text-[10px] bg-black/5 text-black/60 font-semibold px-2 py-0.5 rounded-full">
+                          {item.gate}
+                        </span>
+                        <span className="text-[10px] text-black/40 font-medium">
+                          {item.time}
+                        </span>
                       </div>
-                      <p className="text-black/55 text-xs font-medium">{item.status}</p>
+                      <p className="text-black/70 text-xs leading-relaxed">
+                        {item.detail}
+                      </p>
                     </div>
 
                     <button
-                      onClick={() => handleCompleteAction(item.id)}
-                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider active:scale-95 transition-all self-start sm:self-auto cursor-pointer ${
-                        item.completed
-                          ? "bg-emerald-600 text-white"
-                          : "bg-primary text-white hover:brightness-110 shadow-xs"
-                      }`}
+                      type="button"
+                      onClick={() => handleActionClick(`${item.id} (${item.action})`)}
+                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:brightness-110 shadow-xs active:scale-95 transition-all shrink-0 cursor-pointer self-start sm:self-auto"
                     >
-                      {item.completed ? (
-                        <>
-                          <span>Done</span>
-                          <Check size={13} />
-                        </>
-                      ) : (
-                        <>
-                          <span>{item.action}</span>
-                          <ArrowRight size={13} />
-                        </>
-                      )}
+                      <span>{item.action}</span>
+                      <ArrowRight size={13} />
                     </button>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-              <div className="flex items-center justify-between mt-4 pt-3 border-t border-black/5 text-[11px] text-black/50">
-                <span className="italic">*Click an action button to test interactive queue clearance.</span>
-                {queueItems.some((i) => i.completed) && (
-                  <button
-                    type="button"
-                    onClick={() => setQueueItems(initialQueueItems)}
-                    className="text-primary hover:underline font-bold uppercase tracking-wider text-[10px] cursor-pointer"
-                  >
-                    Reset Demo
-                  </button>
-                )}
+
+              {/* Enterprise Bottom Status Footer */}
+              <div className="px-5 sm:px-6 py-3 border-t border-black/5 bg-neutral-50/80 flex items-center justify-between text-[11px] text-black/60 flex-wrap gap-2">
+                <span className="font-medium">
+                  Select <strong className="text-primary font-bold">Action</strong> to navigate directly to the required transaction step.
+                </span>
+                <AnimatePresence>
+                  {activeActionFeedback && (
+                    <motion.span
+                      initial={{ opacity: 0, x: 8 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 8 }}
+                      className="text-primary font-bold bg-primary/10 px-2 py-0.5 rounded-full"
+                    >
+                      {activeActionFeedback}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
           </div>
