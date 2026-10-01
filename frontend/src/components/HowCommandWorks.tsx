@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   FileCheck2, 
   ArrowRight, 
+  ArrowDown,
   CheckCircle2, 
   Layers, 
   ListTodo, 
@@ -106,104 +107,55 @@ const departmentViews = [
   },
 ];
 
-const queueDeskViews = [
+const connectedQueueStages = [
   {
-    id: "finance",
-    label: "Finance & Treasury",
-    desk: "Finance & Treasury Desk",
-    badge: "3 Pending Actions",
-    items: [
-      {
-        id: "SO-882",
-        account: "Apex Logistics Ltd",
-        detail: "Advance payment credited to HDFC bank account. Ready for Treasury release.",
-        gate: "Checker Gate",
-        time: "12m ago",
-        action: "Release Work Order",
-      },
-      {
-        id: "PO-409",
-        account: "Tata Steel Supply",
-        detail: "Dock count confirmed against physical GRN. Match verified against commercial PO.",
-        gate: "Disbursement Gate",
-        time: "34m ago",
-        action: "Authorize Payment",
-      },
-      {
-        id: "INV-290",
-        account: "Zenith Retail Corp",
-        detail: "Customer acceptance acknowledged on dispatch delivery proof. Tax invoice eligible.",
-        gate: "Commercial Gate",
-        time: "1h ago",
-        action: "Generate Invoice",
-      },
-    ],
+    step: "01",
+    role: "Sales Queue",
+    icon: ShoppingCart,
+    tag: "Commercial Inception",
+    task: "Sales Order Verified & Signed",
+    desc: "Customer signs acceptance terms. The transaction automatically lands in the Checker's queue.",
+    handoff: "Auto-routes to Checker Queue with commercial terms locked",
+    nextDept: "Checker Desk",
   },
   {
-    id: "warehouse",
-    label: "Warehouse & Dock",
-    desk: "Warehouse & Dock Desk",
-    badge: "2 Dock Inflows",
-    items: [
-      {
-        id: "GRN-1049",
-        account: "Hindalco Metals Ltd",
-        detail: "Supplier vehicle arrived at Dock #3 with 450 units. Awaiting physical barcode count.",
-        gate: "Dock Inspection",
-        time: "8m ago",
-        action: "Confirm GRN Count",
-      },
-      {
-        id: "DSP-304",
-        account: "Paramount Infrastructure",
-        detail: "Commercial invoice approved and items packed. Dispatch gate pass verification required.",
-        gate: "Dispatch Gate",
-        time: "22m ago",
-        action: "Release Gate Pass",
-      },
-    ],
+    step: "02",
+    role: "Checker Queue",
+    icon: ShieldCheck,
+    tag: "Audit Gate",
+    task: "Policy & Margin Approval",
+    desc: "Checker validates payment terms and credit limit. Approval instantly unlocks the operational route.",
+    handoff: "Auto-routes to Warehouse Fulfillment Queue",
+    nextDept: "Warehouse Desk",
   },
   {
-    id: "sales",
-    label: "Sales Operations",
-    desk: "Sales Operations Desk",
-    badge: "2 Milestone Gates",
-    items: [
-      {
-        id: "SO-912",
-        account: "Blue Horizon Corp",
-        detail: "Customer signed electronic acceptance on revised quote terms. Ready for booking.",
-        gate: "Order Booking",
-        time: "5m ago",
-        action: "Book Confirmed SO",
-      },
-      {
-        id: "CA-441",
-        account: "Orbit Telecom Ltd",
-        detail: "Standard commercial credit check passed. Ready for Checker Gate review.",
-        gate: "Checker Gate",
-        time: "45m ago",
-        action: "Submit for Checker",
-      },
-    ],
+    step: "03",
+    role: "Warehouse Queue",
+    icon: Warehouse,
+    tag: "Physical Gate",
+    task: "Stock Allocation & Dock GRN",
+    desc: "Warehouse allocates authentic stock and performs physical dispatch or goods receipt verification.",
+    handoff: "Auto-routes to Finance Invoicing Queue",
+    nextDept: "Finance Desk",
+  },
+  {
+    step: "04",
+    role: "Finance Queue",
+    icon: Coins,
+    tag: "Settlement Gate",
+    task: "Tax Invoice & Cash Realization",
+    desc: "Finance releases the verified tax invoice and matches realized bank credit in Treasury.",
+    handoff: "Completed cycle reconciles into Management Ledger",
+    nextDept: "Management",
   },
 ];
 
 const HowCommandWorks = () => {
   const [activeDept, setActiveDept] = useState(departmentViews[0].id);
-  const [activeDeskId, setActiveDeskId] = useState("finance");
-  const [activeActionFeedback, setActiveActionFeedback] = useState<string | null>(null);
+  const [activeQueueStep, setActiveQueueStep] = useState<number>(0);
 
   const currentDept = departmentViews.find((d) => d.id === activeDept) || departmentViews[0];
-  const currentDesk = queueDeskViews.find((d) => d.id === activeDeskId) || queueDeskViews[0];
   const DeptIcon = currentDept.icon;
-
-  const handleActionClick = (actionName: string) => {
-    setActiveActionFeedback(`Direct route: Opening ${actionName}`);
-    setTimeout(() => {
-      setActiveActionFeedback(null);
-    }, 2400);
-  };
 
   return (
     <section className="relative py-20 md:py-32 bg-white text-black overflow-hidden" id="how-it-works">
@@ -359,110 +311,112 @@ const HowCommandWorks = () => {
           </div>
 
           <div className="lg:col-span-7">
-            {/* Enterprise Software Window of My Queue */}
-            <div className="rounded-3xl border border-black/10 bg-white shadow-md relative overflow-hidden">
-              {/* Window Title Bar */}
-              <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-black/10 bg-neutral-50/80">
+            {/* Connected Transaction Queue Chain */}
+            <div className="rounded-3xl border border-black/10 bg-neutral-50/70 p-6 sm:p-8 shadow-sm relative overflow-hidden">
+              <div className="flex items-center justify-between pb-4 border-b border-black/10 mb-6 flex-wrap gap-2">
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-black/20" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-black/20" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-black/20" />
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shadow-xs">
+                    <ListTodo size={20} />
                   </div>
-                  <div className="h-4 w-[1px] bg-black/10 mx-1 hidden sm:block" />
-                  <div className="flex items-center gap-2">
-                    <ListTodo size={16} className="text-primary" />
-                    <span className="text-xs font-bold text-black tracking-tight">WhizUnik Command • My Queue</span>
+                  <div>
+                    <h5 className="text-black font-bold text-sm sm:text-base tracking-tight">
+                      The Connected Workflow Queue
+                    </h5>
+                    <p className="text-black/50 text-[11px] font-medium">
+                      How an action in one queue directly links to the next
+                    </p>
                   </div>
                 </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 text-[10px] font-bold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Live Ledger Sync
-                  </span>
-                </div>
-              </div>
-
-              {/* Desk Role Selector Tabs */}
-              <div className="px-5 sm:px-6 pt-4 pb-2 bg-neutral-50/40 border-b border-black/5 flex items-center justify-between flex-wrap gap-2">
-                <div className="flex items-center gap-1.5 p-1 rounded-xl bg-black/5">
-                  {queueDeskViews.map((desk) => (
-                    <button
-                      key={desk.id}
-                      type="button"
-                      onClick={() => setActiveDeskId(desk.id)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                        activeDeskId === desk.id
-                          ? "bg-white text-black shadow-xs"
-                          : "text-black/55 hover:text-black"
-                      }`}
-                    >
-                      {desk.label}
-                    </button>
-                  ))}
-                </div>
-                <span className="text-[11px] font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-full">
-                  {currentDesk.badge}
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold border border-primary/20">
+                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  Live Connected Chain
                 </span>
               </div>
 
-              {/* Queue Items List */}
-              <div className="p-5 sm:p-6 space-y-3">
-                {currentDesk.items.map((item) => (
-                  <div
-                    key={item.id}
-                    className="p-4 rounded-2xl bg-neutral-50/70 border border-black/5 hover:border-primary/40 hover:bg-white hover:shadow-xs transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
-                  >
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <span className="font-mono text-xs font-bold text-primary px-1.5 py-0.5 rounded bg-primary/10">
-                          {item.id}
-                        </span>
-                        <span className="text-black font-bold text-xs sm:text-sm">
-                          {item.account}
-                        </span>
-                        <span className="text-[10px] bg-black/5 text-black/60 font-semibold px-2 py-0.5 rounded-full">
-                          {item.gate}
-                        </span>
-                        <span className="text-[10px] text-black/40 font-medium">
-                          {item.time}
-                        </span>
+              {/* Connected Stepper with Visual Links */}
+              <div className="space-y-3 relative">
+                {connectedQueueStages.map((stage, idx) => {
+                  const Icon = stage.icon;
+                  const isSelected = activeQueueStep === idx;
+
+                  return (
+                    <div key={stage.step} className="relative">
+                      {/* Queue Stage Card */}
+                      <div
+                        onClick={() => setActiveQueueStep(idx)}
+                        className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                          isSelected
+                            ? "bg-white border-primary shadow-md ring-1 ring-primary/30"
+                            : "bg-white/80 border-black/10 hover:border-primary/40 hover:bg-white shadow-2xs"
+                        }`}
+                      >
+                        <div className="flex items-start gap-3.5 sm:gap-4">
+                          <div
+                            className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                              isSelected
+                                ? "bg-primary text-white shadow-xs"
+                                : "bg-neutral-100 text-black/60 group-hover:text-primary"
+                            }`}
+                          >
+                            <Icon size={19} />
+                          </div>
+
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
+                              <div className="flex items-center gap-2">
+                                <span className="font-mono text-xs font-bold text-primary px-1.5 py-0.5 rounded bg-primary/10">
+                                  Stage {stage.step}
+                                </span>
+                                <h4 className="font-bold text-black text-sm sm:text-base tracking-tight">
+                                  {stage.role}
+                                </h4>
+                              </div>
+                              <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-black/5 text-black/60">
+                                {stage.tag}
+                              </span>
+                            </div>
+
+                            <p className="text-black font-semibold text-xs sm:text-sm mb-1">
+                              {stage.task}
+                            </p>
+                            <p className="text-black/65 text-xs leading-relaxed">
+                              {stage.desc}
+                            </p>
+
+                            {/* Direct Link Badge */}
+                            <div className="mt-3 pt-2.5 border-t border-black/5 flex items-center justify-between gap-2 text-xs flex-wrap">
+                              <div className="flex items-center gap-1.5 text-primary font-bold text-[11px]">
+                                <ArrowRight size={13} className="shrink-0" />
+                                <span>Link: {stage.handoff}</span>
+                              </div>
+                              <span className="text-[10px] font-semibold text-black/50">
+                                Target: {stage.nextDept}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <p className="text-black/70 text-xs leading-relaxed">
-                        {item.detail}
-                      </p>
-                    </div>
 
-                    <button
-                      type="button"
-                      onClick={() => handleActionClick(`${item.id} (${item.action})`)}
-                      className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-primary text-white text-xs font-bold hover:brightness-110 shadow-xs active:scale-95 transition-all shrink-0 cursor-pointer self-start sm:self-auto"
-                    >
-                      <span>{item.action}</span>
-                      <ArrowRight size={13} />
-                    </button>
-                  </div>
-                ))}
+                      {/* Visible Connecting Arrow Link Between Stages */}
+                      {idx < connectedQueueStages.length - 1 && (
+                        <div className="flex justify-center py-1">
+                          <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary/5 text-primary text-[10px] font-bold">
+                            <ArrowDown size={11} className="animate-bounce" />
+                            <span>Workflow links to next queue</span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Enterprise Bottom Status Footer */}
-              <div className="px-5 sm:px-6 py-3 border-t border-black/5 bg-neutral-50/80 flex items-center justify-between text-[11px] text-black/60 flex-wrap gap-2">
-                <span className="font-medium">
-                  Select <strong className="text-primary font-bold">Action</strong> to navigate directly to the required transaction step.
+              {/* Bottom Quote from Document */}
+              <div className="mt-5 p-3.5 rounded-xl bg-primary/5 border border-primary/20 text-xs text-black/75 flex items-center gap-2.5">
+                <span className="w-2 h-2 rounded-full bg-primary shrink-0" />
+                <span>
+                  <strong>Document Principle:</strong> <em>"Select Action, and WhizUnik takes the user directly to the next required workflow step — the workflow creates the work queue."</em>
                 </span>
-                <AnimatePresence>
-                  {activeActionFeedback && (
-                    <motion.span
-                      initial={{ opacity: 0, x: 8 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 8 }}
-                      className="text-primary font-bold bg-primary/10 px-2 py-0.5 rounded-full"
-                    >
-                      {activeActionFeedback}
-                    </motion.span>
-                  )}
-                </AnimatePresence>
               </div>
             </div>
           </div>
