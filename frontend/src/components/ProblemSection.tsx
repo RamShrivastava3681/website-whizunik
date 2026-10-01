@@ -18,8 +18,6 @@ const timelineSteps = [
     icon: ShoppingCart,
     status: "Knows what has been ordered",
     connection: "Customer orders and commercial terms flow directly to Procurement and Warehouse queues without manual re-entry.",
-    handoffTo: "Procurement & Warehouse",
-    metric: "Instant Hand-off",
   },
   {
     step: "02",
@@ -27,8 +25,6 @@ const timelineSteps = [
     icon: Package,
     status: "Knows what needs to be purchased",
     connection: "Purchase Orders link directly to confirmed commercial demand, preventing stockouts and runaway commitments.",
-    handoffTo: "Warehouse & Treasury",
-    metric: "Traceable POs",
   },
   {
     step: "03",
@@ -36,8 +32,6 @@ const timelineSteps = [
     icon: Warehouse,
     status: "Knows what has physically arrived",
     connection: "Dock inspection verifies physical receipts and issues authentic GRN — updating real-time inventory instantly.",
-    handoffTo: "Finance & Sales",
-    metric: "Verified GRN Gate",
   },
   {
     step: "04",
@@ -45,8 +39,6 @@ const timelineSteps = [
     icon: FileText,
     status: "Knows what has been invoiced",
     connection: "Commercial invoices are released only when verified delivery milestones and Checker approvals are completed.",
-    handoffTo: "Treasury",
-    metric: "Milestone-Gated",
   },
   {
     step: "05",
@@ -54,8 +46,6 @@ const timelineSteps = [
     icon: CreditCard,
     status: "Knows what has actually been paid",
     connection: "Realized bank remittances are reconciled directly, giving management real-time visibility into actual available cash.",
-    handoffTo: "Management Command",
-    metric: "Realized Cash",
   },
 ];
 
@@ -109,22 +99,9 @@ const ProblemSection = () => {
             </div>
           </motion.div>
 
-          {/* Right Column: Interactive Department Timeline */}
+          {/* Right Column: Department Timeline */}
           <div className="relative">
             <div className="absolute -inset-4 bg-primary/5 blur-2xl pointer-events-none rounded-3xl" />
-
-            {/* Timeline Header Bar */}
-            <div className="flex items-center justify-between gap-3 mb-5 px-1 relative z-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                <span className="text-[11px] font-bold uppercase tracking-wider text-primary">
-                  Interactive Operating Timeline
-                </span>
-              </div>
-              <span className="text-[11px] text-black/50 font-medium hidden sm:inline">
-                Click any stage to trace flow
-              </span>
-            </div>
 
             {/* Timeline track container */}
             <div className="relative pl-7 sm:pl-9 space-y-3.5 z-10">
@@ -178,31 +155,13 @@ const ProblemSection = () => {
                         </div>
 
                         <div className="flex-1 min-w-0">
-                          {/* Top Row: Title + Handoff Badge */}
-                          <div className="flex items-center justify-between gap-2 mb-1 flex-wrap">
-                            <div className="flex items-center gap-2">
-                              <h4 className={`font-bold text-sm sm:text-base tracking-tight transition-colors ${
-                                isActive ? "text-primary" : "text-black group-hover:text-primary"
-                              }`}>
-                                {item.role}
-                              </h4>
-                              {isActive && (
-                                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                                  <Sparkles size={10} />
-                                  Active Flow
-                                </span>
-                              )}
-                            </div>
-
-                            <span
-                              className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full transition-all ${
-                                isActive
-                                  ? "bg-primary text-white shadow-2xs"
-                                  : "bg-black/5 text-black/55 group-hover:bg-primary/10 group-hover:text-primary"
-                              }`}
-                            >
-                              {isActive ? `Handoff › ${item.handoffTo}` : item.metric}
-                            </span>
+                          {/* Title */}
+                          <div className="mb-1">
+                            <h4 className={`font-bold text-sm sm:text-base tracking-tight transition-colors ${
+                              isActive ? "text-primary" : "text-black group-hover:text-primary"
+                            }`}>
+                              {item.role}
+                            </h4>
                           </div>
 
                           {/* Primary Status (Official Word Doc text) */}
