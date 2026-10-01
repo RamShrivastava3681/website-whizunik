@@ -183,6 +183,9 @@ app.post("/api/contact", async (req, res) => {
       </table>
     `;
 
+    console.log(`\n📥 [NEW CONTACT SUBMISSION] Name: "${name}", Email: "${email}", Company: "${company}"`);
+    console.log(`➡️  Sending lead email to admin (${contactReceiverEmail})...`);
+
     await transporter.sendMail({
       from: `Whiz-Unik Website <${smtpUser}>`,
       to: contactReceiverEmail,
@@ -206,7 +209,9 @@ app.post("/api/contact", async (req, res) => {
       }),
       attachments,
     });
+    console.log(`✅ Successfully sent lead email to: ${contactReceiverEmail}`);
 
+    console.log(`➡️  Sending auto-reply confirmation to client (${email})...`);
     await transporter.sendMail({
       from: `Whiz-Unik Team <${smtpUser}>`,
       to: email,
@@ -228,10 +233,11 @@ app.post("/api/contact", async (req, res) => {
       }),
       attachments,
     });
+    console.log(`✅ Successfully sent auto-reply to: ${email}\n`);
 
     return res.json({ ok: true });
   } catch (error) {
-    console.error("Contact email send failed:", error);
+    console.error("❌ Contact email send failed:", error);
     return res.status(500).json({ error: "Failed to send emails." });
   }
 });

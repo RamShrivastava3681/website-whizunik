@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 
 const navLinks = [
-  { label: "Home", path: "/" },
+  { label: "Command", path: "/" },
+  { label: "How It Works", path: "/#how-it-works" },
+  { label: "Solutions", path: "/#solutions" },
+  { label: "Strategic Advisory", path: "/services" },
   { label: "About", path: "/about" },
-  { label: "Services", path: "/services" },
-  { label: "Insights", path: "/insights" },
 ];
 
 const Header = () => {
@@ -94,9 +95,9 @@ const Header = () => {
           <div className="flex items-center gap-6">
             <Link
               to="/contact"
-              className="hidden md:flex bg-primary text-white px-8 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase hover:brightness-110 active:scale-95 transition-all duration-300 items-center justify-center gap-2 shadow-lg shadow-primary/20"
+              className="hidden md:flex bg-primary text-white px-7 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase hover:brightness-110 active:scale-95 transition-all duration-300 items-center justify-center gap-2 shadow-lg shadow-primary/20"
             >
-              Let's Talk
+              Request a Walkthrough
               <ArrowUpRight size={16} />
             </Link>
 
@@ -162,7 +163,7 @@ const Header = () => {
                       className="w-full inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs shadow-lg"
                       onClick={() => setMobileOpen(false)}
                     >
-                      Get Started
+                      Request a Walkthrough
                     </Link>
                   </motion.div>
                 </div>

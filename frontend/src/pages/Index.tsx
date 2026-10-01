@@ -1,15 +1,12 @@
 import Header from "@/components/Header";
 import HeroStory from "@/components/HeroStory";
 import ProblemSection from "@/components/ProblemSection";
-import ServicesSection from "@/components/ServicesSection";
-import LifecycleSection from "@/components/LifecycleSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import CTASection from "@/components/CTASection";
+import HowCommandWorks from "@/components/HowCommandWorks";
+import OperationalControl from "@/components/OperationalControl";
+import ManagementCenter from "@/components/ManagementCenter";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
-import StoryTransition from "@/components/StoryTransition";
 import ScrollProgress from "@/components/ScrollProgress";
-import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 
 import { motion } from "framer-motion";
 
@@ -20,43 +17,24 @@ const Index = () => {
       <ScrollProgress />
       <Header />
       <main className="relative z-10 w-full">
+        {/* Hero Section */}
         <HeroStory />
 
-        <StoryTransition
-          chapter="Chapter I"
-          subtitle="Every growth story starts with a challenge..."
-        />
+        {/* Problem Section: Disconnected Reality */}
         <ProblemSection />
 
-        <StoryTransition
-          chapter="Chapter II"
-          subtitle="Institutional experience meets strategic vision."
-        />
-        <ExperienceSection />
+        {/* How Command Works + My Queue + Department Views */}
+        <HowCommandWorks />
 
-        <StoryTransition
-          chapter="Chapter III"
-          subtitle="Bespoke structures designed for your trajectory."
-        />
-        <ServicesSection />
+        {/* Operational Control: Expected vs Actual + Workflows */}
+        <OperationalControl />
 
-        <StoryTransition
-          chapter="Chapter IV"
-          subtitle="A proven lifecycle for capital deployment."
-        />
-        <LifecycleSection />
-
-        <WhoWeWorkWith />
-
-        <StoryTransition
-          chapter="Chapter VI"
-          subtitle="Now it's your turn."
-        />
-        <CTASection />
+        {/* Management Command Center + Accounting Coexistence + Implementation + Final CTA */}
+        <ManagementCenter />
       </main>
       <Footer />
 
-      {/* Background Decorative Blur (Fixed) */}
+      {/* Background Decorative Blur */}
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
         <motion.div 
           animate={{ 

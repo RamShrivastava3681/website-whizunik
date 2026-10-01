@@ -4,12 +4,10 @@ import { ArrowRight, TrendingUp } from "lucide-react";
 import heroImage from "@/assets/hero-building.jpg";
 import Magnetic from "./Magnetic";
 
-const wordsLine1 = ["Structured", "Capital"];
-const wordsLine2 = ["Advisory", "for", "Growing", "Businesses."];
+const wordsLine1 = ["Run", "your", "business"];
+const wordsLine2 = ["from", "one", "connected", "operating", "system."];
 
 const HeroStory = () => {
-  const [capitalMetric, setCapitalMetric] = useState(0);
-  const hasStartedCounter = useRef(false);
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -25,38 +23,6 @@ const HeroStory = () => {
   const textY = useTransform(smoothYProgress, [0, 0.4], [0, -100]);
   const textScale = useTransform(smoothYProgress, [0, 0.4], [1, 0.95]);
 
-  useEffect(() => {
-    let rafId = 0;
-    const startCounter = () => {
-      if (hasStartedCounter.current) return;
-      hasStartedCounter.current = true;
-      const duration = 3000;
-      const targetValue = 300;
-      const easeOutExpo = (t: number) => 1 - Math.pow(2, -10 * t);
-      const start = performance.now();
-      const tick = (now: number) => {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = progress === 1 ? 1 : easeOutExpo(progress);
-        setCapitalMetric(Math.round(targetValue * eased));
-        if (progress < 1) rafId = requestAnimationFrame(tick);
-      };
-      rafId = requestAnimationFrame(tick);
-    };
-
-    const preloaderDone = (window as any).__whizunikPreloaderDone;
-    if (preloaderDone) {
-      setTimeout(startCounter, 400); // Slight delay for smoother feel
-    } else {
-      window.addEventListener("whizunik:preloader-done", startCounter);
-    }
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("whizunik:preloader-done", startCounter);
-    };
-  }, []);
-
   const wordVariants = {
     hidden: { y: "110%", opacity: 0 },
     visible: (i: number) => ({
@@ -71,15 +37,15 @@ const HeroStory = () => {
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-white">
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-white pt-20">
       {/* Background Image with Parallax & Darkening Overlay */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY, scale: bgScale }}>
         <img
           src={heroImage}
           alt="Whiz-Unik Building"
-          className="w-full h-[120%] object-cover opacity-[0.22]"
+          className="w-full h-[120%] object-cover opacity-[0.16]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/40 to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white" />
       </motion.div>
 
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -96,24 +62,24 @@ const HeroStory = () => {
       </div>
 
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 md:px-12 w-full"
+        className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 md:px-12 w-full py-16"
         style={{ opacity, y: textY, scale: textScale }}
       >
         <motion.p
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="text-primary font-body text-[10px] md:text-xs tracking-[0.5em] uppercase mb-12 flex items-center gap-4"
+          className="text-primary font-body text-[11px] md:text-xs tracking-[0.4em] uppercase mb-8 flex items-center gap-3"
         >
           <motion.span
             animate={{ opacity: [0.4, 1, 0.4], scale: [0.95, 1.05, 0.95] }}
             transition={{ duration: 4, repeat: Infinity }}
             className="inline-block w-2.5 h-2.5 rounded-full bg-primary/80 shadow-[0_0_12px_rgba(47,99,255,0.6)]"
           />
-          Whiz-Unik Capital Advisory
+          WhizUnik Command • Business Operating System
         </motion.p>
 
-        <h1 className="serif-headline text-5xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold leading-[0.95] tracking-tighter mb-10 max-w-5xl">
+        <h1 className="serif-headline text-5xl md:text-7xl lg:text-[5.2rem] xl:text-[6.2rem] font-bold leading-[0.98] tracking-tighter mb-8 max-w-5xl text-black">
           <div className="flex flex-wrap gap-x-[0.25em] overflow-hidden py-1">
             {wordsLine1.map((word, i) => (
               <motion.span
@@ -132,11 +98,11 @@ const HeroStory = () => {
             {wordsLine2.map((word, i) => (
               <motion.span
                 key={i}
-                custom={i + 2}
+                custom={i + 3}
                 variants={wordVariants}
                 initial="hidden"
                 animate="visible"
-                className={`inline-block ${word === "Advisory" || word === "Growing" ? "italic font-light text-primary/85 tracking-tight" : ""}`}
+                className={`inline-block ${word === "connected" || word === "operating" ? "italic font-light text-primary tracking-tight" : ""}`}
               >
                 {word}
               </motion.span>
@@ -147,44 +113,45 @@ const HeroStory = () => {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
-          className="text-black/60 text-base sm:text-lg md:text-xl max-w-xl mb-14 leading-relaxed font-medium"
+          transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+          className="text-black/75 text-base sm:text-lg md:text-xl max-w-3xl mb-8 leading-relaxed font-normal"
         >
-          We work in the space between bank debt and institutional equity, where traditional financing stops being adequate.
+          WhizUnik Command connects sales, procurement, inventory, finance and warehouse workflows so every team knows what to do next — while management sees the business as it moves.
         </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+          className="inline-block px-4 py-2 rounded-full bg-primary/5 border border-primary/15 text-primary/90 text-xs sm:text-sm font-medium mb-10"
+        >
+          Built for growing businesses that have outgrown spreadsheets, disconnected systems and manual follow-ups.
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.8, ease: "easeOut" }}
-          className="flex flex-wrap gap-8 items-center"
+          transition={{ duration: 1, delay: 1.6, ease: "easeOut" }}
+          className="flex flex-wrap gap-5 items-center"
         >
           <Magnetic>
-            <button className="bg-primary text-white px-8 sm:px-12 py-5 sm:py-6 rounded-full text-[10px] sm:text-xs font-bold tracking-[0.25em] uppercase hover:shadow-2xl hover:shadow-primary/40 active:scale-[0.98] transition-all duration-500 flex items-center gap-5 shadow-2xl shadow-primary/20 group overflow-hidden relative">
-              <span className="relative z-10 transition-colors duration-500">Discuss Your Capital Structure</span>
-              <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-2 transition-transform duration-500" />
-              <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 opacity-10" />
-            </button>
+            <a
+              href="/contact"
+              className="bg-primary text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:shadow-2xl hover:shadow-primary/40 active:scale-[0.98] transition-all duration-300 flex items-center gap-4 shadow-xl shadow-primary/20 group"
+            >
+              <span>Request a Walkthrough</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+            </a>
           </Magnetic>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 2.4, duration: 1 }}
-            className="flex items-center gap-5 bg-white/60 backdrop-blur-xl p-4 sm:p-5 rounded-3xl border border-black/[0.03] shadow-lg shadow-black/[0.02]"
-          >
-            <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shadow-inner">
-              <TrendingUp size={22} />
-            </div>
-            <div>
-              <p className="text-[24px] text-black font-bold tracking-tighter leading-none mb-1">
-                ${capitalMetric}M+
-              </p>
-              <p className="text-[10px] font-bold text-black/30 uppercase tracking-[0.15em]">
-                Delivered
-              </p>
-            </div>
-          </motion.div>
+          <Magnetic>
+            <a
+              href="#how-it-works"
+              className="bg-white text-black/80 border border-black/10 px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:bg-black/5 active:scale-[0.98] transition-all duration-300 flex items-center gap-3 shadow-sm"
+            >
+              <span>Explore Command</span>
+            </a>
+          </Magnetic>
         </motion.div>
       </motion.div>
 

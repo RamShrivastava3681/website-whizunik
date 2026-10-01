@@ -1,10 +1,19 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Mail, Phone, MapPin, Send, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Magnetic from "@/components/Magnetic";
 import { toast } from "sonner";
+
+const walkthroughHighlights = [
+  "Transactions move between departments",
+  "My Queue tells each user what to do next",
+  "Approvals control transaction progression",
+  "Physical movements control inventory",
+  "Actual and expected cash remain distinct",
+  "Management sees operational and financial priorities",
+];
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +35,7 @@ const Contact = () => {
     };
 
     if (!trimmedData.name || !trimmedData.email || !trimmedData.company || !trimmedData.message) {
-      toast.error("Please fill all consultation form fields.");
+      toast.error("Please fill all form fields.");
       return;
     }
 
@@ -49,7 +58,7 @@ const Contact = () => {
         throw new Error("Failed to submit consultation request");
       }
 
-      toast.success("Thank you! Your consultation request has been received.");
+      toast.success("Thank you! Your walkthrough request has been received.");
       setFormData({ name: "", email: "", company: "", message: "" });
     } catch (error) {
       toast.error("Unable to send the request right now. Please try again in a moment.");
@@ -85,163 +94,156 @@ const Contact = () => {
         />
       </div>
 
-      <main className="relative pt-28 md:pt-48 pb-16 md:pb-32">
+      <main className="relative pt-28 md:pt-44 pb-16 md:pb-32">
         <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 lg:gap-20">
-            {/* Left: Info */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 lg:gap-20 items-start">
+            
+            {/* Left: Walkthrough Explanation */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full border border-primary/20 text-primary font-bold tracking-[0.3em] text-[10px] uppercase mb-8 shadow-sm">
-                Get in Touch
+              <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full border border-primary/20 text-primary font-bold tracking-[0.3em] text-[10px] md:text-xs uppercase mb-6 shadow-sm">
+                Request a Walkthrough
               </span>
-              <h1 className="serif-headline text-3xl sm:text-4xl md:text-5xl text-foreground font-bold tracking-tighter leading-[1.05] mb-8 md:mb-10">
-                Let's Build Your <br/>
-                <span className="italic text-primary font-light">Capital</span> Future.
+              <h1 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground font-bold tracking-tight leading-[1.1] mb-6">
+                See WhizUnik Command <br/>
+                <span className="text-primary italic font-light">in action.</span>
               </h1>
-              <p className="text-on-surface-variant text-base sm:text-lg md:text-xl leading-relaxed mb-10 md:mb-16 max-w-lg font-medium border-l border-white/10 pl-5 md:pl-10">
-                Whether you're exploring funding options or ready to restructure your capital
-                stack, our team is here to guide you every step of the way.
+              <p className="text-black/75 text-base sm:text-lg leading-relaxed mb-8">
+                See how Command connects Sales, Procurement, Checker, Finance, Treasury, and Warehouse through controlled workflows while giving management visibility across the transaction lifecycle.
               </p>
 
-              <div className="space-y-6 md:space-y-10">
+              <div className="p-6 sm:p-8 rounded-3xl bg-neutral-50 border border-black/10 mb-10 shadow-sm">
+                <h4 className="font-bold text-black text-sm uppercase tracking-wider mb-4">We'll show you how:</h4>
+                <div className="space-y-3">
+                  {walkthroughHighlights.map((pt) => (
+                    <div key={pt} className="flex items-start gap-3">
+                      <CheckCircle2 size={18} className="text-primary shrink-0 mt-0.5" />
+                      <span className="text-black/80 text-xs sm:text-sm font-medium leading-relaxed">{pt}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-black/80 text-xs sm:text-sm font-semibold mt-5 pt-4 border-t border-black/5">
+                  See what connected operations could look like in your business.
+                </p>
+              </div>
+
+              <div className="space-y-4">
                 {[
                   { icon: Mail, title: "Email", value: "sankalp@whizunik.com", href: "mailto:sankalp@whizunik.com" },
                   { icon: Phone, title: "Phone", value: "+91-7045941942", href: "tel:+917045941942" },
-                  { icon: MapPin, title: "Address", value: "Max Towers, 16th Floor, Sector 16 B, Noida, 201301", href: "#" },
-                ].map((item, i) => (
-                  <motion.div 
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + i * 0.1 }}
-                    className="flex items-start gap-6 group"
-                  >
-                    <div className="w-11 h-11 md:w-14 md:h-14 bg-primary/5 rounded-xl md:rounded-2xl flex items-center justify-center border border-white/5 group-hover:bg-primary group-hover:text-white transition-all duration-500 shadow-xl">
-                      <item.icon size={24} className="group-hover:scale-110 transition-transform" />
+                  { icon: MapPin, title: "Headquarters", value: "Max Towers, 16th Floor, Sector 16 B, Noida, 201301", href: "#" },
+                ].map((item) => (
+                  <div key={item.title} className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                      <item.icon size={18} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-foreground/60 text-xs uppercase tracking-widest mb-2">{item.title}</h4>
-                      <a 
-                        href={item.href} 
-                        className="text-base sm:text-lg md:text-xl font-headline text-foreground hover:text-primary transition-colors font-bold flex items-center gap-2 md:gap-3 break-all"
-                      >
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-black/40">{item.title}</p>
+                      <a href={item.href} className="text-sm font-bold text-black hover:text-primary transition-colors">
                         {item.value}
-                        <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                       </a>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Right: Form */}
+            {/* Right: Walkthrough Form */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="relative"
             >
-              <div className="absolute -inset-10 bg-primary/5 rounded-[4rem] blur-3xl -z-10"></div>
+              <div className="absolute -inset-6 bg-primary/10 rounded-3xl blur-3xl -z-10" />
+              
               <form 
                 onSubmit={handleSubmit} 
-                className="bg-surface-container-low/40 backdrop-blur-3xl p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-[2.5rem] border border-white/5 shadow-2xl space-y-4 md:space-y-6"
+                className="bg-white p-7 sm:p-10 rounded-3xl border border-black/10 shadow-xl space-y-5"
               >
-                <div className="mb-6 md:mb-8">
-                  <h3 className="font-headline text-2xl sm:text-3xl md:text-3xl text-foreground font-bold mb-3 tracking-tight">Schedule a <span className="text-primary italic font-light">Consultation</span></h3>
-                  <p className="text-on-surface-variant font-medium text-sm md:text-base leading-relaxed">
-                   Access our considered, institutional approach grounded in discipline. We typically respond within 24 hours in line with market timelines.
+                <div>
+                  <h3 className="serif-headline text-2xl sm:text-3xl text-black font-bold mb-2">
+                    Request a <span className="text-primary italic font-light">30-Minute Walkthrough</span>
+                  </h3>
+                  <p className="text-black/60 text-xs sm:text-sm leading-relaxed">
+                    See what connected operations could look like in your business. Fill out your details and our team will get in touch shortly.
                   </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-primary uppercase tracking-widest ml-4">Full Name</label>
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          name: e.target.value,
-                        }))
-                      }
-                      className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-4 text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
-                      placeholder="e.g. Julian Thorne"
-                      required
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-bold text-primary uppercase tracking-widest ml-4">Email Address</label>
-                    <input
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData((prev) => ({
-                          ...prev,
-                          email: e.target.value,
-                        }))
-                      }
-                      className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-4 text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
-                      placeholder="professional@firm.com"
-                      required
-                    />
-                  </div>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-black/70 uppercase tracking-wider">Your Name</label>
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                    className="w-full bg-neutral-50 border border-black/10 rounded-xl px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-primary focus:bg-white transition-all outline-none"
+                    placeholder="e.g. Rahul Sharma"
+                    required
+                  />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-primary uppercase tracking-widest ml-4">Institutional Presence</label>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-black/70 uppercase tracking-wider">Business Email</label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+                    className="w-full bg-neutral-50 border border-black/10 rounded-xl px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-primary focus:bg-white transition-all outline-none"
+                    placeholder="name@company.com"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-black/70 uppercase tracking-wider">Company / Organisation</label>
                   <input
                     type="text"
                     value={formData.company}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        company: e.target.value,
-                      }))
-                    }
-                    className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-4 text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
-                    placeholder="Company or Organization Name"
+                    onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
+                    className="w-full bg-neutral-50 border border-black/10 rounded-xl px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-primary focus:bg-white transition-all outline-none"
+                    placeholder="Company name, current ERP or spreadsheets"
                     required
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-primary uppercase tracking-widest ml-4">Strategic Inquiry</label>
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold text-black/70 uppercase tracking-wider">Operational Requirement / Message</label>
                   <textarea
                     rows={4}
                     value={formData.message}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        message: e.target.value,
-                      }))
-                    }
-                    className="w-full bg-white/5 border border-white/10 rounded-[2rem] px-8 py-6 text-foreground focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none"
-                    placeholder="Specify the parameters of your capital requirements..."
+                    onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
+                    className="w-full bg-neutral-50 border border-black/10 rounded-xl px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-primary focus:bg-white transition-all outline-none resize-none"
+                    placeholder="Tell us about your team size, workflow challenges, or specific department requirements..."
                     required
                   />
                 </div>
 
-                <div className="pt-6">
-                  <Magnetic>
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-primary text-white py-6 rounded-full font-bold text-sm uppercase tracking-[0.3em] hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-4 shadow-xl shadow-primary/20 group"
-                    >
-                      <span>{isSubmitting ? "Sending..." : "Initiate Protocol"}</span>
-                      <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                    </button>
-                  </Magnetic>
-                </div>
+                <Magnetic>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 rounded-xl bg-primary text-white text-xs sm:text-sm font-bold uppercase tracking-widest hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-3 shadow-lg shadow-primary/25 disabled:opacity-50"
+                  >
+                    {isSubmitting ? (
+                      <span>Sending Request...</span>
+                    ) : (
+                      <>
+                        <span>Request a 30-Minute Walkthrough</span>
+                        <Send size={15} />
+                      </>
+                    )}
+                  </button>
+                </Magnetic>
               </form>
             </motion.div>
+
           </div>
         </section>
       </main>
+
       <Footer />
     </div>
   );
