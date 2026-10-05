@@ -1,302 +1,206 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import websitePic from "@/assets/about-hero.png";
-import { ExternalLink, Quote } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import ComplexityToOrder from "@/components/ComplexityToOrder";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { 
+  ArrowRight, 
+  Terminal, 
+  Sparkles, 
+  TrendingUp, 
+  Boxes, 
+  ShoppingCart, 
+  CreditCard, 
+  AlertCircle 
+} from "lucide-react";
+import Magnetic from "@/components/Magnetic";
+
+const operationalChain = [
+  { icon: ShoppingCart, cause: "Sales", effect: "Creates receivables." },
+  { icon: Boxes, cause: "Procurement", effect: "Creates payment obligations." },
+  { icon: Boxes, cause: "Inventory", effect: "Ties up working capital." },
+  { icon: CreditCard, cause: "Collections", effect: "Creates cash." },
+  { icon: AlertCircle, cause: "Operational Delays", effect: "Eventually become financial problems." },
+];
 
 const About = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-  const imgY = useTransform(scrollYProgress, [0, 1], [0, -120]);
-
   return (
-    <div ref={containerRef} className="relative min-h-screen bg-white text-black overflow-hidden">
+    <div className="relative min-h-screen bg-white text-black overflow-hidden selection:bg-primary/20">
       <Header />
 
-      {/* Background Decorative Elements */}
+      {/* Background Decorative Blur */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute top-[20%] left-[-10%] w-[40vw] h-[40vw] bg-primary/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[30vw] h-[30vw] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute top-[20%] left-[-10%] w-[45vw] h-[45vw] bg-primary/5 rounded-full blur-[140px]" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[35vw] h-[35vw] bg-primary/5 rounded-full blur-[120px]" />
       </div>
 
-      <main className="relative pt-20 md:pt-24 pb-12 z-10">
-        {/* Section 1: Hero */}
-        <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 mb-8 md:mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-16 items-start">
+      <main className="relative pt-28 md:pt-40 pb-20 md:pb-32 z-10">
+        <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
+          
+          {/* Hero Section */}
+          <div className="max-w-4xl mb-16 md:mb-24">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="md:col-span-8"
             >
-              <span className="inline-block px-4 py-1 bg-primary/10 rounded-full border border-primary/20 text-primary font-bold tracking-[0.2em] text-[10px] uppercase mb-4 shadow-sm">
-                About
+              <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full border border-primary/20 text-primary font-bold tracking-[0.3em] text-[10px] md:text-xs uppercase mb-6 shadow-sm">
+                About WhizUnik
               </span>
-              <h1 className="serif-headline text-4xl sm:text-5xl md:text-6xl text-black font-bold leading-[1.05] tracking-tight">
-                Architects of <br />
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.4, duration: 1 }}
-                  className="italic font-light text-primary/80"
-                >
-                  Intellectual
-                </motion.span>{" "}
-                Capital.
+              <h1 className="serif-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-black font-bold leading-[1.05] tracking-tight mb-8">
+                Where operations, finance{" "}
+                <span className="text-primary italic font-light">& technology come together.</span>
               </h1>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              viewport={{ once: true }}
-              className="md:col-span-4 md:pt-2"
-            >
-              <p className="text-black/60 text-sm sm:text-base md:text-base leading-relaxed font-medium border-l border-black/10 pl-5 md:pl-8">
-                Whiz-Unik was founded on a singular premise: that true institutional excellence is born from the intersection of rigorous data and creative intuition.
+              <p className="text-base sm:text-lg md:text-xl text-black/75 leading-relaxed font-normal max-w-3xl">
+                WhizUnik was built around a simple observation: <br className="hidden sm:inline" />
+                <strong className="text-black font-bold">Financial performance and operational execution cannot be separated.</strong>
               </p>
             </motion.div>
           </div>
-        </section>
 
-        {/* Section 2: Image & Mission - Redesigned for "Cooler" High-End Aesthetic */}
-        <section className="mb-12 md:mb-24 relative">
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-20 items-center">
-            
-            {/* Visual Column — 55 % */}
-            <motion.div
-              style={{ y: imgY }}
-              className="relative lg:col-span-7 flex items-center justify-center"
-            >
-              <div className="absolute inset-0 bg-primary/[0.04] blur-[100px] rounded-full pointer-events-none" />
-              <div className="relative z-10 w-full">
-                <ComplexityToOrder />
-              </div>
-            </motion.div>
+          {/* THE CORE CHAIN */}
+          <div className="mb-20 md:mb-28">
+            <h3 className="serif-headline text-2xl sm:text-3xl font-bold text-black mb-8">
+              The Reality of Operational Interdependence
+            </h3>
 
-            {/* Content Column — 45 % */}
-            <div className="lg:col-span-5 space-y-6 md:space-y-10">
-              <div className="relative">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  className="flex items-center gap-4 mb-6"
-                >
-                  <div className="h-px w-12 bg-primary" />
-                  <span className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-primary font-bold">Mission Statement</span>
-                </motion.div>
-
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.2 }}
-                  className="serif-headline text-2xl md:text-4xl lg:text-5xl leading-[1.15] text-black font-medium italic mb-8"
-                >
-                  To help growth stage businesses structure capital with <span className="text-primary not-italic font-bold">clarity</span>, precision, and intent.
-                </motion.h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  {/* Card 1 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {operationalChain.map((item, idx) => {
+                const Icon = item.icon;
+                return (
                   <motion.div
+                    key={item.cause}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    className="group p-6 rounded-2xl bg-white border border-black/[0.03] shadow-[0_15px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_60px_-20px_rgba(0,0,0,0.1)] transition-all duration-500"
+                    transition={{ delay: idx * 0.1, duration: 0.5 }}
+                    className="p-5 rounded-2xl bg-neutral-50 border border-black/10 hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between"
                   >
-                    <div className="h-1 w-10 bg-primary/20 mb-4 group-hover:w-full transition-all duration-700" />
-                    <p className="text-black/80 font-medium text-sm md:text-base leading-relaxed">
-                      Capital should <span className="text-primary italic">adapt</span> to the business, not the other way around.
-                    </p>
+                    <div>
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
+                        <Icon size={20} />
+                      </div>
+                      <h4 className="text-base font-bold text-black tracking-tight">{item.cause}</h4>
+                      <p className="text-xs sm:text-sm text-black/60 mt-1 font-medium">{item.effect}</p>
+                    </div>
                   </motion.div>
-
-                  {/* Card 2 */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    className="group p-6 rounded-2xl bg-neutral-900 border border-white/5 shadow-2xl hover:-translate-y-1 transition-all duration-500"
-                  >
-                    <div className="h-1 w-10 bg-primary/40 mb-4 group-hover:w-full transition-all duration-700" />
-                    <p className="text-white/80 font-light text-sm md:text-base leading-relaxed italic">
-                      "We don't approach capital as a transaction, but as a structure that needs to fit the business."
-                    </p>
-                  </motion.div>
-                </div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.6 }}
-                  className="mt-8 pt-8 border-t border-black/5 flex items-start gap-6"
-                >
-                  <div className="text-primary font-serif text-4xl opacity-30 select-none">"</div>
-                  <p className="text-black/60 text-base md:text-lg leading-relaxed font-light italic max-w-xl">
-                    Our work is grounded in understanding cash flows, constraints, and growth - and designing solutions that align with them.
-                  </p>
-                </motion.div>
-              </div>
+                );
+              })}
             </div>
           </div>
-        </section>
 
-        {/* Section 3: Leadership */}
-        <section className="bg-neutral-50 backdrop-blur-sm py-16 md:py-40 mb-16 md:mb-48 border-y border-black/5 relative">
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 lg:gap-20 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="lg:col-span-5 order-2 lg:order-1"
-              >
-                <span className="text-primary font-bold text-xs uppercase tracking-[0.3em] block mb-6 px-4 py-1.5 bg-primary/10 w-fit rounded-full border border-primary/20 shadow-inner">
-                  Leadership
-                </span>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-headline text-black mb-1 font-bold tracking-tight">Sankalp Kumar</h2>
-                <p className="text-primary text-lg md:text-xl font-bold mb-4 md:mb-5 italic">Founder, Whiz-Unik</p>
+          {/* THE STORY */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center p-8 sm:p-12 rounded-3xl bg-neutral-50 border border-black/10 mb-20 md:mb-28">
+            <div className="lg:col-span-7">
+              <h3 className="serif-headline text-2xl sm:text-4xl font-bold text-black mb-6">
+                From working capital analysis to connected operational control.
+              </h3>
+              <p className="text-black/75 text-sm sm:text-base leading-relaxed mb-4">
+                Our experience analysing businesses, working capital, and trade flows shaped the way we built <strong>WhizUnik Command</strong>.
+              </p>
+              <p className="text-black/70 text-sm sm:text-base leading-relaxed">
+                Today, our primary focus is building technology that gives growing businesses greater control, visibility, and accountability across their daily operations.
+              </p>
+            </div>
 
-                <div className="space-y-3 md:space-y-4 text-black/60 text-base md:text-lg leading-relaxed border-l border-primary/20 pl-5 md:pl-8">
-                  <p>
-                    Sankalp works closely with growth-stage businesses on structuring capital across working capital, trade finance, and growth funding.
-                  </p>
-                  <p>
-                    His work is rooted in understanding how businesses actually operate - from cash flow cycles and receivables to capital constraints and expansion plans - before designing financing structures around them.
-                  </p>
-                  <p>
-                    He has spent several years working with exporters, trading companies, and mid-sized businesses, focusing on situations where standard financing does not fit and structured solutions are required.
-                  </p>
-                  <p>
-                    He has worked with some of the most prominent brands in the country, helping them scale and grow their business through innovative financial structures.
-                  </p>
-                  <p>
-                    His approach is hands-on, analytical, and deal-driven - with an emphasis on clarity, alignment, and execution.
-                  </p>
-                </div>
+            <div className="lg:col-span-5 p-6 rounded-2xl bg-white border border-primary/20 shadow-sm">
+              <div className="flex items-center gap-3 mb-3 text-primary">
+                <Sparkles size={20} />
+                <span className="font-bold text-xs uppercase tracking-widest">Ongoing Practice</span>
+              </div>
+              <p className="text-black/80 text-xs sm:text-sm leading-relaxed">
+                Our strategic finance practice allows us to continue applying that real-world experience selectively to complex financing, trade structures, and institutional investment situations.
+              </p>
+            </div>
+          </div>
 
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="mt-6 md:mt-8"
-                >
-                  <a className="bg-black text-white px-10 py-5 rounded-none font-bold uppercase tracking-widest text-sm hover:bg-primary hover:text-white transition-all duration-500 inline-flex items-center gap-4 group shadow-xl" href="https://www.linkedin.com/in/sankalp-kumar-770b7023/">
-                    <span>View LinkedIn</span>
-                    <ExternalLink className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" size={18} />
-                  </a>
-                </motion.div>
-              </motion.div>
+          {/* ONE PERSPECTIVE. TWO APPLICATIONS. */}
+          <div className="mb-20 md:mb-28">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="text-primary text-xs font-bold uppercase tracking-[0.3em] block mb-2">
+                Core Architecture
+              </span>
+              <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold text-black">
+                One perspective. <span className="text-primary font-light italic">Two applications.</span>
+              </h3>
+            </div>
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="lg:col-span-7 order-1 lg:order-2"
-              >
-                <div className="relative group">
-                  <div className="absolute inset-0 bg-primary/20 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                  <div className="relative aspect-[4/3] bg-neutral-200 rounded-[3rem] overflow-hidden border border-black/10 shadow-2xl transform group-hover:rotate-1 transition-transform duration-500">
-                    <img
-                      alt="Sankalp Kumar Portrait"
-                      className="object-contain w-full h-full transition-transform duration-700 group-hover:scale-105"
-                      src="/Confident%20professional%20in%20office%20setting.png"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-primary/10"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              
+              {/* Card 1: Command */}
+              <div className="p-8 sm:p-10 rounded-3xl bg-neutral-50 text-black border border-black/10 flex flex-col justify-between shadow-sm">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                    <Terminal size={24} />
                   </div>
+                  <h4 className="serif-headline text-2xl sm:text-3xl font-bold text-black mb-2">
+                    WhizUnik Command
+                  </h4>
+                  <p className="text-primary text-xs sm:text-sm font-semibold uppercase tracking-wider mb-4">
+                    Technology for operational control
+                  </p>
+                  <p className="text-black/65 text-xs sm:text-sm leading-relaxed mb-6">
+                    Connects sales, procurement, inventory, finance, and warehouse workflows into one controlled operating flow.
+                  </p>
                 </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 4: Philosophy */}
-        <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 mb-16 md:mb-48">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center md:text-left mb-12 md:mb-24 flex flex-col md:flex-row items-start md:items-end justify-between gap-8 md:gap-10"
-          >
-            <div className="max-w-2xl">
-              <span className="block text-primary font-bold uppercase tracking-widest text-xs mb-4 px-4 py-1.5 bg-primary/5 border border-primary/20 w-fit rounded-full">Core Values</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-headline text-foreground font-bold tracking-tighter">Our <span className="text-primary italic font-light">Philosophy</span></h2>
-            </div>
-            <p className="text-black/60 text-base md:text-xl max-w-sm font-medium border-l border-black/10 pl-5 md:pl-8">
-              The core principles that govern our engagement and ensure the longevity of our impact.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-            {[
-              {
-                num: "01.",
-                title: "Intellectual Rigor",
-                desc: "We reject superficial solutions. Every strategy is forged through exhaustive research and peer-reviewed methodologies.",
-              },
-              {
-                num: "02.",
-                title: "Radical Integrity",
-                desc: "Our advice is uncompromised. We maintain absolute transparency, prioritizing the client's long-term health over short-term gains.",
-              },
-              {
-                num: "03.",
-                title: "Measured Precision",
-                desc: "In strategy, as in architecture, every millimeter matters. We execute with a level of detail that leaves nothing to chance.",
-              },
-            ].map((p, i) => (
-              <motion.div
-                key={p.num}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-                className="bg-surface-container-low/50 backdrop-blur-xl p-6 sm:p-8 md:p-12 rounded-2xl md:rounded-[2.5rem] border border-white/5 hover:border-primary/30 hover:bg-surface-container-low transition-all duration-500 shadow-xl group"
-              >
-                <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-headline text-2xl md:text-3xl font-bold mb-6 md:mb-10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                  {p.num.replace('.', '')}
-                </div>
-                <h3 className="text-2xl md:text-[28px] font-headline text-foreground mb-4 md:mb-6 font-bold">{p.title}</h3>
-                <p className="text-on-surface-variant text-base md:text-lg leading-relaxed group-hover:text-foreground transition-colors">{p.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* Section 5: Signature Quote */}
-        <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 mb-16 md:mb-48 relative">
-          <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/5 -z-10"></div>
-          <div className="flex justify-center md:justify-end">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="max-w-4xl bg-background p-6 sm:p-8 md:p-24 border-l-4 md:border-l-[12px] border-primary relative shadow-2xl"
-            >
-              <div className="absolute top-6 left-6 md:top-10 md:left-10 text-primary/10"><Quote size={88} fill="currentColor" /></div>
-              <blockquote className="text-2xl sm:text-3xl md:text-5xl font-headline text-foreground leading-[1.1] font-light italic tracking-tight relative z-10">
-                "The most sophisticated solutions are often those that have the courage to
-                remain simple. We don't <span className="text-primary not-italic font-semibold">complicate</span>; we clarify."
-              </blockquote>
-              <div className="mt-12 flex items-center gap-6">
-                <div className="h-[2px] w-12 bg-primary"></div>
-                <cite className="block text-on-surface-variant font-bold uppercase tracking-[0.3em] text-xs not-italic">
-                  Institutional Manifesto, 2024
-                </cite>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest hover:translate-x-1 transition-transform"
+                >
+                  <span>Request a Walkthrough</span>
+                  <ArrowRight size={14} />
+                </Link>
               </div>
-            </motion.div>
+
+              {/* Card 2: Strategic Advisory */}
+              <div className="p-8 sm:p-10 rounded-3xl bg-neutral-50 text-black border border-black/10 flex flex-col justify-between shadow-sm">
+                <div>
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
+                    <TrendingUp size={24} />
+                  </div>
+                  <h4 className="serif-headline text-2xl sm:text-3xl font-bold text-black mb-2">
+                    Strategic Finance Advisory
+                  </h4>
+                  <p className="text-primary text-xs sm:text-sm font-semibold uppercase tracking-wider mb-4">
+                    Expertise for complex capital decisions
+                  </p>
+                  <p className="text-black/65 text-xs sm:text-sm leading-relaxed mb-6">
+                    Selective transaction structuring, trade-flow analysis, and lender readiness for businesses and capital funds.
+                  </p>
+                </div>
+                <Link
+                  to="/services"
+                  className="inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest hover:translate-x-1 transition-transform"
+                >
+                  <span>Explore Advisory</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+
+            </div>
           </div>
+
+          {/* FINAL CTA */}
+          <div className="p-10 sm:p-14 rounded-3xl bg-neutral-50 border border-primary/25 text-black text-center max-w-3xl mx-auto shadow-sm">
+            <h4 className="serif-headline text-2xl sm:text-3xl font-bold mb-4 text-black">
+              Bring your operations into one connected flow.
+            </h4>
+            <p className="text-black/65 text-xs sm:text-sm max-w-lg mx-auto mb-8 font-medium">
+              Discover how WhizUnik Command gives management true operational and financial visibility.
+            </p>
+            <Magnetic>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-widest hover:brightness-110 shadow-lg shadow-primary/20"
+              >
+                <span>Request a Walkthrough</span>
+                <ArrowRight size={14} />
+              </Link>
+            </Magnetic>
+          </div>
+
         </section>
       </main>
+
       <Footer />
     </div>
   );

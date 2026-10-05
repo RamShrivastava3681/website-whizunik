@@ -1,70 +1,67 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowRight, Target, Network, Handshake, CheckCircle2 } from "lucide-react";
-import Magnetic from "@/components/Magnetic";
+import { ArrowRight, Building, Landmark, Compass, CheckCircle2, ShieldCheck, Scale, FileSpreadsheet } from "lucide-react";
 import { Link } from "react-router-dom";
+import Magnetic from "@/components/Magnetic";
 
-const capitalLayers = [
+const businessServices = [
   {
-    num: "01",
-    icon: <Target size={24} className="text-primary" />,
-    title: "Working Capital & Liquidity",
-    intro:
-      "We help businesses unlock liquidity from their existing operations by structuring working capital solutions aligned to their cash conversion cycles.",
-    detail:
-      "This typically involves receivable monetisation, supply chain financing, and cross-border structures designed around how the business actually operates — rather than forcing it into standard banking formats.",
-    points: [
-      "Receivable monetisation",
-      "Supply chain and trade finance structures",
-      "Cash flow cycle optimisation",
-      "Cross-border financing frameworks",
-    ],
+    title: "Funding Strategy",
+    desc: "Assess the appropriate financing structure for the underlying business requirement.",
+    icon: Compass,
   },
   {
-    num: "02",
-    icon: <Network size={24} className="text-primary" />,
-    title: "Structured Growth Capital",
-    intro:
-      "We work with businesses looking to expand but constrained by traditional debt structures, designing capital solutions that balance growth with flexibility.",
-    detail:
-      "This includes structured debt, hybrid capital, and performance-linked structures that allow businesses to scale without being restricted by rigid repayment or collateral frameworks.",
-    points: [
-      "Growth and expansion funding",
-      "Structured debt and hybrid capital",
-      "Performance-linked structures",
-      "Capital aligned to operating cycles",
-    ],
+    title: "Transaction Structuring",
+    desc: "Structure financing around trade flows, receivables, inventory, and working-capital cycles.",
+    icon: Scale,
   },
   {
-    num: "03",
-    icon: <Handshake size={24} className="text-primary" />,
-    title: "Capital Strategy & Market Readiness",
-    intro:
-      "For businesses approaching the next stage of growth, we work on longer-term capital planning and balance sheet structuring.",
-    detail:
-      "The focus is on preparing companies for institutional capital — whether through private investors, structured credit, or eventual capital market access — by ensuring that both financials and structure are aligned for scale.",
-    points: [
-      "Balance sheet structuring",
-      "Capital allocation strategy",
-      "Investor readiness",
-      "Pre-IPO positioning",
-    ],
+    title: "Lender Readiness",
+    desc: "Prepare the financial, commercial, and operational information required for institutional review.",
+    icon: FileSpreadsheet,
+  },
+  {
+    title: "Credit Assessment",
+    desc: "Identify issues likely to influence how a financing institution assesses the transaction.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Transaction Support",
+    desc: "Support management through financial and commercial due diligence.",
+    icon: CheckCircle2,
   },
 ];
 
-const engagementItems = [
-  "Advisory-led approach focused on structuring",
-  "Execution support through a curated network of capital partners",
-  "Combination of fixed advisory and success-based engagement",
+const fundServices = [
+  {
+    title: "Transaction Assessment",
+    desc: "Independent analysis of prospective trade and working-capital opportunities.",
+    icon: Building,
+  },
+  {
+    title: "Credit & Operational Due Diligence",
+    desc: "Review financial strength, transaction structure, and underlying operating flow.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Trade-Flow Analysis",
+    desc: "Assess buyers, suppliers, payment terms, inventory movement, and working-capital requirements.",
+    icon: Scale,
+  },
+  {
+    title: "Monitoring Frameworks",
+    desc: "Help establish transaction monitoring and operational controls post-deployment.",
+    icon: CheckCircle2,
+  },
 ];
 
 const Services = () => {
   return (
-    <div className="bg-background text-foreground relative overflow-x-hidden selection:bg-primary/20 transition-colors duration-500">
+    <div className="bg-background text-foreground relative overflow-x-hidden selection:bg-primary/20">
       <Header />
       
-      {/* Background Decorative Flow */}
+      {/* Background Subtle Gradient Blobs */}
       <div className="fixed inset-0 pointer-events-none -z-10">
         <motion.div 
           animate={{ x: [0, 50, 0], y: [0, -20, 0] }}
@@ -78,166 +75,160 @@ const Services = () => {
         />
       </div>
 
-      <main className="pt-28 md:pt-40 pb-16 md:pb-28">
+      <main className="pt-28 md:pt-40 pb-20 md:pb-32">
         <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 relative z-10">
-          {/* Header Section */}
-          <div className="mb-14 md:mb-32">
+          
+          {/* Hero Section */}
+          <div className="max-w-4xl mb-20 md:mb-28">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="max-w-4xl"
             >
-              <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full border border-primary/20 text-primary font-bold tracking-[0.3em] text-[10px] uppercase mb-8 shadow-sm">
-                Frameworks & Solutions
+              <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full border border-primary/20 text-primary font-bold tracking-[0.3em] text-[10px] md:text-xs uppercase mb-6 shadow-sm">
+                Strategic Finance Advisory
               </span>
-              <h1 className="serif-headline text-4xl sm:text-5xl md:text-7xl text-black font-bold leading-none tracking-tighter mb-8 md:mb-10">
-                Institutional <br/>
-                <span className="blue-gradient-text italic font-light">Precision.</span>
+              <h1 className="serif-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-black font-bold leading-[1.05] tracking-tight mb-8">
+                Structured thinking for{" "}
+                <span className="text-primary italic font-light">complex capital requirements.</span>
               </h1>
-              <div className="h-px w-32 bg-primary/40 mb-10"></div>
-              <p className="text-base sm:text-lg md:text-xl text-black/60 leading-relaxed font-medium">
-                We work in the space where traditional financing stops being adequate.
+              <p className="text-base sm:text-lg md:text-xl text-black/75 leading-relaxed font-normal max-w-3xl mb-8">
+                WhizUnik provides selective strategic advisory to businesses and capital providers navigating structured capital and trade-finance transactions.
+              </p>
+              <p className="text-sm sm:text-base text-black/60 leading-relaxed font-medium max-w-3xl">
+                Our work combines financial analysis with an understanding of the underlying commercial transaction, working-capital cycle, and operational risks.
               </p>
             </motion.div>
           </div>
 
-          {/* Solutions Cards */}
-          <div className="space-y-14 md:space-y-24 lg:space-y-32 mb-16 md:mb-48">
-            {capitalLayers.map((layer, index) => (
-              <motion.div
-                key={layer.num}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="group relative"
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start">
-                  <div className="lg:col-span-1">
-                    <span className="font-headline text-5xl md:text-6xl text-black/5 font-bold tabular-nums">
-                      {layer.num}
-                    </span>
-                  </div>
-                  
-                  <div className="lg:col-span-6">
-                    <div className="flex items-center gap-4 mb-8">
-                       <div className="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                          {layer.icon}
-                       </div>
-                       <h2 className="font-headline text-2xl sm:text-3xl md:text-4xl text-black font-bold leading-tight">
-                         {layer.title}
-                       </h2>
-                    </div>
-                    
-                    <div className="space-y-5 md:space-y-8 pl-1">
-                      <p className="text-base sm:text-lg md:text-lg text-black/80 font-medium leading-relaxed italic border-l-2 border-primary/20 pl-5 md:pl-8">
-                        {layer.intro}
-                      </p>
-                      <p className="text-base md:text-lg text-black/60 leading-relaxed">
-                        {layer.detail}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="lg:col-span-5">
-                    <div className="bg-white/40 backdrop-blur-xl border border-black/5 p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-[2.5rem] shadow-xl group-hover:shadow-primary/5 transition-all duration-700">
-                      <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-8 ml-1">Key Parameters</h4>
-                      <ul className="space-y-6">
-                        {layer.points.map((point) => (
-                          <li key={point} className="flex items-center gap-4 group/item">
-                            <div className="w-8 h-8 rounded-full bg-primary/5 flex items-center justify-center group-hover/item:bg-primary transition-colors">
-                               <div className="w-1.5 h-1.5 bg-primary rounded-full group-hover/item:bg-white transition-colors" />
-                            </div>
-                            <span className="text-black/70 font-bold tracking-tight text-base md:text-lg group-hover/item:text-primary transition-colors">
-                              {point}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <div className="mt-12 pt-10 border-t border-black/5">
-                         <Link to="/insights" className="flex items-center justify-between group/more cursor-pointer" aria-label="Go to Insights">
-                            <span className="text-xs font-bold uppercase tracking-widest text-black/40 group-hover/more:text-primary transition-colors">Strategic Deployment</span>
-                            <ArrowUpRight size={20} className="text-black/20 group-hover/more:text-primary transition-transform group-hover/more:translate-x-1 group-hover/more:-translate-y-1" />
-                         </Link>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Delivery Model & Engagement */}
-          <motion.section 
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="rounded-[2rem] md:rounded-[3.2rem] p-6 sm:p-8 md:p-16 lg:p-20 shadow-[0_30px_80px_-35px_rgba(0,0,0,0.45)] overflow-hidden relative border border-black/10 bg-white/90 backdrop-blur-xl"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,hsl(var(--primary)/0.15)_0%,rgba(255,255,255,0.85)_45%,rgba(255,255,255,0.96)_100%)] pointer-events-none" />
-            <div className="absolute top-0 right-0 w-[42vw] h-[42vw] bg-primary/10 rounded-full blur-[130px] pointer-events-none" />
-            <div className="absolute bottom-[-18%] left-[-12%] w-[24vw] h-[24vw] bg-primary/10 rounded-full blur-[90px] pointer-events-none" />
-            <motion.div
-              animate={{ scale: [1, 1.15, 1], rotate: [0, 30, 0], x: [0, 30, 0] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute -top-[20%] -right-[8%] w-[420px] h-[420px] bg-primary/10 rounded-full blur-[110px] pointer-events-none"
-            />
+          {/* TWO MAIN COLUMNS: FOR BUSINESSES & FOR FUNDS */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 mb-24 md:mb-32 items-start">
             
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 lg:gap-16">
-              <div className="lg:col-span-5">
-                <span className="inline-block text-primary font-bold tracking-[0.25em] text-[10px] uppercase mb-7 px-4 py-2 border border-primary/30 rounded-full bg-white/70 backdrop-blur-sm">
-                  Delivery Model
-                </span>
-                <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl text-black font-bold tracking-tighter leading-none mb-7">How Engagement <br/> <span className="blue-gradient-text italic font-light">Works.</span></h2>
-
-                <p className="text-black/60 text-base md:text-lg leading-relaxed font-medium italic max-w-xl">
-                  Our approach is grounded in understanding how businesses actually operate, then shaping execution pathways aligned with cash flow realities and long-term capital outcomes.
-                </p>
+            {/* For Businesses */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="p-8 sm:p-12 rounded-3xl bg-neutral-50 border border-black/10 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                  <Building size={24} />
+                </div>
+                <div>
+                  <span className="text-xs uppercase font-bold tracking-widest text-primary">Client Practice</span>
+                  <h3 className="serif-headline text-2xl sm:text-3xl font-bold text-black">For Businesses</h3>
+                </div>
               </div>
-              
-              <div className="lg:col-span-7 flex flex-col justify-center">
-                <div className="space-y-8">
-                  {engagementItems.map((item, index) => (
-                    <motion.div 
-                      key={item} 
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.2 }}
-                      className="flex items-start gap-8 group/link"
+              <p className="text-black/60 text-sm mb-8 leading-relaxed">
+                Structured guidance for growth-stage businesses planning non-dilutive, structured working-capital and trade debt.
+              </p>
+
+              <div className="space-y-4">
+                {businessServices.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+                      whileHover={{ y: -3 }}
+                      className="p-4 rounded-2xl bg-white border border-black/5 hover:border-primary/40 hover:shadow-[0_8px_20px_rgba(47,99,255,0.08)] transition-all duration-300 group cursor-default"
                     >
-                      <div className="flex flex-col items-center">
-                        <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center border border-primary/20 group-hover/link:border-primary group-hover/link:bg-primary transition-all duration-500">
-                          <CheckCircle2 size={20} className="text-primary group-hover/link:text-white" />
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                          <Icon size={16} />
                         </div>
-                        {index !== engagementItems.length - 1 && (
-                          <div className="w-px h-12 bg-black/10 mt-4 group-hover/link:bg-primary/40 transition-colors" />
-                        )}
-                      </div>
-                      <div className="pt-2">
-                        <p className="text-lg md:text-xl font-headline text-black/80 group-hover/link:text-black leading-relaxed font-bold transition-colors">
-                          {item}
-                        </p>
+                        <div>
+                          <h4 className="font-bold text-black text-sm sm:text-base mb-1 group-hover:text-primary transition-colors duration-200">{item.title}</h4>
+                          <p className="text-black/65 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+                        </div>
                       </div>
                     </motion.div>
-                  ))}
-                  
-                  <div className="pt-12">
-                    <Magnetic>
-                       <a className="inline-flex items-center gap-4 bg-primary text-white px-10 md:px-12 py-5 rounded-full font-bold uppercase tracking-[0.18em] text-[10px] hover:scale-[1.03] active:scale-95 transition-all duration-300 shadow-[0_18px_40px_-18px_hsl(var(--primary)/0.8)] group border border-primary/70" href="/contact">
-                         <span>Initiate Consultation</span>
-                         <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
-                       </a>
-                    </Magnetic>
-                  </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+            {/* For Funds & Capital Providers */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15 }}
+              className="p-8 sm:p-12 rounded-3xl bg-neutral-50 border border-black/10 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                  <Landmark size={24} />
+                </div>
+                <div>
+                  <span className="text-xs uppercase font-bold tracking-widest text-primary">Institutional Desk</span>
+                  <h3 className="serif-headline text-2xl sm:text-3xl font-bold text-black">For Funds & Capital Providers</h3>
                 </div>
               </div>
-            </div>
-          </motion.section>
+              <p className="text-black/60 text-sm mb-8 leading-relaxed">
+                Independent underwriting analysis, operational flow assessment, and transaction monitoring for institutional credit funds.
+              </p>
+
+              <div className="space-y-4">
+                {fundServices.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
+                      whileHover={{ y: -3 }}
+                      className="p-4 rounded-2xl bg-white border border-black/5 hover:border-primary/40 hover:shadow-[0_8px_20px_rgba(47,99,255,0.08)] transition-all duration-300 group cursor-default"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                          <Icon size={16} />
+                        </div>
+                        <div>
+                          <h4 className="font-bold text-black text-sm sm:text-base mb-1 group-hover:text-primary transition-colors duration-200">{item.title}</h4>
+                          <p className="text-black/65 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* BANNER: SELECTIVE. STRATEGIC. ADVISORY-LED. */}
+          <div className="p-10 sm:p-14 rounded-3xl bg-gradient-to-r from-primary/[0.08] via-primary/[0.03] to-transparent border border-primary/20 text-center max-w-4xl mx-auto">
+            <span className="text-primary font-body text-xs font-bold uppercase tracking-[0.3em] block mb-3">
+              Selective. Strategic. Advisory-led.
+            </span>
+            <h3 className="serif-headline text-2xl sm:text-4xl font-bold text-black mb-4">
+              Value creation through deep operational and financial insight.
+            </h3>
+            <p className="text-black/70 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto mb-8 font-medium">
+              We focus on assignments where our experience in finance, operations, and transaction structures can add meaningful value.
+            </p>
+            <Magnetic>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-primary text-white text-xs sm:text-sm font-bold uppercase tracking-widest hover:brightness-110 shadow-xl shadow-primary/20 transition-all"
+              >
+                <span>Discuss an Advisory Requirement</span>
+                <ArrowRight size={16} />
+              </Link>
+            </Magnetic>
+          </div>
+
         </section>
       </main>
+
       <Footer />
     </div>
   );

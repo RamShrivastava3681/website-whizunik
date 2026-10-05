@@ -30,7 +30,7 @@ const Footer = () => {
               Whiz-Unik
             </Link>
             <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8 md:mb-10 max-w-sm font-medium">
-              Led by professionals with over two decades of experience in structured finance and capital advisory, shaped by practical perspectives.
+              Run your business from one connected operating system. Connecting sales, procurement, inventory, finance and warehouse workflows.
             </p>
             <div className="flex gap-4">
               <Magnetic>
@@ -68,28 +68,20 @@ const Footer = () => {
           </div>
 
           <div className="md:col-span-2">
-            <h5 className="text-white font-bold mb-4 md:mb-8 text-xs uppercase tracking-[0.3em] opacity-40">Services</h5>
+            <h5 className="text-white font-bold mb-4 md:mb-8 text-xs uppercase tracking-[0.3em] opacity-40">Command</h5>
             <ul className="space-y-4">
-              {[
-                "Working Capital",
-                "Growth Capital",
-                "Market Readiness",
-              ].map((item) => (
-                <li key={item}>
-                  <Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/services">
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/">Overview</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/#how-it-works">How It Works</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/contact">Walkthrough</Link></li>
             </ul>
           </div>
 
           <div className="md:col-span-2">
-            <h5 className="text-white font-bold mb-4 md:mb-8 text-xs uppercase tracking-[0.3em] opacity-40">Institutional</h5>
+            <h5 className="text-white font-bold mb-4 md:mb-8 text-xs uppercase tracking-[0.3em] opacity-40">Company</h5>
             <ul className="space-y-4">
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/about">Our Narrative</Link></li>
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/contact">Protocol</Link></li>
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/insights">Insights</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/about">About Us</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/services">Strategic Advisory</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/contact">Contact</Link></li>
             </ul>
           </div>
 
