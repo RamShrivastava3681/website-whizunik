@@ -10,6 +10,7 @@ import About from "./pages/About.tsx";
 import Services from "./pages/Services.tsx";
 import Insights from "./pages/Insights.tsx";
 import Contact from "./pages/Contact.tsx";
+import Hub from "./pages/Hub.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -65,6 +66,8 @@ const App = () => (
             <Routes>
               <Route path="/" element={<PageWrapper><Index /></PageWrapper>} />
               <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+              <Route path="/hub" element={<PageWrapper><Hub /></PageWrapper>} />
+              <Route path="/whizunik-hub" element={<PageWrapper><Hub /></PageWrapper>} />
               <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
               <Route path="/insights" element={<PageWrapper><Insights /></PageWrapper>} />
               <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
