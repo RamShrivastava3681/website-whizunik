@@ -70,10 +70,9 @@ const Footer = () => {
           <div className="md:col-span-2">
             <h5 className="text-white font-bold mb-4 md:mb-8 text-xs uppercase tracking-[0.3em] opacity-40">Platform</h5>
             <ul className="space-y-4">
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/">Command</Link></li>
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/hub">Whizunik Hub</Link></li>
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/#how-it-works">How It Works</Link></li>
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/contact?type=demo">Request a Demo</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/">Whizunik Command</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/how-it-works">How It Works</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/contact?type=walkthrough">Request a Walkthrough</Link></li>
             </ul>
           </div>
 

@@ -5,17 +5,26 @@ import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from "react-dom";
 
 const navLinks = [
-  { label: "Command", path: "/" },
-  { label: "Whizunik Hub", path: "/hub" },
-  { label: "How It Works", path: "/#how-it-works" },
+  { label: "Whizunik Command", path: "/" },
+  { label: "How It Works", path: "/how-it-works" },
   { label: "Strategic Advisory", path: "/services" },
-  { label: "About", path: "/about" },
+  { label: "About Us", path: "/about" },
 ];
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  const isLinkActive = (path: string) => {
+    if (path === "/") {
+      return location.pathname === "/" || location.pathname === "/command";
+    }
+    if (path === "/services") {
+      return location.pathname === "/services" || location.pathname === "/strategic-advisory";
+    }
+    return location.pathname === path;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +70,7 @@ const Header = () => {
             : "bg-transparent py-6"
           }`}
       >
-        <div className="flex justify-between items-center max-w-[1440px] mx-auto px-8 md:px-12 h-14">
+        <div className="flex justify-between items-center max-w-[1440px] mx-auto px-6 md:px-12 h-14">
           <Link className="inline-flex items-center group" to="/" aria-label="Whiz-Unik home">
             <img
               src="/logo-vertical-light (2).png"
@@ -71,18 +80,18 @@ const Header = () => {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-12">
+          <nav className="hidden md:flex items-center space-x-9 lg:space-x-12">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`relative font-headline text-lg tracking-[-0.01em] transition-all duration-300 ${location.pathname === link.path
-                    ? "text-primary"
+                className={`relative font-headline text-base lg:text-lg tracking-[-0.01em] transition-all duration-300 ${isLinkActive(link.path)
+                    ? "text-primary font-semibold"
                     : "text-black/60 hover:text-primary"
                   }`}
               >
                 {link.label}
-                {location.pathname === link.path && (
+                {isLinkActive(link.path) && (
                   <motion.div
                     layoutId="nav-underline"
                     className="absolute -bottom-1 left-0 right-0 h-[2px] bg-primary"
@@ -94,11 +103,11 @@ const Header = () => {
 
           <div className="flex items-center gap-6">
             <Link
-              to="/contact?type=demo"
-              className="relative overflow-hidden hidden md:flex bg-primary text-white px-7 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase hover:shadow-[0_8px_24px_rgba(47,99,255,0.4)] hover:brightness-105 active:scale-95 transition-all duration-300 items-center justify-center gap-2 shadow-md shadow-primary/20 group"
+              to="/contact?type=walkthrough"
+              className="relative overflow-hidden hidden md:flex bg-primary text-white px-6 lg:px-7 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase hover:shadow-[0_8px_24px_rgba(47,99,255,0.4)] hover:brightness-105 active:scale-95 transition-all duration-300 items-center justify-center gap-2 shadow-md shadow-primary/20 group"
             >
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-              <span className="relative z-10">Request a Demo</span>
+              <span className="relative z-10">Request a Walkthrough</span>
               <ArrowUpRight size={16} className="relative z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
 
@@ -143,7 +152,7 @@ const Header = () => {
                     >
                       <Link
                         to={link.path}
-                        className={`block rounded-2xl px-4 py-3 text-2xl font-headline tracking-tight transition-colors ${location.pathname === link.path
+                        className={`block rounded-2xl px-4 py-3 text-2xl font-headline tracking-tight transition-colors ${isLinkActive(link.path)
                             ? "text-primary bg-primary/5 italic font-light"
                             : "text-black hover:bg-black/[0.03]"
                           }`}
@@ -160,11 +169,11 @@ const Header = () => {
                     className="pt-4"
                   >
                     <Link
-                      to="/contact?type=demo"
+                      to="/contact?type=walkthrough"
                       className="w-full inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs shadow-lg"
                       onClick={() => setMobileOpen(false)}
                     >
-                      Request a Demo
+                      Request a Walkthrough
                     </Link>
                   </motion.div>
                 </div>

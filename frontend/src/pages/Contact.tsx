@@ -47,7 +47,7 @@ const Contact = () => {
       message: formData.message.trim(),
       inquiryType:
         inquiryType === "demo"
-          ? "Request a Demo (Whizunik Hub & Command)"
+          ? "Request a Walkthrough (Whizunik Command)"
           : inquiryType === "advisory"
           ? "Structured Capital Advisory"
           : "General Inquiry",
@@ -81,7 +81,7 @@ const Contact = () => {
 
       toast.success(
         inquiryType === "demo"
-          ? "Thank you! Your demo request has been received. Our team will contact you shortly."
+          ? "Thank you! Your walkthrough request has been received. Our team will contact you shortly."
           : "Thank you! Your inquiry has been received."
       );
       setFormData({ name: "", email: "", company: "", message: "" });
@@ -193,7 +193,7 @@ const Contact = () => {
                   <h3 className="serif-headline text-2xl sm:text-3xl text-black font-bold mb-2">
                     {inquiryType === "demo" ? (
                       <>
-                        Request a <span className="text-primary italic font-light">Live Product Demo</span>
+                        Request a <span className="text-primary italic font-light">Walkthrough</span>
                       </>
                     ) : inquiryType === "advisory" ? (
                       <>
@@ -207,7 +207,7 @@ const Contact = () => {
                   </h3>
                   <p className="text-black/60 text-xs sm:text-sm leading-relaxed">
                     {inquiryType === "demo"
-                      ? "See Whizunik Hub & Command in action. Explore connected operational workflows, finance workbenches, and real-time management visibility."
+                      ? "See Whizunik Command in action. Explore connected operational workflows, role workspaces, and real-time management visibility."
                       : "Discuss your working capital, trade finance, or capital structuring requirements directly with our team."}
                   </p>
                 </div>
@@ -225,7 +225,7 @@ const Contact = () => {
                           : "bg-neutral-50 text-black/70 border-black/10 hover:border-black/20"
                       }`}
                     >
-                      Request a Demo
+                      Request a Walkthrough
                     </button>
                     <button
                       type="button"
