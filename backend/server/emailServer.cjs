@@ -14,8 +14,8 @@ const smtpHost = process.env.SMTP_HOST;
 const smtpPort = Number(process.env.SMTP_PORT || 587);
 const smtpUser = process.env.SMTP_USER;
 const smtpPass = process.env.SMTP_PASS;
-const contactReceiverEmail = process.env.CONTACT_RECEIVER_EMAIL || "sankalp@whizunik.com";
-const port = Number(process.env.CONTACT_SERVER_PORT || 8787);
+const contactReceiverEmail = process.env.CONTACT_RECEIVER_EMAIL || process.env.ADMIN_EMAIL || "sankalp@whizunik.com";
+const port = Number(process.env.PORT || process.env.CONTACT_SERVER_PORT || 4040);
 const logoPath = path.join(__dirname, "..", "public", "logo-vertical-light (2).png");
 
 if (!smtpHost || !smtpUser || !smtpPass) {
@@ -99,7 +99,7 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.post("/api/contact", async (req, res) => {
-  const { name, email, company, message } = req.body || {};
+  const { name, email, company, message, inquiryType = "Demo / Walkthrough" } = req.body || {};
 
   if (!name || !email || !company || !message) {
     return res.status(400).json({ error: "All fields are required." });
@@ -109,6 +109,7 @@ app.post("/api/contact", async (req, res) => {
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeCompany = escapeHtml(company);
+    const safeType = escapeHtml(inquiryType);
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br/>");
     const submittedAt = new Date().toLocaleString();
 
@@ -144,7 +145,13 @@ app.post("/api/contact", async (req, res) => {
         </tr>
         <tr>
           <td style="background:rgba(59,62,234,0.18);border:1px solid rgba(132,145,255,0.45);border-radius:14px;padding:14px 16px;color:#edf0ff;">
-            <p style="margin:0 0 8px 0;font-size:11px;color:#bac4ff;text-transform:uppercase;letter-spacing:1.8px;font-weight:700;">Strategic Inquiry</p>
+            <p style="margin:0 0 6px 0;font-size:11px;color:#bac4ff;text-transform:uppercase;letter-spacing:1.8px;font-weight:700;">Inquiry Type</p>
+            <p style="margin:0;font-size:15px;font-weight:600;color:#ffffff;">${safeType}</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="background:rgba(59,62,234,0.18);border:1px solid rgba(132,145,255,0.45);border-radius:14px;padding:14px 16px;color:#edf0ff;">
+            <p style="margin:0 0 8px 0;font-size:11px;color:#bac4ff;text-transform:uppercase;letter-spacing:1.8px;font-weight:700;">Message / Operational Requirement</p>
             <p style="margin:0;font-size:15px;line-height:1.7;">${safeMessage}</p>
           </td>
         </tr>
@@ -190,7 +197,7 @@ app.post("/api/contact", async (req, res) => {
       from: `Whiz-Unik Website <${smtpUser}>`,
       to: contactReceiverEmail,
       replyTo: email,
-      subject: `New Consultation Request: ${name}`,
+      subject: `[${inquiryType}] ${name} (${company})`,
       text: [
         "A new consultation request has been submitted:",
         "",

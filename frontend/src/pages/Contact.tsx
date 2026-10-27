@@ -1,7 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Mail, Phone, MapPin, Send, ArrowUpRight, CheckCircle2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import Magnetic from "@/components/Magnetic";
 import { toast } from "sonner";
@@ -16,6 +17,10 @@ const walkthroughHighlights = [
 ];
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const queryType = searchParams.get("type");
+
+  const [inquiryType, setInquiryType] = useState<"demo" | "advisory" | "general">("demo");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,6 +28,14 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (queryType === "demo" || queryType === "walkthrough") {
+      setInquiryType("demo");
+    } else if (queryType === "advisory" || queryType === "capital") {
+      setInquiryType("advisory");
+    }
+  }, [queryType]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +45,12 @@ const Contact = () => {
       email: formData.email.trim(),
       company: formData.company.trim(),
       message: formData.message.trim(),
+      inquiryType:
+        inquiryType === "demo"
+          ? "Request a Walkthrough (Whizunik Command)"
+          : inquiryType === "advisory"
+          ? "Structured Capital Advisory"
+          : "General Inquiry",
     };
 
     if (!trimmedData.name || !trimmedData.email || !trimmedData.company || !trimmedData.message) {
@@ -41,7 +60,9 @@ const Contact = () => {
 
     const contactApiUrl =
       (import.meta.env.VITE_CONTACT_API_URL as string | undefined) ||
-      "http://localhost:9898/api/contact";
+      (import.meta.env.VITE_URL ? `${import.meta.env.VITE_URL}/api/contact` : undefined) ||
+      (import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api/contact` : undefined) ||
+      "http://localhost:4040/api/contact";
 
     setIsSubmitting(true);
 
@@ -55,14 +76,18 @@ const Contact = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit consultation request");
+        throw new Error("Failed to submit request");
       }
 
-      toast.success("Thank you! Your walkthrough request has been received.");
+      toast.success(
+        inquiryType === "demo"
+          ? "Thank you! Your walkthrough request has been received. Our team will contact you shortly."
+          : "Thank you! Your inquiry has been received."
+      );
       setFormData({ name: "", email: "", company: "", message: "" });
     } catch (error) {
       toast.error("Unable to send the request right now. Please try again in a moment.");
-      console.error("Consultation email error:", error);
+      console.error("Contact email error:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -166,11 +191,65 @@ const Contact = () => {
               >
                 <div>
                   <h3 className="serif-headline text-2xl sm:text-3xl text-black font-bold mb-2">
-                    Request a <span className="text-primary italic font-light">30-Minute Walkthrough</span>
+                    {inquiryType === "demo" ? (
+                      <>
+                        Request a <span className="text-primary italic font-light">Walkthrough</span>
+                      </>
+                    ) : inquiryType === "advisory" ? (
+                      <>
+                        Strategic <span className="text-primary italic font-light">Capital Advisory</span>
+                      </>
+                    ) : (
+                      <>
+                        Start a <span className="text-primary italic font-light">Conversation</span>
+                      </>
+                    )}
                   </h3>
                   <p className="text-black/60 text-xs sm:text-sm leading-relaxed">
-                    See what connected operations could look like in your business. Fill out your details and our team will get in touch shortly.
+                    {inquiryType === "demo"
+                      ? "See Whizunik Command in action. Explore connected operational workflows, role workspaces, and real-time management visibility."
+                      : "Discuss your working capital, trade finance, or capital structuring requirements directly with our team."}
                   </p>
+                </div>
+
+                {/* Inquiry Type Selector */}
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-black/70 uppercase tracking-wider">Inquiry Type</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setInquiryType("demo")}
+                      className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border text-center ${
+                        inquiryType === "demo"
+                          ? "bg-primary text-white border-primary shadow-sm shadow-primary/30"
+                          : "bg-neutral-50 text-black/70 border-black/10 hover:border-black/20"
+                      }`}
+                    >
+                      Request a Walkthrough
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setInquiryType("advisory")}
+                      className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border text-center ${
+                        inquiryType === "advisory"
+                          ? "bg-primary text-white border-primary shadow-sm shadow-primary/30"
+                          : "bg-neutral-50 text-black/70 border-black/10 hover:border-black/20"
+                      }`}
+                    >
+                      Capital Advisory
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setInquiryType("general")}
+                      className={`px-3 py-2.5 rounded-xl text-xs font-bold transition-all border text-center ${
+                        inquiryType === "general"
+                          ? "bg-primary text-white border-primary shadow-sm shadow-primary/30"
+                          : "bg-neutral-50 text-black/70 border-black/10 hover:border-black/20"
+                      }`}
+                    >
+                      General Inquiry
+                    </button>
+                  </div>
                 </div>
 
                 <div className="space-y-1.5">
@@ -210,13 +289,19 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-black/70 uppercase tracking-wider">Operational Requirement / Message</label>
+                  <label className="text-xs font-bold text-black/70 uppercase tracking-wider">
+                    {inquiryType === "demo" ? "Operational Requirement / Demo Focus" : "Inquiry Details / Message"}
+                  </label>
                   <textarea
                     rows={4}
                     value={formData.message}
                     onChange={(e) => setFormData((prev) => ({ ...prev, message: e.target.value }))}
                     className="w-full bg-neutral-50 border border-black/10 rounded-xl px-4 py-3.5 text-sm text-black placeholder:text-black/30 focus:border-primary focus:bg-white transition-all outline-none resize-none"
-                    placeholder="Tell us about your team size, workflow challenges, or specific department requirements..."
+                    placeholder={
+                      inquiryType === "demo"
+                        ? "Tell us about your team size, workflow challenges, or specific departments you'd like to see..."
+                        : "Tell us about your capital requirements, trade structures, or company profile..."
+                    }
                     required
                   />
                 </div>
@@ -231,7 +316,7 @@ const Contact = () => {
                       <span>Sending Request...</span>
                     ) : (
                       <>
-                        <span>Request a 30-Minute Walkthrough</span>
+                        <span>{inquiryType === "demo" ? "Schedule a Live Demo" : "Send Inquiry"}</span>
                         <Send size={15} />
                       </>
                     )}

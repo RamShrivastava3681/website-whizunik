@@ -6,10 +6,12 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
+import HowItWorks from "./pages/HowItWorks.tsx";
 import About from "./pages/About.tsx";
 import Services from "./pages/Services.tsx";
 import Insights from "./pages/Insights.tsx";
 import Contact from "./pages/Contact.tsx";
+import Hub from "./pages/Hub.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -64,8 +66,14 @@ const App = () => (
           <AnimatePresence mode="wait">
             <Routes>
               <Route path="/" element={<PageWrapper><Index /></PageWrapper>} />
-              <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+              <Route path="/command" element={<PageWrapper><Index /></PageWrapper>} />
+              <Route path="/whizunik-command" element={<PageWrapper><Index /></PageWrapper>} />
+              <Route path="/how-it-works" element={<PageWrapper><HowItWorks /></PageWrapper>} />
               <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
+              <Route path="/strategic-advisory" element={<PageWrapper><Services /></PageWrapper>} />
+              <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+              <Route path="/hub" element={<PageWrapper><Hub /></PageWrapper>} />
+              <Route path="/whizunik-hub" element={<PageWrapper><Hub /></PageWrapper>} />
               <Route path="/insights" element={<PageWrapper><Insights /></PageWrapper>} />
               <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
               <Route path="*" element={<NotFound />} />

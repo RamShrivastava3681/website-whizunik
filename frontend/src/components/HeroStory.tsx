@@ -136,7 +136,7 @@ const HeroStory = () => {
         >
           <Magnetic>
             <a
-              href="/contact"
+              href="/contact?type=walkthrough"
               className="relative overflow-hidden bg-primary text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:shadow-[0_12px_32px_rgba(47,99,255,0.45)] hover:brightness-105 active:scale-[0.98] transition-all duration-300 flex items-center gap-4 shadow-xl shadow-primary/25 group"
             >
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
@@ -147,7 +147,7 @@ const HeroStory = () => {
 
           <Magnetic>
             <a
-              href="#how-it-works"
+              href="#command-overview"
               className="bg-white text-black/80 border border-black/10 px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:bg-black/5 active:scale-[0.98] transition-all duration-300 flex items-center gap-3 shadow-sm"
             >
               <span>Explore Command</span>
