@@ -1,206 +1,128 @@
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Building2, Globe2, Rocket } from "lucide-react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Globe, Factory, Boxes, TrendingUp, ArrowRight } from "lucide-react";
+import Magnetic from "./Magnetic";
 
-const clients = [
+export const clientProfiles = [
   {
-    icon: <Building2 className="w-5 h-5 md:w-6 md:h-6" />,
-    title: "$10M–$100M+ enterprises",
-    position: "top-right",
-    delay: 0.1,
+    title: "Exporters & International Traders",
+    tag: "Global Trade",
+    icon: Globe,
+    desc: "Track the journey from customer order to dispatch, invoice, collection and bank realisation. Command helps management identify delayed shipments, documentation gaps, overdue receivables and cash tied up in trade.",
   },
   {
-    icon: <Globe2 className="w-5 h-5 md:w-6 md:h-6" />,
-    title: "Exporters, manufacturers, trading companies",
-    position: "mid-right",
-    delay: 0.3,
+    title: "Manufacturers & Fabricators",
+    tag: "Industrial",
+    icon: Factory,
+    desc: "Connect customer orders, material requirements, procurement, production, quality release, finished stock and dispatch. Command shows shortages, production delays, rejected quantities and orders at risk.",
   },
   {
-    icon: <Rocket className="w-5 h-5 md:w-6 md:h-6" />,
-    title: "Promoter-led growth businesses",
-    position: "bottom-right",
-    delay: 0.5,
+    title: "Trading & Distribution Companies",
+    tag: "Supply Chain",
+    icon: Boxes,
+    desc: "Maintain one view of suppliers, inventory, customer orders, dispatches, returns and debtor ageing across locations and channels. Command helps teams act faster while management sees stock, margin and cash exposure.",
+  },
+  {
+    title: "Promoter-Led Growth Businesses",
+    tag: "Growth Scale",
+    icon: TrendingUp,
+    desc: "Replace disconnected spreadsheets with a practical operating layer for finance, operations, procurement, inventory and management reporting. Start with the workflow creating the most friction and expand as the business grows.",
   },
 ];
 
-const WhoWeWorkWith = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+interface WhoWeWorkWithProps {
+  asSection?: boolean;
+  className?: string;
+  showCta?: boolean;
+}
 
-  // Connection Lines Path Data
-  // This is a simplified representation of the branching paths
-  // In a real responsive layout, these coordinates might need careful tuning
-  const paths = [
-    "M 100 250 C 200 250, 300 100, 450 100", // to top card
-    "M 100 250 C 250 250, 350 250, 450 250", // to mid card
-    "M 100 250 C 200 250, 300 400, 450 400", // to bottom card
-  ];
-
-  return (
-    <section 
-      ref={containerRef}
-      className="relative py-24 md:py-32 lg:py-48 bg-gradient-to-b from-[#f8f9fb] to-[#f0f4fa] overflow-hidden"
-    >
-      {/* Background Decorative Glow */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.15, 0.25, 0.15]
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/2 left-2/3 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] bg-primary/20 rounded-full blur-[120px]" 
-        />
+export const WhoWeWorkWith = ({ 
+  asSection = false, 
+  className = "",
+  showCta = false 
+}: WhoWeWorkWithProps) => {
+  const content = (
+    <div className={`p-8 sm:p-12 md:p-16 rounded-3xl bg-neutral-50/80 border border-black/10 shadow-xs ${className}`}>
+      <div className="max-w-3xl mb-10 sm:mb-12">
+        <span className="text-primary text-xs font-bold uppercase tracking-[0.3em] block mb-2 font-mono">
+          Client Focus
+        </span>
+        <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold text-black mb-4 tracking-tight">
+          Who Whizunik Works With
+        </h2>
+        <p className="text-black/75 text-sm sm:text-base md:text-lg leading-relaxed font-normal">
+          We work with growing businesses where operational complexity affects visibility, accountability and cash control. Whizunik Command connects the workflows management needs to see, while Structured Capital Advisory supports the business when capital strategy becomes the next question.
+        </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between gap-16 lg:gap-24">
-          
-          {/* Left Side: Heading */}
-          <div className="w-full lg:w-[40%] flex flex-col items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        {clientProfiles.map((item, idx) => {
+          const Icon = item.icon;
+          return (
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8 }}
-              className="flex items-start gap-4 mb-8"
+              key={item.title}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.08, duration: 0.45 }}
+              whileHover={{ y: -3 }}
+              className="p-7 sm:p-8 rounded-2xl bg-white border border-black/10 hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between group"
             >
-              <div className="w-px h-24 bg-gradient-to-b from-primary/80 to-transparent self-stretch" />
               <div>
-                <p className="text-black font-bold font-body text-[10px] md:text-xs uppercase tracking-[0.4em] mb-4">
-                  Chapter V — Partner Profile
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-105 transition-transform shrink-0">
+                    <Icon size={22} />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-neutral-100 text-primary border border-black/5 font-mono">
+                    {item.tag}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-bold text-black mb-3 group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-black/70 text-xs sm:text-sm leading-relaxed font-normal">
+                  {item.desc}
                 </p>
-                <h2 className="serif-headline text-5xl md:text-7xl lg:text-[5.5rem] font-bold leading-[0.9] tracking-tighter text-black">
-                  Who We <br />
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#2463ff] via-[#7c3aed] to-[#db2777] italic font-light inline-block mt-2">Work With.</span>
-                </h2>
               </div>
             </motion.div>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-black/50 text-base md:text-lg max-w-sm leading-relaxed font-medium pl-5"
-            >
-              Partnering with established enterprises and visionaries ready for Institutional capital excellence.
-            </motion.p>
-          </div>
-
-          {/* Right Side: Cards & SVG Connections */}
-          <div className="relative w-full lg:w-[60%] h-[500px] md:h-[600px] flex items-center justify-center lg:justify-end">
-            
-            {/* Connection Lines (Desktop Only for precision) */}
-            <svg 
-              className="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
-              viewBox="0 0 600 500"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <defs>
-                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.6" />
-                  <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.6" />
-                </linearGradient>
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="3" result="blur" />
-                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
-                </filter>
-              </defs>
-
-              {paths.map((d, i) => (
-                <g key={i}>
-                  {/* Subtle Background Path */}
-                  <motion.path
-                    d={d}
-                    stroke="rgba(0,0,0,0.03)"
-                    strokeWidth="1.5"
-                    initial={{ pathLength: 0 }}
-                    animate={isInView ? { pathLength: 1 } : {}}
-                    transition={{ duration: 1.5, delay: i * 0.2, ease: "easeInOut" }}
-                  />
-                  {/* Animated Foreground Path */}
-                  <motion.path
-                    d={d}
-                    stroke="url(#lineGradient)"
-                    strokeWidth="1.5"
-                    strokeDasharray="10 20"
-                    initial={{ pathLength: 0, opacity: 0.2 }}
-                    animate={isInView ? { 
-                      pathLength: [0, 1],
-                      opacity: hoveredCard === i ? 1 : 0.4,
-                      strokeWidth: hoveredCard === i ? 2.5 : 1.5
-                    } : {}}
-                    transition={{ 
-                      pathLength: { duration: 2, delay: i * 0.2 },
-                      opacity: { duration: 0.3 },
-                      strokeWidth: { duration: 0.3 }
-                    }}
-                    style={{ filter: hoveredCard === i ? "url(#glow)" : "none" }}
-                  />
-                  {/* Moving Gradient Dash Effect */}
-                  <motion.path
-                    d={d}
-                    stroke="white"
-                    strokeWidth="1.5"
-                    strokeOpacity="0.4"
-                    strokeDasharray="4 40"
-                    animate={{ strokeDashoffset: [-50, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                  />
-                </g>
-              ))}
-            </svg>
-
-            {/* Cards */}
-            <div className="relative w-full h-full">
-              {clients.map((client, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 40, x: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0, x: 0 } : {}}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 0.6 + i * 0.15,
-                    ease: [0.21, 0.45, 0.32, 0.9]
-                  }}
-                  whileHover={{ 
-                    y: -8, 
-                    scale: 1.02,
-                    transition: { duration: 0.3 }
-                  }}
-                  onMouseEnter={() => setHoveredCard(i)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                  className={`absolute group cursor-default
-                    ${i === 0 ? "top-[5%] right-[5%] md:right-[15%]" : ""}
-                    ${i === 1 ? "top-[40%] right-[-2%] md:right-[0%]" : ""}
-                    ${i === 2 ? "top-[75%] right-[10%] md:right-[20%]" : ""}
-                    w-[280px] md:w-[320px] lg:w-[360px]
-                  `}
-                >
-                  <div className="relative p-6 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border border-white/40 bg-white/40 backdrop-blur-2xl shadow-[0_15px_35px_-15px_rgba(0,0,0,0.08)] group-hover:shadow-[0_25px_50px_-20px_rgba(0,0,0,0.12)] transition-all duration-500 overflow-hidden">
-                    {/* Background Subtle Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
-                    
-                    <div className="relative z-10 flex items-center gap-5">
-                      <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white shadow-inner flex items-center justify-center text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
-                        {client.icon}
-                      </div>
-                      <h4 className="text-base md:text-[17px] font-sans font-semibold text-[#1a1b1e] leading-snug tracking-tight group-hover:text-primary transition-all duration-300">
-                        {client.title}
-                      </h4>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-        </div>
+          );
+        })}
       </div>
-    </section>
+
+      {showCta && (
+        <div className="text-center max-w-3xl mx-auto pt-14 border-t border-black/10 mt-14 sm:mt-16">
+          <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black mb-4">
+            Bring your operations into <span className="text-primary font-light italic">one connected flow.</span>
+          </h3>
+          <p className="text-black/70 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto font-medium">
+            Connect your teams, transactions, and operational visibility — from the first order to the final movement of goods and cash.
+          </p>
+          <Magnetic>
+            <Link
+              to="/contact?type=walkthrough"
+              className="relative overflow-hidden inline-flex items-center gap-3 px-9 py-4 sm:py-5 rounded-full bg-primary text-white text-xs sm:text-sm font-bold uppercase tracking-[0.2em] hover:shadow-[0_16px_40px_rgba(47,99,255,0.45)] hover:brightness-105 active:scale-[0.98] transition-all duration-300 shadow-xl shadow-primary/25 group"
+            >
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+              <span className="relative z-10">Request a Walkthrough</span>
+              <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
+            </Link>
+          </Magnetic>
+        </div>
+      )}
+    </div>
   );
+
+  if (asSection) {
+    return (
+      <section className="py-20 md:py-28 bg-white border-t border-black/5" id="who-we-work-with">
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
+          {content}
+        </div>
+      </section>
+    );
+  }
+
+  return content;
 };
 
 export default WhoWeWorkWith;

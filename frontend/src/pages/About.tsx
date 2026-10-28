@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 import { 
   ArrowRight, 
   Terminal, 
@@ -36,28 +37,6 @@ const operationalChain = [
   { icon: AlertCircle, cause: "Operational Delays", effect: "Directly become financial & capital problems." },
 ];
 
-const clientProfiles = [
-  {
-    title: "Exporters & International Traders",
-    desc: "Companies managing foreign exchange, buyer credit cycles, container shipping documentation, and multi-stage bank realizations.",
-    tag: "Global Trade",
-  },
-  {
-    title: "Manufacturers & Fabricators",
-    desc: "Industrial producers coordinating BOM material checks, vendor POs, factory shift runs, QC release gates, and dispatches.",
-    tag: "Industrial",
-  },
-  {
-    title: "Trading & Distribution Companies",
-    desc: "High-volume distributors tracking vendor payment credit, real-time inventory staging, channel orders, and debtor aging.",
-    tag: "Supply Chain",
-  },
-  {
-    title: "Promoter-Led Growth Businesses",
-    desc: "Visionary enterprises that have outgrown manual spreadsheets and need systemic operational control without hiring massive IT overhead.",
-    tag: "Growth Scale",
-  },
-];
 
 const About = () => {
   return (
@@ -154,39 +133,8 @@ const About = () => {
             </div>
           </div>
 
-          {/* WHO WHIZ-UNIK WORKS WITH */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-neutral-50 border border-black/10 mb-20 md:mb-28">
-            <div className="max-w-3xl mb-10">
-              <span className="text-primary text-xs font-bold uppercase tracking-[0.3em] block mb-2">
-                Client Focus
-              </span>
-              <h3 className="serif-headline text-2xl sm:text-4xl font-bold text-black mb-4">
-                Who Whiz-Unik Works With
-              </h3>
-              <p className="text-black/70 text-sm sm:text-base leading-relaxed">
-                We partner with $10M–$100M+ mid-market enterprises across global trade hubs who require rigorous operational clarity and disciplined working capital control:
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {clientProfiles.map((item) => (
-                <div
-                  key={item.title}
-                  className="p-6 rounded-2xl bg-white border border-black/10 hover:border-primary/40 hover:shadow-sm transition-all"
-                >
-                  <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-lg font-bold text-black">{item.title}</h4>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-neutral-100 text-primary">
-                      {item.tag}
-                    </span>
-                  </div>
-                  <p className="text-black/65 text-xs sm:text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* WHO WHIZUNIK WORKS WITH */}
+          <WhoWeWorkWith className="mb-20 md:mb-28" />
 
           {/* TEAM MODEL & OPERATING PHILOSOPHY */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center p-8 sm:p-12 rounded-3xl bg-white border border-black/10 mb-20 md:mb-28 shadow-sm">
