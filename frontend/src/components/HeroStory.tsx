@@ -116,7 +116,7 @@ const HeroStory = () => {
           transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
           className="text-black/75 text-base sm:text-lg md:text-xl max-w-3xl mb-8 leading-relaxed font-normal"
         >
-          WhizUnik Command connects sales, procurement, inventory, finance and warehouse workflows so every team knows what to do next — while management sees the business as it moves.
+          WhizUnik Command connects sales, procurement, inventory, factory and warehouse workflows so every team knows what to do next — while management sees the business as it moves.
         </motion.p>
 
         <motion.div
@@ -173,17 +173,18 @@ const HeroStory = () => {
               </span>
             </div>
             <span className="text-black/50 text-[11px] font-medium">
-              6 Workspaces • Zero Disconnects • Real-Time Handoffs
+              7 Workspaces • Zero Disconnects • Real-Time Handoffs
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
             {[
               { name: "Sales", desc: "Order Logged" },
               { name: "Procurement", desc: "PO Linked" },
               { name: "Checker", desc: "Policy Locked" },
+              { name: "Factory & Production", desc: "Batch Scheduled" },
+              { name: "Warehouse / Factory", desc: "GRN Verified" },
               { name: "Finance", desc: "Actuals Realized" },
-              { name: "Warehouse", desc: "GRN Verified" },
               { name: "Management", desc: "Executive View" },
             ].map((node) => (
               <motion.div

@@ -227,7 +227,7 @@ const ManagementCenter = () => {
               to="/services"
               className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary text-white font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-md shadow-primary/20"
             >
-              <span>Explore Strategic Advisory</span>
+              <span>Explore Strategic Capital Advisory</span>
               <ArrowRight size={14} />
             </Link>
           </div>

@@ -1,13 +1,10 @@
 import Header from "@/components/Header";
 import HeroStory from "@/components/HeroStory";
-import ProblemSection from "@/components/ProblemSection";
 import CommandProductScreens from "@/components/CommandProductScreens";
+import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
 import ScrollProgress from "@/components/ScrollProgress";
-import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
-import Magnetic from "@/components/Magnetic";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -20,70 +17,11 @@ const Index = () => {
         {/* Hero Section */}
         <HeroStory />
 
-        {/* Whizunik Command Core Product Sections:
-            1. Command Overview (One connected operating flow)
-            2. Management Command Centre (See the business as it moves)
-            3. Departmental Workspaces (Every team sees the work it owns)
-            4. My Queue & Approvals (Everyone knows what to do next)
-            5. Connected Transaction View (One transaction. One connected flow)
-            6. Factory & Manufacturing Connected Workflow (Interactive 9-stage pipeline)
-            7. Marketplace & Accounting Integrations (Amazon, Flipkart, Tally, Zoho, Banks)
-        */}
+        {/* Whizunik Command Core Product Sections (ends with Marketplace & Accounting Integrations) */}
         <CommandProductScreens />
 
-        {/* Problem Section: Disconnected Reality */}
-        <ProblemSection />
-
-
-        {/* Strategic Advisory Teaser & Final Walkthrough CTA */}
-        <section className="py-20 md:py-28 bg-white border-t border-black/5">
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
-            
-            {/* Strategic Advisory Teaser Banner */}
-            <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-primary/[0.08] via-primary/[0.03] to-transparent border border-primary/20 mb-20 relative overflow-hidden">
-              <div className="max-w-2xl">
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles size={18} className="text-primary" />
-                  <span className="text-primary text-xs font-bold uppercase tracking-widest">Advisory Practice</span>
-                </div>
-                <h4 className="serif-headline text-2xl sm:text-3xl font-bold text-black mb-3">
-                  Strategic Advisory helps when capital becomes the question.
-                </h4>
-                <p className="text-black/70 text-sm sm:text-base leading-relaxed mb-6 font-medium">
-                  Alongside Whizunik Command, our senior practice works selectively with high-growth businesses and credit funds on structured growth capital, working capital optimization, and lender readiness.
-                </p>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary text-white font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-md shadow-primary/20"
-                >
-                  <span>Explore Strategic Advisory</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-
-            {/* Final Walkthrough CTA */}
-            <div className="text-center max-w-3xl mx-auto pt-4">
-              <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black mb-6">
-                Bring your operations into <span className="text-primary font-light italic">one connected flow.</span>
-              </h3>
-              <p className="text-black/70 text-sm sm:text-base leading-relaxed mb-8 max-w-xl mx-auto font-medium">
-                Connect your teams, transactions, and operational visibility — from the first order to the final movement of goods and cash.
-              </p>
-              <Magnetic>
-                <Link
-                  to="/contact?type=walkthrough"
-                  className="relative overflow-hidden inline-flex items-center gap-3 px-9 py-4 sm:py-5 rounded-full bg-primary text-white text-xs sm:text-sm font-bold uppercase tracking-[0.2em] hover:shadow-[0_16px_40px_rgba(47,99,255,0.45)] hover:brightness-105 active:scale-[0.98] transition-all duration-300 shadow-xl shadow-primary/25 group"
-                >
-                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-                  <span className="relative z-10">Request a Walkthrough</span>
-                  <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1.5 transition-transform" />
-                </Link>
-              </Magnetic>
-            </div>
-
-          </div>
-        </section>
+        {/* WHO WHIZUNIK WORKS WITH (Directly below Integrations as requested by manager) */}
+        <WhoWeWorkWith asSection={true} />
       </main>
       <Footer />
 

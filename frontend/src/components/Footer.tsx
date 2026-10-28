@@ -80,7 +80,7 @@ const Footer = () => {
             <h5 className="text-white font-bold mb-4 md:mb-8 text-xs uppercase tracking-[0.3em] opacity-40">Company</h5>
             <ul className="space-y-4">
               <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/about">About Us</Link></li>
-              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/services">Strategic Advisory</Link></li>
+              <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/services">Strategic Capital Advisory</Link></li>
               <li><Link className="text-white/60 hover:text-primary transition-all duration-300 inline-block text-sm font-medium hover:translate-x-1" to="/contact">Contact</Link></li>
             </ul>
           </div>
