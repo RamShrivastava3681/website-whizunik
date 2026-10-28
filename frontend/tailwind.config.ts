@@ -14,10 +14,22 @@ export default {
     },
     extend: {
       fontFamily: {
-        headline: ["'Newsreader'", "serif"],
+        headline: ["'Newsreader'", "Georgia", "serif"],
         body: ["'Manrope'", "sans-serif"],
+        mono: ["'DM Mono'", "monospace"],
       },
       colors: {
+        ink: "#142235",
+        navy: "#0b2b4a",
+        blue: "#0877c9",
+        paper: "#f7fafc",
+        line: "#dce7ef",
+        mutedBlue: "#53677d",
+        teal: {
+          accent: "#147b78",
+          light: "#effaf8",
+          border: "#b9e4e0",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -79,7 +79,7 @@ const departmentViews = [
       "Maintain clear separation between projected vs available cash",
       "Forward-looking cash flow visibility based on real events",
     ],
-    sampleAction: "Payment voucher ₹4,50,000 pending Treasury disbursement",
+    sampleAction: "Payment voucher $55,000 pending Treasury disbursement",
   },
   {
     id: "warehouse",

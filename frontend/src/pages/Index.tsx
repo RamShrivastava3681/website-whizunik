@@ -20,12 +20,14 @@ const Index = () => {
         {/* Hero Section */}
         <HeroStory />
 
-        {/* Presentation Screen 1 to 5 as specified in developer note:
-            1. Command Overview (immediately below hero) - Caption: One connected operating flow
-            2. Management Command Centre - Caption: See the business as it moves
-            3. Role Workspaces (Sales, Procurement, Warehouse, Finance & Treasury, Checker) - Caption: Every team sees the work it owns
-            4. My Queue - Caption: Everyone knows what to do next
-            5. Connected Transaction View - Caption: One transaction. One connected flow
+        {/* Whizunik Command Core Product Sections:
+            1. Command Overview (One connected operating flow)
+            2. Management Command Centre (See the business as it moves)
+            3. Departmental Workspaces (Every team sees the work it owns)
+            4. My Queue & Approvals (Everyone knows what to do next)
+            5. Connected Transaction View (One transaction. One connected flow)
+            6. Factory & Manufacturing Connected Workflow (Interactive 9-stage pipeline)
+            7. Marketplace & Accounting Integrations (Amazon, Flipkart, Tally, Zoho, Banks)
         */}
         <CommandProductScreens />
 

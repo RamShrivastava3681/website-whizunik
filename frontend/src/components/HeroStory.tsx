@@ -52,12 +52,12 @@ const HeroStory = () => {
         <motion.div
           animate={{ scale: [1, 1.1, 1], rotate: [0, 15, 0] }}
           transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[15%] -right-[5%] w-[60vw] h-[60vw] bg-primary/5 rounded-full blur-[140px]"
+          className="absolute -top-[15%] -right-[5%] w-[60vw] h-[60vw] bg-blue/5 rounded-full blur-[140px]"
         />
         <motion.div
           animate={{ scale: [1, 1.15, 1], x: [0, -20, 0] }}
           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-15%] -left-[5%] w-[45vw] h-[45vw] bg-[#2f63ff]/5 rounded-full blur-[120px]"
+          className="absolute bottom-[-15%] -left-[5%] w-[45vw] h-[45vw] bg-teal-accent/5 rounded-full blur-[120px]"
         />
       </div>
 
@@ -69,12 +69,12 @@ const HeroStory = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="text-primary font-body text-[11px] md:text-xs tracking-[0.4em] uppercase mb-8 flex items-center gap-3"
+          className="eyebrow mb-8 flex items-center gap-3 text-blue"
         >
           <motion.span
             animate={{ opacity: [0.4, 1, 0.4], scale: [0.95, 1.05, 0.95] }}
             transition={{ duration: 4, repeat: Infinity }}
-            className="inline-block w-2.5 h-2.5 rounded-full bg-primary/80 shadow-[0_0_12px_rgba(47,99,255,0.6)]"
+            className="inline-block w-2.5 h-2.5 rounded-full bg-blue shadow-[0_0_12px_rgba(8,119,201,0.5)]"
           />
           WhizUnik Command • Business Operating System
         </motion.p>
@@ -137,7 +137,7 @@ const HeroStory = () => {
           <Magnetic>
             <a
               href="/contact?type=walkthrough"
-              className="relative overflow-hidden bg-primary text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:shadow-[0_12px_32px_rgba(47,99,255,0.45)] hover:brightness-105 active:scale-[0.98] transition-all duration-300 flex items-center gap-4 shadow-xl shadow-primary/25 group"
+              className="relative overflow-hidden bg-primary text-white px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:shadow-[0_12px_28px_rgba(8,119,201,0.28)] hover:brightness-105 active:scale-[0.98] transition-all duration-300 flex items-center gap-4 shadow-md shadow-primary/20 group"
             >
               <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
               <span className="relative z-10">Request a Walkthrough</span>
@@ -148,7 +148,7 @@ const HeroStory = () => {
           <Magnetic>
             <a
               href="#command-overview"
-              className="bg-white text-black/80 border border-black/10 px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:bg-black/5 active:scale-[0.98] transition-all duration-300 flex items-center gap-3 shadow-sm"
+              className="bg-white text-ink border border-line px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:bg-paper active:scale-[0.98] transition-all duration-300 flex items-center gap-3 shadow-xs"
             >
               <span>Explore Command</span>
             </a>

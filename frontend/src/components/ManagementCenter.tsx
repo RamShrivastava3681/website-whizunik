@@ -13,12 +13,12 @@ import {
 } from "lucide-react";
 
 const commandCenterMetrics = [
-  { label: "Sales", val: "₹1.48 Cr", sub: "14 active deals in progress" },
-  { label: "Receivables", val: "₹62.5 L", sub: "38 invoices issued" },
-  { label: "Payables", val: "₹41.2 L", sub: "Scheduled vendor payouts" },
-  { label: "Available Cash", val: "₹89.4 L", sub: "Verified realized bank balance" },
-  { label: "Expected Collections", val: "₹34.0 L", sub: "Next 14 business days" },
-  { label: "Expected Payments", val: "₹22.8 L", sub: "Next 14 business days" },
+  { label: "Sales", val: "$1.85M", sub: "14 active deals in progress" },
+  { label: "Receivables", val: "$750K", sub: "38 invoices issued" },
+  { label: "Payables", val: "$495K", sub: "Scheduled vendor payouts" },
+  { label: "Available Cash", val: "$1.12M", sub: "Verified realized bank balance" },
+  { label: "Expected Collections", val: "$410K", sub: "Next 14 business days" },
+  { label: "Expected Payments", val: "$275K", sub: "Next 14 business days" },
   { label: "Overdues", val: "4 Flags", sub: "Immediate resolution queue" },
   { label: "Pending Actions", val: "7 Tasks", sub: "Across 3 departmental desks" },
 ];
