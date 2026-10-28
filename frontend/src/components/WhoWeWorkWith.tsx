@@ -5,7 +5,7 @@ import { Building2, Globe2, Rocket } from "lucide-react";
 const clients = [
   {
     icon: <Building2 className="w-5 h-5 md:w-6 md:h-6" />,
-    title: "₹50–500 Cr businesses",
+    title: "$10M–$100M+ enterprises",
     position: "top-right",
     delay: 0.1,
   },

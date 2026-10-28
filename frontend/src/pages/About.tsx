@@ -25,7 +25,7 @@ const companyStats = [
   { val: "2023", label: "Founded", sub: "Built around connected operational reality" },
   { val: "25+", label: "Years Combined Experience", sub: "Deep background in structured finance" },
   { val: "150+", label: "Transactions Advised", sub: "Across complex debt & capital structures" },
-  { val: "₹50–500 Cr", label: "Core Business Scale", sub: "Mid-market growth & enterprise clients" },
+  { val: "$10M–$100M+", label: "Core Business Scale", sub: "Mid-market growth & enterprise clients" },
 ];
 
 const operationalChain = [
@@ -97,7 +97,7 @@ const About = () => {
             </motion.div>
           </div>
 
-          {/* COMPANY KEY METRICS (Founded 2023, 25+ years, 150+ transactions, ₹50-500 Cr) */}
+          {/* COMPANY KEY METRICS (Founded 2023, 25+ years, 150+ transactions, $10M-$100M+) */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-20 md:mb-28">
             {companyStats.map((stat, idx) => (
               <motion.div
@@ -164,7 +164,7 @@ const About = () => {
                 Who Whiz-Unik Works With
               </h3>
               <p className="text-black/70 text-sm sm:text-base leading-relaxed">
-                We partner with ₹50–500 Cr mid-market enterprises across India and global trade hubs who require rigorous operational clarity and disciplined working capital control:
+                We partner with $10M–$100M+ mid-market enterprises across global trade hubs who require rigorous operational clarity and disciplined working capital control:
               </p>
             </div>
 

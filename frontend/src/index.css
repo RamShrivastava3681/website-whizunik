@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Manrope:wght@200..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
 @tailwind base;
@@ -7,59 +7,59 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 220 15% 12%;
+    /* Reference enterprise light palette: calm blue, deep navy, teal accents & warm white surfaces */
+    --background: 204 33% 98%; /* #f7fafc var(--paper) */
+    --foreground: 215 45% 15%; /* #142235 var(--ink) */
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 12%;
+    --card: 0 0% 100%; /* #ffffff */
+    --card-foreground: 215 45% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 12%;
+    --popover-foreground: 215 45% 15%;
 
-    --primary: 243 92% 48%;
-    /* Original Blue */
+    --primary: 205 92% 41%; /* #0877c9 var(--blue) */
     --primary-foreground: 0 0% 100%;
 
-    --primary-container: 243 92% 56%;
+    --primary-container: 205 92% 48%;
     --primary-container-foreground: 0 0% 100%;
 
-    --secondary: 216 30% 40%;
+    --secondary: 209 74% 17%; /* #0b2b4a var(--navy) */
     --secondary-foreground: 0 0% 100%;
 
-    --secondary-fixed: 220 15% 12%;
-    /* Charcoal */
-    --on-secondary-fixed: 0 0% 98%;
+    --secondary-fixed: 209 74% 17%; /* #0b2b4a */
+    --on-secondary-fixed: 0 0% 100%;
 
-    --muted: 210 20% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 205 33% 96%;
+    --muted-foreground: 212 20% 41%; /* #53677d var(--muted) */
 
-    --accent: 210 20% 96%;
-    --accent-foreground: 220 15% 12%;
+    --accent: 205 33% 96%;
+    --accent-foreground: 215 45% 15%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 243 92% 48%;
+    --border: 205 41% 90%; /* #dce7ef var(--line) */
+    --input: 205 41% 90%;
+    --ring: 205 92% 41%;
 
-    --radius: 0.125rem;
+    --radius: 0.75rem;
 
-    --surface: 0 0% 98%;
-    --surface-container: 210 20% 96%;
-    --surface-container-low: 210 20% 98%;
+    --surface: 204 33% 98%;
+    --surface-container: 205 33% 96%;
+    --surface-container-low: 204 33% 98%;
     --surface-container-lowest: 0 0% 100%;
-    --surface-container-high: 210 20% 93%;
-    --surface-container-highest: 210 20% 90%;
-    --on-surface: 220 15% 12%;
-    --on-surface-variant: 215 16% 47%;
-    --outline: 214 32% 80%;
-    --outline-variant: 214 32% 91%;
+    --surface-container-high: 205 33% 93%;
+    --surface-container-highest: 205 33% 90%;
+    --on-surface: 215 45% 15%;
+    --on-surface-variant: 212 20% 41%;
+    --outline: 205 41% 80%;
+    --outline-variant: 205 41% 90%;
   }
 
   body {
     @apply bg-background text-foreground font-body antialiased selection:bg-primary/20 selection:text-primary;
-    background-color: #f9f9fb;
+    background-color: #f7fafc;
+    color: #142235;
     overflow-x: hidden;
   }
 
@@ -69,23 +69,34 @@
   h4,
   h5,
   h6 {
-    @apply font-headline tracking-tighter;
-    color: #1a1b1e;
+    @apply font-headline tracking-tight;
+    color: #142235;
   }
 }
 
 @layer components {
   .serif-headline {
-    font-family: 'Newsreader', serif;
-    @apply tracking-tight font-medium;
+    font-family: 'Newsreader', Georgia, serif;
+    @apply tracking-tight font-bold text-[#142235];
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    color: #0877c9;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    font-weight: 600;
   }
 
   .glass-card {
-    @apply bg-white/70 backdrop-blur-xl border border-black/5;
+    background: #ffffff;
+    border: 1px solid #dce7ef;
+    box-shadow: 0 16px 30px rgba(16, 34, 73, 0.08);
   }
 
   .blue-gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary/80 to-primary/40;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#0877c9] to-[#58bfc0];
   }
 }
 
