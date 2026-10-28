@@ -322,7 +322,7 @@ export const CommandProductScreens = () => {
               { name: "Procurement", icon: Package },
               { name: "Checker / Approvals", icon: ShieldCheck },
               { name: "Factory & Production", icon: Factory },
-              { name: "Warehouse", icon: Warehouse },
+              { name: "Warehouse / Factory", icon: Warehouse },
               { name: "Finance", icon: Coins },
               { name: "Management", icon: LineChart },
             ].map((node) => {

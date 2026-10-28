@@ -183,7 +183,7 @@ const HeroStory = () => {
               { name: "Procurement", desc: "PO Linked" },
               { name: "Checker", desc: "Policy Locked" },
               { name: "Factory & Production", desc: "Batch Scheduled" },
-              { name: "Warehouse", desc: "GRN Verified" },
+              { name: "Warehouse / Factory", desc: "GRN Verified" },
               { name: "Finance", desc: "Actuals Realized" },
               { name: "Management", desc: "Executive View" },
             ].map((node) => (
