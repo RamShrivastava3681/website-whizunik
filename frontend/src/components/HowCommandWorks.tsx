@@ -83,9 +83,9 @@ const departmentViews = [
   },
   {
     id: "warehouse",
-    name: "Warehouse",
+    name: "Warehouse / Factory",
     icon: Warehouse,
-    tagline: "Manage goods receipt, GRN, putaway, stock movement and dispatch.",
+    tagline: "Manage goods receipt, GRN, shopfloor batches, stock movement and dispatch.",
     points: [
       "Confirm physical goods receipt with authentic GRN",
       "Stock only increases when GRN is confirmed",

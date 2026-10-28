@@ -94,10 +94,10 @@ const roleWorkspaces = [
   },
   {
     id: "warehouse",
-    name: "Warehouse",
+    name: "Warehouse / Factory",
     icon: Warehouse,
-    tagline: "Manage goods receipt, GRN, putaway, stock movement and dispatch.",
-    caption: "Warehouse Control • Inward QC, stock staging & gate dispatches",
+    tagline: "Manage goods receipt, GRN, shopfloor batches, stock movement and dispatch.",
+    caption: "Warehouse & Factory Control • Inward QC, stock staging & gate dispatches",
     points: [
       "Confirm physical goods receipt with authentic GRN inspection",
       "Stock only increases when GRN is confirmed on the dock",
@@ -187,7 +187,7 @@ const transactionSequence = [
   { step: "03", name: "Procurement", actor: "Procurement", desc: "PO tied to verified bill of materials", badge: "Demand Tied" },
   { step: "04", name: "Invoice", actor: "Finance", desc: "Commercial and tax details locked", badge: "Tax Locked" },
   { step: "05", name: "Payment", actor: "Treasury", desc: "Bank remittances realized in books", badge: "Bank Verified" },
-  { step: "06", name: "Receipt / Dispatch", actor: "Warehouse", desc: "Physical gate movement updates stock", badge: "Dock Confirmed" },
+  { step: "06", name: "Receipt / Dispatch", actor: "Warehouse / Factory", desc: "Physical gate movement & batch yield updates stock", badge: "Dock Confirmed" },
   { step: "07", name: "Management", actor: "Executive", desc: "Unified consolidated visibility", badge: "Real-time Pulse" },
 ];
 
@@ -367,7 +367,7 @@ export const CommandProductScreens = () => {
     { name: "Sales Desk", role: "Commercial Demand", icon: ShoppingCart, input: "Customer SO", output: "Locked Pricing & BOM Demand", status: "Active" },
     { name: "Checker Gate", role: "Audit & Policy", icon: ShieldCheck, input: "Order Deviations", output: "Two-Man Rule Authorization", status: "Protected" },
     { name: "Procurement Desk", role: "Supply Commitments", icon: Package, input: "BOM Shortages", output: "Demand-Linked PO", status: "Active" },
-    { name: "Warehouse Control", role: "Physical Reality", icon: Warehouse, input: "Physical Deliveries", output: "Authentic Dock GRN / Gate Pass", status: "Synced" },
+    { name: "Warehouse / Factory", role: "Physical & Shopfloor Reality", icon: Warehouse, input: "Deliveries & Batches", output: "Authentic Dock GRN & Yield Pass", status: "Synced" },
     { name: "Finance & Treasury", role: "Realized Liquidity", icon: Coins, input: "Bank Statements", output: "13-Week Cash Forecasting", status: "Realized" },
     { name: "Management Pulse", role: "Executive View", icon: LineChart, input: "Live Operations", output: "Single Source of Truth", status: "Live" },
   ];
@@ -390,7 +390,7 @@ export const CommandProductScreens = () => {
               One connected <span className="text-blue italic font-light">operating flow.</span>
             </h2>
             <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
-              Whizunik Command brings your entire business operations into a unified interface: connecting Sales, Procurement, Checker / approvals, Finance, Warehouse, and Management.
+              Whizunik Command brings your entire business operations into a unified interface: connecting Sales, Procurement, Checker / approvals, Finance, Warehouse / Factory, and Management.
             </p>
           </div>
 
@@ -401,7 +401,7 @@ export const CommandProductScreens = () => {
               { name: "Procurement", icon: Package },
               { name: "Checker / Approvals", icon: ShieldCheck },
               { name: "Finance", icon: Coins },
-              { name: "Warehouse", icon: Warehouse },
+              { name: "Warehouse / Factory", icon: Warehouse },
               { name: "Management", icon: LineChart },
             ].map((node) => {
               const Icon = node.icon;
@@ -654,7 +654,7 @@ export const CommandProductScreens = () => {
               Every team sees <span className="text-blue italic font-light">the work it owns.</span>
             </h2>
             <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
-              Tailored workspace views for Sales, Procurement, Warehouse, Finance and Treasury. Each team works from an interface designed around its specific operational mandate.
+              Tailored workspace views for Sales, Procurement, Warehouse / Factory, Finance and Treasury. Each team works from an interface designed around its specific operational mandate.
             </p>
           </div>
 
