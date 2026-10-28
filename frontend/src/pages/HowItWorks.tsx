@@ -42,10 +42,11 @@ const primaryFlowSteps = [
   { step: "01", name: "Order", desc: "Commercial terms recorded once" },
   { step: "02", name: "Approval", desc: "Validated by Checker policy" },
   { step: "03", name: "Procurement", desc: "PO linked to actual demand" },
-  { step: "04", name: "Invoice", desc: "Commercial & tax bill locked" },
-  { step: "05", name: "Payment", desc: "Treasury records bank actuals" },
-  { step: "06", name: "Receipt / Dispatch", desc: "Dock inspection & gate release" },
-  { step: "07", name: "Management", desc: "Unified executive pulse" },
+  { step: "04", name: "Factory & Production", desc: "Batch planning, shift updates & QC release" },
+  { step: "05", name: "Invoice", desc: "Commercial & tax bill locked" },
+  { step: "06", name: "Payment", desc: "Treasury records bank actuals" },
+  { step: "07", name: "Receipt / Dispatch", desc: "Dock inspection & gate release" },
+  { step: "08", name: "Management", desc: "Unified executive pulse" },
 ];
 
 // Manufacturing & export connected workflow example (Interactive 9-stage pipeline)

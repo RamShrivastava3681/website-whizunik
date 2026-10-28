@@ -21,7 +21,7 @@ const Index = () => {
         <CommandProductScreens />
 
         {/* WHO WHIZUNIK WORKS WITH (Directly below Integrations as requested by manager) */}
-        <WhoWeWorkWith asSection={true} showCta={true} />
+        <WhoWeWorkWith asSection={true} />
       </main>
       <Footer />
 

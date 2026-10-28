@@ -825,7 +825,7 @@ export const CommandProductScreens = () => {
               From inception to bank realization, information travels along the full transaction sequence:
             </p>
             <div className="mt-4 p-3 rounded-2xl bg-paper border border-line text-xs sm:text-sm font-bold text-blue max-w-2xl mx-auto font-mono">
-              Order → Approval → Procurement → Invoice → Payment → Receipt / Dispatch → Management
+              Order → Approval → Procurement → Factory & Production → Invoice → Payment → Receipt / Dispatch → Management
             </div>
           </div>
 

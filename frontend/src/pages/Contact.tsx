@@ -49,7 +49,7 @@ const Contact = () => {
         inquiryType === "demo"
           ? "Request a Walkthrough (Whizunik Command)"
           : inquiryType === "advisory"
-          ? "Structured Capital Advisory"
+          ? "Strategic Capital Advisory"
           : "General Inquiry",
     };
 
