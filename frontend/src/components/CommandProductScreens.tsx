@@ -93,11 +93,36 @@ const roleWorkspaces = [
     ]
   },
   {
+    id: "factory",
+    name: "Factory & Production",
+    icon: Factory,
+    tagline: "Manage job orders, shopfloor routing, batch planning, machine yields and downtime.",
+    caption: "Factory & Production Control • Shopfloor lines, batch scheduling & yield logs",
+    points: [
+      "Convert confirmed Sales Orders directly into production job orders and batches",
+      "Real-time machine scheduling with line capacity and operator allocations",
+      "Live shift updates tracking good production, scrap rejects, rework and downtime",
+      "Integrated QC release gates preventing non-compliant output from entering finished stock",
+    ],
+    sampleAction: "Batch #B-309 on Line 2 awaiting operator shift yield log",
+    metrics: [
+      { label: "Active Batches", val: "8 In-Line" },
+      { label: "Shopfloor Yield", val: "98.4%" },
+      { label: "Downtime Alerts", val: "0 Critical" },
+    ],
+    flowNodes: [
+      { step: "01", name: "Job Order Gen", desc: "Customer SO explodes to production order" },
+      { step: "02", name: "Shopfloor Routing", desc: "Assigned to Line 2 machine sequence" },
+      { step: "03", name: "Hourly Shift Logs", desc: "Operators log good units, scrap & delays" },
+      { step: "04", name: "QC Sign-off", desc: "Batch released directly to FG warehouse" },
+    ]
+  },
+  {
     id: "warehouse",
-    name: "Warehouse / Factory",
+    name: "Warehouse",
     icon: Warehouse,
-    tagline: "Manage goods receipt, GRN, shopfloor batches, stock movement and dispatch.",
-    caption: "Warehouse & Factory Control • Inward QC, stock staging & gate dispatches",
+    tagline: "Manage goods receipt, GRN, putaway, stock movement and dispatch.",
+    caption: "Warehouse Control • Inward QC, stock staging & gate dispatches",
     points: [
       "Confirm physical goods receipt with authentic GRN inspection",
       "Stock only increases when GRN is confirmed on the dock",
@@ -185,10 +210,11 @@ const transactionSequence = [
   { step: "01", name: "Order", actor: "Sales", desc: "Commercial terms logged once at inception", badge: "$128,500 SO" },
   { step: "02", name: "Approval", actor: "Checker", desc: "Audit and policy gates validated", badge: "2-Man Rule" },
   { step: "03", name: "Procurement", actor: "Procurement", desc: "PO tied to verified bill of materials", badge: "Demand Tied" },
-  { step: "04", name: "Invoice", actor: "Finance", desc: "Commercial and tax details locked", badge: "Tax Locked" },
-  { step: "05", name: "Payment", actor: "Treasury", desc: "Bank remittances realized in books", badge: "Bank Verified" },
-  { step: "06", name: "Receipt / Dispatch", actor: "Warehouse / Factory", desc: "Physical gate movement & batch yield updates stock", badge: "Dock Confirmed" },
-  { step: "07", name: "Management", actor: "Executive", desc: "Unified consolidated visibility", badge: "Real-time Pulse" },
+  { step: "04", name: "Production", actor: "Factory & Production", desc: "Batch planning, shift updates & QC yield", badge: "Batch Scheduled" },
+  { step: "05", name: "Receipt & Stock", actor: "Warehouse", desc: "Dock inspection & physical stock ledger", badge: "Dock Confirmed" },
+  { step: "06", name: "Invoice", actor: "Finance", desc: "Commercial and tax details locked upon dispatch", badge: "Tax Locked" },
+  { step: "07", name: "Payment", actor: "Treasury", desc: "Bank remittances realized in books", badge: "Bank Verified" },
+  { step: "08", name: "Management", actor: "Executive", desc: "Unified consolidated visibility across all operations", badge: "Real-time Pulse" },
 ];
 
 // Factory and manufacturing connected workflow data (from How It Works)
@@ -367,7 +393,8 @@ export const CommandProductScreens = () => {
     { name: "Sales Desk", role: "Commercial Demand", icon: ShoppingCart, input: "Customer SO", output: "Locked Pricing & BOM Demand", status: "Active" },
     { name: "Checker Gate", role: "Audit & Policy", icon: ShieldCheck, input: "Order Deviations", output: "Two-Man Rule Authorization", status: "Protected" },
     { name: "Procurement Desk", role: "Supply Commitments", icon: Package, input: "BOM Shortages", output: "Demand-Linked PO", status: "Active" },
-    { name: "Warehouse / Factory", role: "Physical & Shopfloor Reality", icon: Warehouse, input: "Deliveries & Batches", output: "Authentic Dock GRN & Yield Pass", status: "Synced" },
+    { name: "Factory Floor", role: "Production & Assembly", icon: Factory, input: "BOM & Work Orders", output: "Batch Yield & QC Release", status: "Active" },
+    { name: "Warehouse Control", role: "Physical Reality", icon: Warehouse, input: "Physical Deliveries", output: "Authentic Dock GRN & Gate Pass", status: "Synced" },
     { name: "Finance & Treasury", role: "Realized Liquidity", icon: Coins, input: "Bank Statements", output: "13-Week Cash Forecasting", status: "Realized" },
     { name: "Management Pulse", role: "Executive View", icon: LineChart, input: "Live Operations", output: "Single Source of Truth", status: "Live" },
   ];
@@ -390,18 +417,19 @@ export const CommandProductScreens = () => {
               One connected <span className="text-blue italic font-light">operating flow.</span>
             </h2>
             <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
-              Whizunik Command brings your entire business operations into a unified interface: connecting Sales, Procurement, Checker / approvals, Finance, Warehouse / Factory, and Management.
+              Whizunik Command brings your entire business operations into a unified interface: connecting Sales, Procurement, Checker / approvals, Factory & Production, Warehouse, Finance, and Management.
             </p>
           </div>
 
-          {/* 6 Connected Workspaces Badges in reference teal/light style */}
+          {/* Connected Workspaces Badges in reference teal/light style */}
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
             {[
               { name: "Sales", icon: ShoppingCart },
               { name: "Procurement", icon: Package },
               { name: "Checker / Approvals", icon: ShieldCheck },
+              { name: "Factory & Production", icon: Factory },
+              { name: "Warehouse", icon: Warehouse },
               { name: "Finance", icon: Coins },
-              { name: "Warehouse / Factory", icon: Warehouse },
               { name: "Management", icon: LineChart },
             ].map((node) => {
               const Icon = node.icon;
@@ -654,7 +682,7 @@ export const CommandProductScreens = () => {
               Every team sees <span className="text-blue italic font-light">the work it owns.</span>
             </h2>
             <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
-              Tailored workspace views for Sales, Procurement, Warehouse / Factory, Finance and Treasury. Each team works from an interface designed around its specific operational mandate.
+              Tailored workspace views for Sales, Procurement, Checker, Factory & Production, Warehouse, Finance and Treasury. Each team works from an interface designed around its specific operational mandate.
             </p>
           </div>
 

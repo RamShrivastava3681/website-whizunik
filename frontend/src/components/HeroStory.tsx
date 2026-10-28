@@ -173,17 +173,18 @@ const HeroStory = () => {
               </span>
             </div>
             <span className="text-black/50 text-[11px] font-medium">
-              6 Workspaces • Zero Disconnects • Real-Time Handoffs
+              7 Workspaces • Zero Disconnects • Real-Time Handoffs
             </span>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2">
             {[
               { name: "Sales", desc: "Order Logged" },
               { name: "Procurement", desc: "PO Linked" },
               { name: "Checker", desc: "Policy Locked" },
+              { name: "Factory & Production", desc: "Batch Scheduled" },
+              { name: "Warehouse", desc: "GRN Verified" },
               { name: "Finance", desc: "Actuals Realized" },
-              { name: "Warehouse / Factory", desc: "GRN Verified" },
               { name: "Management", desc: "Executive View" },
             ].map((node) => (
               <motion.div

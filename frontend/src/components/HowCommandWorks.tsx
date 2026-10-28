@@ -11,6 +11,7 @@ import {
   ShieldCheck, 
   Coins, 
   Warehouse, 
+  Factory,
   LineChart,
   Check,
   Sparkles,
@@ -22,10 +23,11 @@ import {
 const flowSteps = [
   { id: "01", title: "Order", desc: "Logged once at inception", sub: "Commercial request" },
   { id: "02", title: "Approval", desc: "Validated by Checker", sub: "Policy gate" },
-  { id: "03", title: "Invoice", desc: "Documents locked", sub: "Tax & IRN details" },
-  { id: "04", title: "Payment", desc: "Treasury records actuals", sub: "Bank realization" },
-  { id: "05", title: "Receipt / Dispatch", desc: "Physical inventory moves", sub: "Dock inspection" },
-  { id: "06", title: "Management", desc: "Real-time visibility", sub: "Executive pulse" },
+  { id: "03", title: "Production", desc: "Shopfloor batch execution", sub: "Shift logs & QC" },
+  { id: "04", title: "Receipt / Dispatch", desc: "Physical inventory moves", sub: "Dock inspection" },
+  { id: "05", title: "Invoice", desc: "Documents locked", sub: "Tax & IRN details" },
+  { id: "06", title: "Payment", desc: "Treasury records actuals", sub: "Bank realization" },
+  { id: "07", title: "Management", desc: "Real-time visibility", sub: "Executive pulse" },
 ];
 
 const departmentViews = [
@@ -69,6 +71,32 @@ const departmentViews = [
     sampleAction: "Invoice #INV-290 pending Checker sign-off before dispatch",
   },
   {
+    id: "factory",
+    name: "Factory & Production",
+    icon: Factory,
+    tagline: "Manage job orders, shopfloor routing, batch planning, machine yields and downtime.",
+    points: [
+      "Convert confirmed Sales Orders directly into production batches",
+      "Track hourly machine yield, scrap, and downtime in real time",
+      "Enforce digital QC sign-off before output moves to finished stock",
+      "Maintain complete lot and batch traceability across manufacturing stages",
+    ],
+    sampleAction: "Batch #B-309 on Line 2 awaiting operator shift yield log",
+  },
+  {
+    id: "warehouse",
+    name: "Warehouse",
+    icon: Warehouse,
+    tagline: "Manage goods receipt, GRN, putaway, stock movement and dispatch.",
+    points: [
+      "Confirm physical goods receipt with authentic GRN",
+      "Stock only increases when GRN is confirmed",
+      "Stock only decreases when physical dispatch leaves the dock",
+      "Manage internal stock movements and warehouse putaway",
+    ],
+    sampleAction: "GRN #GRN-1049 awaiting physical dock count confirmation",
+  },
+  {
     id: "finance",
     name: "Finance & Treasury",
     icon: Coins,
@@ -80,19 +108,6 @@ const departmentViews = [
       "Forward-looking cash flow visibility based on real events",
     ],
     sampleAction: "Payment voucher $55,000 pending Treasury disbursement",
-  },
-  {
-    id: "warehouse",
-    name: "Warehouse / Factory",
-    icon: Warehouse,
-    tagline: "Manage goods receipt, GRN, shopfloor batches, stock movement and dispatch.",
-    points: [
-      "Confirm physical goods receipt with authentic GRN",
-      "Stock only increases when GRN is confirmed",
-      "Stock only decreases when physical dispatch leaves the dock",
-      "Manage internal stock movements and warehouse putaway",
-    ],
-    sampleAction: "GRN #GRN-1049 awaiting physical dock count confirmation",
   },
   {
     id: "management",
@@ -176,7 +191,7 @@ const HowCommandWorks = () => {
             />
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 relative z-10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-4 relative z-10">
             {flowSteps.map((step, idx) => (
               <motion.div
                 key={step.id}
