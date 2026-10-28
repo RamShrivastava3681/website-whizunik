@@ -9,6 +9,8 @@ import {
   GitFork, 
   ArrowUpRight, 
   ChevronRight, 
+  ChevronLeft,
+  RefreshCw,
   Sparkles, 
   Check, 
   Maximize2, 
@@ -45,70 +47,106 @@ const primaryFlowSteps = [
   { step: "07", name: "Management", desc: "Unified executive pulse" },
 ];
 
-// Manufacturing & export connected workflow example (from developer note)
+// Manufacturing & export connected workflow example (Interactive 9-stage pipeline)
 const factoryWorkflowSteps = [
   {
     step: "01",
     title: "Customer Order",
     badge: "Commercial Demand",
     desc: "Customer, product, variant, quantity, price, delivery date and status.",
-    detail: "Order details are locked at entry so all downstream manufacturing and procurement functions work from verified demand."
+    detail: "Order details are locked at entry so all downstream manufacturing and procurement functions work from verified demand.",
+    icon: ShoppingCart,
+    tag: "Demand Entry",
+    verification: "Customer credit status & price margin rules validated automatically",
+    statusBadge: "Commercial Lock Active"
   },
   {
     step: "02",
     title: "Material Check",
     badge: "BOM & Inventory Check",
     desc: "Required, available, reserved, incoming and shortage quantities from the product material list or BOM.",
-    detail: "Real-time stock reservation calculates net shortages instantly without requiring manual warehouse phone calls."
+    detail: "Real-time stock reservation calculates net shortages instantly without requiring manual warehouse phone calls.",
+    icon: Database,
+    tag: "BOM Calculation",
+    verification: "Multi-level Bill of Materials explodes against raw material warehouse ledgers",
+    statusBadge: "Auto BOM Explode"
   },
   {
     step: "03",
     title: "Purchase and Receive",
     badge: "Procurement & Inward",
     desc: "Create a purchase requirement or order when materials are short; increase stock only after goods receipt.",
-    detail: "Vendors receive POs linked directly to order shortages. Inward stock ledger increments only after physical dock inspection."
+    detail: "Vendors receive POs linked directly to order shortages. Inward stock ledger increments only after physical dock inspection.",
+    icon: Package,
+    tag: "Dock Inward",
+    verification: "Dock GRN strictly required before raw material ledger increases",
+    statusBadge: "GRN Dock Verification"
   },
   {
     step: "04",
     title: "Production Planning",
     badge: "Shopfloor Scheduling",
     desc: "Create a batch linked to the customer order with quantity, priority, dates, work area and owner.",
-    detail: "Batches are tagged to the customer commitment, establishing clear line priority and operational ownership."
+    detail: "Batches are tagged to the customer commitment, establishing clear line priority and operational ownership.",
+    icon: Factory,
+    tag: "Batch Scheduling",
+    verification: "Batch IDs bound to Customer Order number and line machine capacity",
+    statusBadge: "Scheduled on Line 2"
   },
   {
     step: "05",
     title: "Factory Updates",
     badge: "Live Assembly Execution",
     desc: "Record good quantity, rejects, rework, downtime, delays and owned issues.",
-    detail: "Daily shift logs track yield and downtime in real time, alerting management before bottlenecks turn into late shipments."
+    detail: "Daily shift logs track yield and downtime in real time, alerting management before bottlenecks turn into late shipments.",
+    icon: RefreshCw,
+    tag: "Shift Logs",
+    verification: "Hourly operator logs flag machine downtime and scrap counts instantly",
+    statusBadge: "Real-time Yield: 98.4%"
   },
   {
     step: "06",
     title: "Quality Decision",
     badge: "QC Release Gate",
     desc: "Released, partially released, on hold, rejected or sent for rework.",
-    detail: "Mandatory quality checkpoints prevent defective materials from progressing to finished inventory."
+    detail: "Mandatory quality checkpoints prevent defective materials from progressing to finished inventory.",
+    icon: ShieldCheck,
+    tag: "Inspection Gate",
+    verification: "Digital QC sign-off required before goods can move to finished inventory",
+    statusBadge: "QC Passed & Signed"
   },
   {
     step: "07",
     title: "Finished Stock",
     badge: "Finished Goods Ledger",
     desc: "Add only released production to finished stock, linked to product, batch and customer order.",
-    detail: "Finished goods ledger updates strictly upon QC approval, preventing unverified lots from being allocated to dispatch."
+    detail: "Finished goods ledger updates strictly upon QC approval, preventing unverified lots from being allocated to dispatch.",
+    icon: Boxes,
+    tag: "FG Warehouse",
+    verification: "Physical finished stock allocated directly to waiting Customer Sales Order",
+    statusBadge: "Ready for Allocation"
   },
   {
     step: "08",
     title: "Dispatch",
     badge: "Logistics & Gate Release",
     desc: "Check released quantity, allocation, documents and readiness; confirmed dispatch reduces stock and updates order status.",
-    detail: "Packaging lists, e-way bills, and transport allocations verified before physical gate release."
+    detail: "Packaging lists, e-way bills, and transport allocations verified before physical gate release.",
+    icon: Truck,
+    tag: "Gate Dispatch",
+    verification: "Gate pass generated only after e-way bill & transporter docket matched",
+    statusBadge: "Dispatched via Docket"
   },
   {
     step: "09",
     title: "Invoice & Payment Follow-up",
     badge: "Commercial Realization",
     desc: "Track invoices, due and overdue amounts, buyer follow-up and management reporting.",
-    detail: "Receivables tracking initiates automatically upon dispatch confirmation with scheduled collection cadences."
+    detail: "Receivables tracking initiates automatically upon dispatch confirmation with scheduled collection cadences.",
+    icon: Coins,
+    tag: "Realization",
+    verification: "Statutory tax invoice pushed to accounting ledger and collections queue",
+    statusBadge: "Realized in Bank"
   },
 ];
 
@@ -431,94 +469,149 @@ const HowItWorks = () => {
 
           {/* =========================================================
               SECTION 3: MANUFACTURING & EXPORT WORKFLOW EXAMPLE
-              (Explicit requirement: Do not present as separate module;
-               use as one connected horizontal workflow example)
+              (Shifted to How It Works as requested by manager)
           ========================================================== */}
-          <section className="mb-24 md:mb-32">
-            <div className="p-8 sm:p-12 rounded-3xl bg-neutral-50 border border-black/10">
+          <section className="mb-24 md:mb-32" id="factory-workflow">
+            <div className="p-6 sm:p-10 md:p-12 rounded-3xl bg-neutral-50/80 border border-black/10">
               
-              <div className="max-w-3xl mb-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs uppercase tracking-wider mb-3">
-                  <Factory size={13} />
-                  <span>Workflow In Practice</span>
-                </div>
-                <h3 className="serif-headline text-3xl sm:text-4xl font-bold tracking-tight text-black mb-4">
-                  Manufacturing & Export Workflow Example
-                </h3>
-                <p className="text-black/75 text-sm sm:text-base leading-relaxed mb-4">
-                  The factory workflow is a use case demonstrating how Whizunik Command's connected operating model functions across high-coordination businesses. The platform remains completely horizontal with equal workspaces for all roles:
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <span className="eyebrow block mb-3 text-blue">
+                  Shopfloor & Manufacturing • Connected Factory Workflow
+                </span>
+                <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink mb-4">
+                  From customer order to factory floor <br />
+                  <span className="text-blue italic font-light">& bank collection.</span>
+                </h2>
+                <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
+                  A synchronized operating loop built specifically for manufacturers and exporters. When a customer order is locked, material shortages explode, shopfloor batches plan, QC gates inspect, and dispatches trigger bank collection cadences automatically.
                 </p>
-                <div className="p-3.5 rounded-xl bg-white border border-black/10 text-xs font-semibold text-primary">
-                  Sales → Procurement → Warehouse / Inventory → Production → Quality → Finance → Dispatch → Management
+              </div>
+
+              {/* Interactive Stepper Navigation Bar */}
+              <div className="max-w-5xl mx-auto mb-8">
+                <div className="grid grid-cols-3 sm:grid-cols-9 gap-1.5 p-2 rounded-2xl bg-white border border-line shadow-xs">
+                  {factoryWorkflowSteps.map((s, idx) => {
+                    const isActive = activeWorkflowIndex === idx;
+                    return (
+                      <button
+                        key={s.step}
+                        onClick={() => setActiveWorkflowIndex(idx)}
+                        className={`p-2.5 rounded-xl text-center transition-all cursor-pointer flex flex-col items-center gap-1 ${
+                          isActive 
+                            ? "bg-blue text-white shadow-md shadow-blue/25" 
+                            : "hover:bg-paper text-mutedBlue"
+                        }`}
+                      >
+                        <span className={`text-[10px] font-mono font-bold ${isActive ? "text-white/80" : "text-blue"}`}>
+                          {s.step}
+                        </span>
+                        <span className="text-[11px] font-bold truncate w-full text-center">
+                          {s.title}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Step Navigation Pill Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-9 gap-2 mb-8">
-                {factoryWorkflowSteps.map((item, idx) => (
-                  <button
-                    key={item.step}
-                    onClick={() => setActiveWorkflowIndex(idx)}
-                    className={`p-2.5 rounded-xl text-left border transition-all duration-200 cursor-pointer ${
-                      activeWorkflowIndex === idx
-                        ? "bg-primary text-white border-primary shadow-md shadow-primary/25"
-                        : "bg-white text-black border-black/10 hover:border-primary/40"
-                    }`}
-                  >
-                    <span className={`block font-mono text-[10px] font-bold ${activeWorkflowIndex === idx ? "text-white/80" : "text-primary"}`}>
-                      {item.step}
-                    </span>
-                    <span className="block text-xs font-bold tracking-tight truncate mt-0.5">
-                      {item.title}
-                    </span>
-                  </button>
-                ))}
-              </div>
-
-              {/* Active Step Detailed Card */}
+              {/* Active Step Interactive Showcase Card */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={factoryWorkflowSteps[activeWorkflowIndex].step}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.25 }}
-                  className="p-6 sm:p-8 rounded-2xl bg-white border border-black/10 shadow-sm"
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.3 }}
+                  className="max-w-5xl mx-auto rounded-3xl p-6 sm:p-10 bg-white border border-line shadow-[0_16px_35px_rgba(16,34,73,0.06)]"
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                    <div className="flex items-center gap-3">
-                      <span className="w-8 h-8 rounded-lg bg-primary/10 text-primary font-mono font-bold text-xs flex items-center justify-center">
-                        {factoryWorkflowSteps[activeWorkflowIndex].step}
-                      </span>
-                      <h4 className="text-xl sm:text-2xl font-bold text-black tracking-tight">
-                        {factoryWorkflowSteps[activeWorkflowIndex].title}
-                      </h4>
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 mb-6 border-b border-line">
+                    <div className="flex items-center gap-4">
+                      {(() => {
+                        const CurrentIcon = factoryWorkflowSteps[activeWorkflowIndex].icon;
+                        return (
+                          <div className="w-14 h-14 rounded-2xl bg-blue/10 flex items-center justify-center text-blue shrink-0 shadow-xs">
+                            <CurrentIcon size={28} />
+                          </div>
+                        );
+                      })()}
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-mono text-blue font-bold text-xs">
+                            Stage {factoryWorkflowSteps[activeWorkflowIndex].step} of 09
+                          </span>
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-light text-teal-accent border border-teal-border">
+                            {factoryWorkflowSteps[activeWorkflowIndex].badge}
+                          </span>
+                        </div>
+                        <h3 className="serif-headline text-2xl sm:text-3xl font-bold text-ink tracking-tight">
+                          {factoryWorkflowSteps[activeWorkflowIndex].title}
+                        </h3>
+                      </div>
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-primary px-3 py-1 rounded-full bg-primary/10">
-                      {factoryWorkflowSteps[activeWorkflowIndex].badge}
-                    </span>
+
+                    <div className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-teal-light border border-teal-border text-xs font-bold text-teal-accent font-mono">
+                      <CheckCircle2 size={15} />
+                      <span>{factoryWorkflowSteps[activeWorkflowIndex].statusBadge}</span>
+                    </div>
                   </div>
 
-                  <p className="text-black font-semibold text-sm sm:text-base mb-3 leading-relaxed">
-                    {factoryWorkflowSteps[activeWorkflowIndex].desc}
-                  </p>
-                  <p className="text-black/70 text-xs sm:text-sm leading-relaxed border-t border-black/5 pt-3">
-                    <strong className="text-black">Operating Logic: </strong>
-                    {factoryWorkflowSteps[activeWorkflowIndex].detail}
-                  </p>
+                  {/* Step Deep Dive Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div className="p-5 rounded-2xl bg-paper border border-line space-y-3">
+                      <span className="eyebrow block text-mutedBlue">
+                        Operational Scope
+                      </span>
+                      <p className="text-ink font-semibold text-sm sm:text-base leading-relaxed">
+                        {factoryWorkflowSteps[activeWorkflowIndex].desc}
+                      </p>
+                      <p className="text-mutedBlue text-xs sm:text-sm leading-relaxed">
+                        {factoryWorkflowSteps[activeWorkflowIndex].detail}
+                      </p>
+                    </div>
+
+                    <div className="p-5 rounded-2xl bg-teal-light/40 border border-teal-border space-y-3 flex flex-col justify-between">
+                      <div>
+                        <span className="eyebrow block text-teal-accent mb-1">
+                          Whizunik Command System Rule
+                        </span>
+                        <h4 className="font-bold text-ink text-sm mb-2">Automated Policy & Verification</h4>
+                        <p className="text-mutedBlue text-xs sm:text-sm leading-relaxed">
+                          {factoryWorkflowSteps[activeWorkflowIndex].verification}
+                        </p>
+                      </div>
+                      <div className="pt-3 border-t border-teal-border flex items-center justify-between text-xs text-teal-accent font-semibold font-mono">
+                        <span>Enforced via maker-checker audit</span>
+                        <ShieldCheck size={16} />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Prev / Next Step Controls */}
+                  <div className="flex items-center justify-between pt-4 border-t border-line">
+                    <button
+                      disabled={activeWorkflowIndex === 0}
+                      onClick={() => setActiveWorkflowIndex(prev => Math.max(0, prev - 1))}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-ink/75 hover:text-ink hover:bg-paper disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                    >
+                      <ChevronLeft size={16} />
+                      <span>Previous Step</span>
+                    </button>
+
+                    <div className="text-xs text-mutedBlue font-mono font-medium">
+                      Step {activeWorkflowIndex + 1} of 9
+                    </div>
+
+                    <button
+                      disabled={activeWorkflowIndex === factoryWorkflowSteps.length - 1}
+                      onClick={() => setActiveWorkflowIndex(prev => Math.min(factoryWorkflowSteps.length - 1, prev + 1))}
+                      className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold bg-blue text-white hover:brightness-105 disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-md shadow-blue/20"
+                    >
+                      <span>Next Step</span>
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
                 </motion.div>
               </AnimatePresence>
-
-              {/* Simple rule callout */}
-              <div className="mt-8 pt-6 border-t border-black/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs text-black/60">
-                <p>
-                  Demonstrates how 9 operational steps connect seamlessly without turning Whizunik into a rigid, manufacturing-only product.
-                </p>
-                <div className="flex items-center gap-2 font-bold text-primary shrink-0">
-                  <span>Horizontal Workspace Model</span>
-                  <CheckCircle2 size={16} />
-                </div>
-              </div>
 
             </div>
           </section>

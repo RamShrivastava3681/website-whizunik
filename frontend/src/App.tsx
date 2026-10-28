@@ -71,6 +71,7 @@ const App = () => (
               <Route path="/how-it-works" element={<PageWrapper><HowItWorks /></PageWrapper>} />
               <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
               <Route path="/strategic-advisory" element={<PageWrapper><Services /></PageWrapper>} />
+              <Route path="/strategic-capital-advisory" element={<PageWrapper><Services /></PageWrapper>} />
               <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
               <Route path="/hub" element={<PageWrapper><Hub /></PageWrapper>} />
               <Route path="/whizunik-hub" element={<PageWrapper><Hub /></PageWrapper>} />

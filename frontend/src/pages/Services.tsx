@@ -103,10 +103,10 @@ const Services = () => {
               transition={{ duration: 0.8 }}
             >
               <span className="inline-block px-4 py-1.5 bg-primary/10 rounded-full border border-primary/20 text-primary font-bold tracking-[0.3em] text-[10px] md:text-xs uppercase mb-6 shadow-sm">
-                Capital Advisory Practice
+                Strategic Capital Advisory
               </span>
               <h1 className="serif-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-black font-bold leading-[1.05] tracking-tight mb-8">
-                Capital strategy{" "}
+                Strategic Capital Advisory{" "}
                 <span className="text-primary italic font-light">through execution.</span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-black/75 leading-relaxed font-normal max-w-3xl mb-8">

@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Preloader from "@/components/Preloader";
 import ScrollProgress from "@/components/ScrollProgress";
 import { Link } from "react-router-dom";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Magnetic from "@/components/Magnetic";
 import { motion } from "framer-motion";
 
@@ -35,32 +35,9 @@ const Index = () => {
         <ProblemSection />
 
 
-        {/* Strategic Advisory Teaser & Final Walkthrough CTA */}
+        {/* Final Walkthrough CTA */}
         <section className="py-20 md:py-28 bg-white border-t border-black/5">
           <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
-            
-            {/* Strategic Advisory Teaser Banner */}
-            <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-primary/[0.08] via-primary/[0.03] to-transparent border border-primary/20 mb-20 relative overflow-hidden">
-              <div className="max-w-2xl">
-                <div className="flex items-center gap-2 mb-3">
-                  <Sparkles size={18} className="text-primary" />
-                  <span className="text-primary text-xs font-bold uppercase tracking-widest">Advisory Practice</span>
-                </div>
-                <h4 className="serif-headline text-2xl sm:text-3xl font-bold text-black mb-3">
-                  Strategic Advisory helps when capital becomes the question.
-                </h4>
-                <p className="text-black/70 text-sm sm:text-base leading-relaxed mb-6 font-medium">
-                  Alongside Whizunik Command, our senior practice works selectively with high-growth businesses and credit funds on structured growth capital, working capital optimization, and lender readiness.
-                </p>
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-primary text-white font-bold text-xs uppercase tracking-widest hover:brightness-110 transition-all shadow-md shadow-primary/20"
-                >
-                  <span>Explore Strategic Advisory</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
 
             {/* Final Walkthrough CTA */}
             <div className="text-center max-w-3xl mx-auto pt-4">

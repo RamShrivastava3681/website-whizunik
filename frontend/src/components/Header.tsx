@@ -7,7 +7,7 @@ import { createPortal } from "react-dom";
 const navLinks = [
   { label: "Whizunik Command", path: "/" },
   { label: "How It Works", path: "/how-it-works" },
-  { label: "Strategic Advisory", path: "/services" },
+  { label: "Strategic Capital Advisory", path: "/services" },
   { label: "About Us", path: "/about" },
 ];
 
@@ -21,7 +21,7 @@ const Header = () => {
       return location.pathname === "/" || location.pathname === "/command";
     }
     if (path === "/services") {
-      return location.pathname === "/services" || location.pathname === "/strategic-advisory";
+      return location.pathname === "/services" || location.pathname === "/strategic-advisory" || location.pathname === "/strategic-capital-advisory";
     }
     return location.pathname === path;
   };
