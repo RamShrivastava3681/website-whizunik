@@ -824,13 +824,13 @@ export const CommandProductScreens = () => {
             <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
               From inception to bank realization, information travels along the full transaction sequence:
             </p>
-            <div className="mt-4 p-3 rounded-2xl bg-paper border border-line text-xs sm:text-sm font-bold text-blue max-w-2xl mx-auto font-mono">
+            <div className="mt-4 p-3 rounded-2xl bg-paper border border-line text-xs sm:text-sm font-bold text-blue w-max max-w-[92vw] relative left-1/2 -translate-x-1/2 font-mono">
               Order → Approval → Procurement → Factory & Production → Invoice → Payment → Receipt / Dispatch → Management
             </div>
           </div>
 
           {/* DIAGRAM 5: Full-Trace Stepper Timeline Diagram */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-3 mb-16">
             {transactionSequence.map((item) => (
               <div
                 key={item.step}
