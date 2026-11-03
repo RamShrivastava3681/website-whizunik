@@ -37,6 +37,11 @@ const operationalChain = [
   { icon: AlertCircle, cause: "Operational Delays", effect: "Directly become financial & capital problems." },
 ];
 
+const peopleRoles = [
+  "Founder",
+  "Product & Technology",
+  "Commercial & Partnerships",
+];
 
 const About = () => {
   return (
@@ -135,6 +140,42 @@ const About = () => {
 
           {/* WHO WHIZUNIK WORKS WITH */}
           <WhoWeWorkWith className="mb-20 md:mb-28" />
+
+          {/* THE PEOPLE BEHIND WHIZUNIK */}
+          <div className="p-8 sm:p-12 rounded-3xl bg-neutral-50 border border-black/10 mb-20 md:mb-28 shadow-sm">
+            <div className="max-w-3xl mb-8 md:mb-10">
+              <span className="text-primary text-xs font-bold uppercase tracking-[0.3em] block mb-3">
+                About Us
+              </span>
+              <h2 className="serif-headline text-2xl sm:text-3xl md:text-4xl font-bold text-black tracking-tight uppercase mb-4">
+                THE PEOPLE BEHIND WHIZUNIK
+              </h2>
+              <p className="text-black/75 text-base sm:text-lg leading-relaxed font-normal">
+                Whizunik brings together expertise across operating workflows, technology, structured capital and commercial execution.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+              {peopleRoles.map((role, idx) => (
+                <motion.div
+                  key={role}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -3 }}
+                  className="p-6 sm:p-8 rounded-2xl bg-white border border-black/10 hover:border-primary/40 hover:shadow-md transition-all flex items-center gap-4"
+                >
+                  <span className="font-mono text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-lg shrink-0">
+                    0{idx + 1}
+                  </span>
+                  <h3 className="serif-headline text-lg sm:text-xl font-bold text-black tracking-tight">
+                    {role}
+                  </h3>
+                </motion.div>
+              ))}
+            </div>
+          </div>
 
           {/* TEAM MODEL & OPERATING PHILOSOPHY */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center p-8 sm:p-12 rounded-3xl bg-white border border-black/10 mb-20 md:mb-28 shadow-sm">
