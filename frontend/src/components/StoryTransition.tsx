@@ -29,7 +29,7 @@ const StoryTransition = ({ chapter, subtitle }: StoryTransitionProps) => {
       />
 
       <motion.div style={{ opacity: textOpacity, y: textY }} className="text-center relative z-10">
-        <span className="text-black font-bold font-body text-[10px] tracking-[0.5em] uppercase block mb-2">
+        <span className="text-foreground font-bold font-body text-[10px] tracking-[0.5em] uppercase block mb-2">
           {chapter}
         </span>
         <span className="text-primary font-body text-sm italic">

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import type Lenis from "@studio-freight/lenis";
 
 const Preloader = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const win = window as Window & { lenis?: Lenis };
+
     // Lock scrolling
-    if ((window as any).lenis) (window as any).lenis.stop();
+    win.lenis?.stop();
     
     const timer = setTimeout(() => {
       (window as Window & { __whizunikPreloaderDone?: boolean }).__whizunikPreloaderDone = true;
@@ -14,12 +17,12 @@ const Preloader = () => {
       setLoading(false);
       
       // Unlock scrolling after exit animation starts
-      if ((window as any).lenis) (window as any).lenis.start();
+      win.lenis?.start();
     }, 2500);
     
     return () => {
       clearTimeout(timer);
-      if ((window as any).lenis) (window as any).lenis.start();
+      win.lenis?.start();
     };
   }, []);
 
@@ -33,7 +36,7 @@ const Preloader = () => {
             y: "-100%",
             transition: { duration: 1, ease: [0.76, 0, 0.24, 1] } 
           }}
-          className="fixed inset-0 z-[99999] overflow-hidden bg-[radial-gradient(circle_at_top,_#f6f7ff_0%,_#e8eefc_45%,_#d6e2f6_100%)] flex flex-col items-center justify-center"
+          className="fixed inset-0 z-[99999] overflow-hidden bg-background flex flex-col items-center justify-center"
         >
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(55,95,215,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(55,95,215,0.08)_1px,transparent_1px)] bg-[size:38px_38px] opacity-35" />
 
@@ -61,7 +64,7 @@ const Preloader = () => {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative rounded-2xl border border-white/70 bg-white/55 px-8 py-8 text-center shadow-[0_24px_70px_-30px_rgba(25,54,130,0.45)] backdrop-blur-md md:px-14 md:py-12"
+            className="relative rounded-2xl border border-border bg-card/80 px-8 py-8 text-center shadow-panel backdrop-blur-md md:px-14 md:py-12"
           >
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(120deg,rgba(255,255,255,0.22),rgba(255,255,255,0.05))]" />
             <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#2f63ff]/60 to-transparent" />
@@ -69,9 +72,9 @@ const Preloader = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="relative text-[#102249] text-3xl md:text-5xl font-bold tracking-[-0.03em] font-headline [text-shadow:0_8px_26px_rgba(20,58,130,0.18)]"
+              className="relative text-foreground text-3xl md:text-5xl font-semibold tracking-[-0.03em] font-headline"
             >
-              <span className="bg-gradient-to-b from-[#2460ff] via-[#1a56ff] to-[#0f43d8] bg-clip-text text-transparent [text-shadow:0_0_24px_rgba(34,92,255,0.45)]">
+              <span className="bg-gradient-to-b from-primary via-primary to-primary-container bg-clip-text text-transparent">
                 Whiz-Unik
               </span>
             </motion.h1>
@@ -79,13 +82,13 @@ const Preloader = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="relative mt-3 text-[#1f355f]/85 text-sm md:text-base tracking-[0.16em] uppercase"
+              className="relative mt-3 text-muted-foreground text-sm md:text-base tracking-[0.16em] uppercase"
             >
               Founded in 2023
             </motion.p>
 
             <motion.div
-              className="absolute -bottom-1 left-1/2 h-[2px] w-28 -translate-x-1/2 rounded-full bg-[#3f66d4]/70"
+              className="absolute -bottom-1 left-1/2 h-[2px] w-28 -translate-x-1/2 rounded-full bg-primary/70"
               animate={{ width: [112, 172, 112], opacity: [0.45, 1, 0.45] }}
               transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
             />

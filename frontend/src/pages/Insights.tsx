@@ -216,7 +216,7 @@ const Insights = () => {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl md:rounded-[3rem] p-7 sm:p-9 md:p-12 lg:p-16 text-center relative overflow-hidden shadow-[0_30px_80px_-35px_rgba(0,0,0,0.45)] border border-black/10 bg-white/90 backdrop-blur-xl"
+            className="rounded-2xl md:rounded-[3rem] p-7 sm:p-9 md:p-12 lg:p-16 text-center relative overflow-hidden shadow-[0_30px_80px_-35px_rgba(0,0,0,0.45)] border border-border bg-background/90 backdrop-blur-xl"
           >
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_75%_15%,hsl(var(--primary)/0.15)_0%,rgba(255,255,255,0.9)_45%,rgba(255,255,255,0.98)_100%)] pointer-events-none" />
             <div className="absolute -top-24 -right-24 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
@@ -226,15 +226,15 @@ const Insights = () => {
                 Intelligence Protocol
               </span>
 
-              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl text-black font-bold tracking-tighter mb-6 md:mb-7 italic">The Intelligence Brief</h2>
-              <p className="text-black/70 max-w-2xl mx-auto mb-8 md:mb-10 text-base sm:text-lg md:text-lg font-light font-headline tracking-wide">
+              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl text-foreground font-bold tracking-tighter mb-6 md:mb-7 italic">The Intelligence Brief</h2>
+              <p className="text-foreground/70 max-w-2xl mx-auto mb-8 md:mb-10 text-base sm:text-lg md:text-lg font-light font-headline tracking-wide">
                 Receive a monthly synthesis of our most impactful insights directly to your inbox.
-                No noise, just <span className="text-black font-bold italic">signal</span>.
+                No noise, just <span className="text-foreground font-bold italic">signal</span>.
               </p>
 
               <div className="flex flex-col md:flex-row max-w-2xl mx-auto gap-4 md:gap-3">
                 <input
-                  className="bg-white border border-black/10 focus:ring-2 focus:ring-primary/40 text-black w-full rounded-full text-base md:text-base px-7 py-4 placeholder:text-black/35 outline-none transition-all"
+                  className="bg-card border border-border focus:ring-2 focus:ring-primary/40 text-foreground w-full rounded-full text-base md:text-base px-7 py-4 placeholder:text-foreground/35 outline-none transition-all"
                   placeholder="Professional Email Address"
                   type="email"
                 />
@@ -243,7 +243,7 @@ const Insights = () => {
                 </button>
               </div>
 
-              <p className="mt-8 text-black/45 text-xs tracking-widest uppercase font-bold italic">
+              <p className="mt-8 text-foreground/45 text-xs tracking-widest uppercase font-bold italic">
                 Sovereignty over documentation. No unauthorized dissemination.
               </p>
             </div>

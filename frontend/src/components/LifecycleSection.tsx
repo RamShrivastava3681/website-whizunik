@@ -47,7 +47,7 @@ const LifecycleSection = () => {
     });
 
     return (
-        <section ref={containerRef} className="py-20 md:py-32 lg:py-48 bg-white relative overflow-hidden">
+        <section ref={containerRef} className="py-20 md:py-32 lg:py-48 bg-card relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(var(--primary),0.02),transparent)] pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-8 relative z-10">
@@ -66,14 +66,14 @@ const LifecycleSection = () => {
                     >
                         Chapter IV — Operational Protocol
                     </motion.p>
-                    <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-black tracking-tight">
+                    <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-foreground tracking-tight">
                         How We <span className="blue-gradient-text italic font-light">Architect Growth.</span>
                     </h2>
                 </motion.div>
 
                 <div className="relative max-w-4xl mx-auto">
                     {/* Central Animated Line */}
-                    <div className="absolute left-1/2 top-0 bottom-0 w-px bg-black/5 -translate-x-1/2 hidden md:block">
+                    <div className="absolute left-1/2 top-0 bottom-0 w-px bg-foreground/5 -translate-x-1/2 hidden md:block">
                         <motion.div
                             style={{ scaleY: pathLength }}
                             className="absolute top-0 left-0 w-full h-full bg-primary origin-top shadow-[0_0_15px_rgba(var(--primary),0.3)]"
@@ -92,12 +92,12 @@ const LifecycleSection = () => {
                             >
                                 {/* Step Content */}
                                 <div className={`flex-1 text-center ${i % 2 !== 0 ? 'md:text-left' : 'md:text-right'}`}>
-                                    <span className="font-headline text-5xl md:text-6xl text-black/5 font-bold mb-2 block tabular-nums">
+                                    <span className="font-headline text-5xl md:text-6xl text-foreground/5 font-bold mb-2 block tabular-nums">
                                         {step.num}
                                     </span>
-                                    <h4 className="text-xl md:text-2xl font-headline text-black mb-3 md:mb-4 font-bold">{step.title}</h4>
-                                    <p className="text-black/80 text-base md:text-lg font-medium mb-3">{step.desc}</p>
-                                    <p className="text-black/40 text-xs leading-relaxed max-w-xs mx-auto md:mx-0 px-3 md:px-0">
+                                    <h4 className="text-xl md:text-2xl font-headline text-foreground mb-3 md:mb-4 font-bold">{step.title}</h4>
+                                    <p className="text-foreground/80 text-base md:text-lg font-medium mb-3">{step.desc}</p>
+                                    <p className="text-foreground/40 text-xs leading-relaxed max-w-xs mx-auto md:mx-0 px-3 md:px-0">
                                         {step.detail}
                                     </p>
                                 </div>
@@ -106,7 +106,7 @@ const LifecycleSection = () => {
                                 <div className="relative z-20">
                                     <motion.div
                                         whileHover={{ scale: 1.1, rotate: 5 }}
-                                        className="w-16 h-16 rounded-[1.5rem] bg-white shadow-xl border border-black/5 flex items-center justify-center text-primary relative overflow-hidden group"
+                                        className="w-16 h-16 rounded-[1.5rem] bg-card shadow-xl border border-border/60 flex items-center justify-center text-primary relative overflow-hidden group"
                                     >
                                         <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary transition-colors duration-500" />
                                         <div className="relative z-10 group-hover:text-white transition-colors">

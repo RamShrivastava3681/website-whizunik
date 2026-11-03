@@ -1,37 +1,43 @@
-import { useState, useEffect } from "react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
+import ThemeToggle from "./ThemeToggle";
+import Logo from "./site/Logo";
+import Container from "./site/Container";
+import { navLinks } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { label: "Whizunik Command", path: "/" },
-  { label: "How It Works", path: "/how-it-works" },
-  { label: "Strategic Capital Advisory", path: "/services" },
-  { label: "About Us", path: "/about" },
-];
+type HeaderProps = {
+  /** Retained for page compatibility; the header is always on a light surface. */
+  variant?: "default" | "overlay";
+};
 
-const Header = () => {
+const Header = (_props: HeaderProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
-  const isLinkActive = (path: string) => {
-    if (path === "/") {
-      return location.pathname === "/" || location.pathname === "/command";
+  const isActive = (path: string) => {
+    if (path === "/command") {
+      return ["/command", "/whizunik-command", "/hub", "/whizunik-hub", "/"].includes(
+        location.pathname,
+      );
     }
-    if (path === "/services") {
-      return location.pathname === "/services" || location.pathname === "/strategic-advisory" || location.pathname === "/strategic-capital-advisory";
+    if (path === "/strategic-advisory") {
+      return ["/strategic-advisory", "/services", "/strategic-capital-advisory"].includes(
+        location.pathname,
+      );
     }
     return location.pathname === path;
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
@@ -43,144 +49,138 @@ const Header = () => {
       document.body.style.overflow = "";
       return;
     }
-
     document.body.style.overflow = "hidden";
 
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMobileOpen(false);
-      }
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
     };
-
-    window.addEventListener("resize", handleResize);
+    const onResize = () => {
+      if (window.innerWidth >= 1024) setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("resize", onResize);
     return () => {
       document.body.style.overflow = "";
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("resize", onResize);
     };
   }, [mobileOpen]);
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className={`fixed top-0 w-full z-[100] transition-all duration-500 ${scrolled
-            ? "bg-white/80 backdrop-blur-2xl py-3 border-b border-black/5 shadow-sm"
-            : "bg-transparent py-6"
-          }`}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-primary-foreground"
       >
-        <div className="flex justify-between items-center max-w-[1440px] mx-auto px-6 md:px-12 h-14">
-          <Link className="inline-flex items-center group" to="/" aria-label="Whiz-Unik home">
-            <img
-              src="/logo-vertical-light (2).png"
-              alt="Whiz-Unik"
-              className="h-14 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-          </Link>
+        Skip to content
+      </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-9 lg:space-x-12">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`relative font-headline text-base lg:text-lg tracking-[-0.01em] transition-all duration-300 ${isLinkActive(link.path)
-                    ? "text-primary font-semibold"
-                    : "text-black/60 hover:text-primary"
-                  }`}
-              >
-                {link.label}
-                {isLinkActive(link.path) && (
-                  <motion.div
-                    layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-primary"
-                  />
-                )}
-              </Link>
-            ))}
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-[100] transition-colors duration-200",
+          scrolled || mobileOpen
+            ? "border-b border-border bg-background/95 backdrop-blur-md"
+            : "border-b border-transparent bg-background/70 backdrop-blur-sm",
+        )}
+      >
+        <Container className="flex h-16 items-center justify-between gap-4">
+          <Logo />
+
+          <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
+            {navLinks.map((link) => {
+              const active = isActive(link.path);
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "relative rounded-md px-3 py-2 text-[13px] font-semibold transition-colors",
+                    active
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground",
+                  )}
+                >
+                  {link.label}
+                  {active && (
+                    <span className="absolute inset-x-3 -bottom-[1px] h-[2px] rounded-full bg-primary" />
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+
             <Link
               to="/contact?type=walkthrough"
-              className="relative overflow-hidden hidden md:flex bg-primary text-white px-6 lg:px-7 py-2.5 rounded-full font-bold text-xs tracking-widest uppercase hover:shadow-[0_8px_24px_rgba(47,99,255,0.4)] hover:brightness-105 active:scale-95 transition-all duration-300 items-center justify-center gap-2 shadow-md shadow-primary/20 group"
+              className="hidden h-9 items-center gap-2 rounded-lg bg-primary px-4 text-[12.5px] font-semibold text-primary-foreground shadow-xs transition-colors hover:bg-primary/90 md:inline-flex"
             >
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-              <span className="relative z-10">Request a Walkthrough</span>
-              <ArrowUpRight size={16} className="relative z-10 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              Request a walkthrough
+              <ArrowUpRight size={14} aria-hidden="true" />
             </Link>
 
             <button
-              className="md:hidden text-black/80 hover:text-primary transition-colors z-[120]"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              type="button"
+              onClick={() => setMobileOpen((open) => !open)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-navigation"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:border-foreground/30 lg:hidden"
             >
-              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+              {mobileOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
-        </div>
-      </motion.header>
+        </Container>
+      </header>
 
       {typeof document !== "undefined" &&
         createPortal(
           <AnimatePresence>
             {mobileOpen && (
               <motion.div
-                initial={{ opacity: 0, y: -16 }}
+                id="mobile-navigation"
+                initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
-                className="md:hidden fixed inset-0 bg-white/98 z-[190] flex flex-col px-6 pt-28 pb-10 overflow-y-auto"
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
+                className="fixed inset-0 z-[95] flex flex-col bg-background pt-20 lg:hidden"
               >
-                <button
-                  type="button"
-                  onClick={() => setMobileOpen(false)}
-                  aria-label="Close menu"
-                  className="absolute top-6 right-6 h-10 w-10 rounded-full border border-black/10 bg-white text-black/80 hover:text-primary hover:border-primary/30 transition-colors flex items-center justify-center"
-                >
-                  <X size={22} />
-                </button>
+                <Container className="flex-1 overflow-y-auto pb-10">
+                  <nav aria-label="Mobile" className="divide-y divide-border border-y border-border">
+                    {navLinks.map((link) => {
+                      const active = isActive(link.path);
+                      return (
+                        <Link
+                          key={link.path}
+                          to={link.path}
+                          onClick={() => setMobileOpen(false)}
+                          className={cn(
+                            "flex items-center justify-between py-4 text-[15px] font-semibold",
+                            active ? "text-primary" : "text-foreground",
+                          )}
+                        >
+                          {link.label}
+                          {active && <span className="h-1.5 w-1.5 rounded-full bg-primary" />}
+                        </Link>
+                      );
+                    })}
+                  </nav>
 
-                <div className="w-full max-w-md mx-auto border border-black/5 rounded-3xl bg-white shadow-sm p-4 space-y-2">
-                  {navLinks.map((link, i) => (
-                    <motion.div
-                      key={link.path}
-                      initial={{ x: 12, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ delay: 0.08 + i * 0.06 }}
-                    >
-                      <Link
-                        to={link.path}
-                        className={`block rounded-2xl px-4 py-3 text-2xl font-headline tracking-tight transition-colors ${isLinkActive(link.path)
-                            ? "text-primary bg-primary/5 italic font-light"
-                            : "text-black hover:bg-black/[0.03]"
-                          }`}
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {link.label}
-                      </Link>
-                    </motion.div>
-                  ))}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.35 }}
-                    className="pt-4"
+                  <Link
+                    to="/contact?type=walkthrough"
+                    onClick={() => setMobileOpen(false)}
+                    className="mt-6 flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-primary text-[13.5px] font-semibold text-primary-foreground"
                   >
-                    <Link
-                      to="/contact?type=walkthrough"
-                      className="w-full inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs shadow-lg"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      Request a Walkthrough
-                    </Link>
-                  </motion.div>
-                </div>
+                    Request a walkthrough
+                    <ArrowUpRight size={15} />
+                  </Link>
+                </Container>
               </motion.div>
             )}
           </AnimatePresence>,
-          document.body
+          document.body,
         )}
     </>
   );
