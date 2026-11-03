@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -14,27 +15,20 @@ export default {
     },
     extend: {
       fontFamily: {
-        headline: ["'Newsreader'", "Georgia", "serif"],
-        body: ["'Manrope'", "sans-serif"],
-        mono: ["'DM Mono'", "monospace"],
+        sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        body: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        headline: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["DM Mono", "ui-monospace", "SFMono-Regular", "monospace"],
       },
       colors: {
-        ink: "#142235",
-        navy: "#0b2b4a",
-        blue: "#0877c9",
-        paper: "#f7fafc",
-        line: "#dce7ef",
-        mutedBlue: "#53677d",
-        teal: {
-          accent: "#147b78",
-          light: "#effaf8",
-          border: "#b9e4e0",
-        },
+        /* ---- Semantic tokens (theme aware) ---- */
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        footer: "hsl(var(--footer))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -93,15 +87,71 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+
+        /* ---- Brand palette ---- */
+        brand: {
+          navy: "hsl(var(--brand-navy))",
+          blue: "hsl(var(--brand-blue))",
+          royal: "hsl(var(--brand-royal))",
+          light: "hsl(var(--brand-light))",
+          teal: "hsl(var(--brand-teal))",
+        },
+
+        /* ---- Status colours ---- */
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          soft: "hsl(var(--success) / 0.12)",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          soft: "hsl(var(--warning) / 0.12)",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        danger: {
+          DEFAULT: "hsl(var(--danger))",
+          soft: "hsl(var(--danger) / 0.12)",
+          foreground: "hsl(var(--danger-foreground))",
+        },
+        info: {
+          DEFAULT: "hsl(var(--info))",
+          soft: "hsl(var(--info) / 0.12)",
+          foreground: "hsl(var(--info-foreground))",
+        },
+
+        /* ---- Legacy aliases kept so older markup inherits the new palette ---- */
+        ink: "hsl(var(--foreground))",
+        navy: "hsl(var(--brand-navy))",
+        blue: "hsl(var(--primary))",
+        paper: "hsl(var(--surface-container))",
+        line: "hsl(var(--border))",
+        mutedBlue: "hsl(var(--muted-foreground))",
+        teal: {
+          accent: "hsl(var(--success))",
+          light: "hsl(var(--success) / 0.1)",
+          border: "hsl(var(--success) / 0.28)",
+        },
       },
       borderRadius: {
-        lg: "0.25rem",
-        md: "0.125rem",
-        sm: "0.0625rem",
-        xl: "0.5rem",
-        full: "0.75rem",
-        "2xl": "1rem",
-        "3xl": "1.5rem",
+        sm: "6px",
+        md: "8px",
+        lg: "10px",
+        xl: "12px",
+        "2xl": "14px",
+        "3xl": "18px",
+        full: "9999px",
+      },
+      boxShadow: {
+        xs: "0 1px 2px 0 rgb(14 35 64 / 0.04)",
+        card: "0 1px 2px 0 rgb(14 35 64 / 0.03), 0 10px 24px -20px rgb(14 35 64 / 0.22)",
+        panel: "0 1px 2px 0 rgb(14 35 64 / 0.04), 0 18px 44px -30px rgb(14 35 64 / 0.28)",
+        pop: "0 8px 24px -12px rgb(14 35 64 / 0.2), 0 2px 6px -2px rgb(14 35 64 / 0.06)",
+      },
+      fontSize: {
+        "2xs": ["11px", { lineHeight: "16px", letterSpacing: "0.06em" }],
+      },
+      transitionTimingFunction: {
+        premium: "cubic-bezier(0.22, 0.61, 0.36, 1)",
       },
       keyframes: {
         "accordion-down": {
@@ -113,16 +163,25 @@ export default {
           to: { height: "0" },
         },
         "fade-in-up": {
-          from: { opacity: "0", transform: "translateY(20px)" },
+          from: { opacity: "0", transform: "translateY(16px)" },
           to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        "fade-in-up": "fade-in-up 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) forwards",
+        "fade-in": "fade-in 0.3s ease-out forwards",
+        shimmer: "shimmer 1.6s infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

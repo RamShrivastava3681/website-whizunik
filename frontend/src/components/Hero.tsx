@@ -64,7 +64,7 @@ const Hero = () => {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden bg-white selection:bg-primary/20 pt-20 md:pt-16 pb-12"
+      className="relative min-h-[85vh] md:min-h-[90vh] flex items-center overflow-hidden bg-card selection:bg-primary/20 pt-20 md:pt-16 pb-12"
     >
       {/* Immersive Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -87,14 +87,14 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="serif-headline text-4xl sm:text-5xl md:text-6xl text-black font-bold leading-[1.05] tracking-tighter mb-6 md:mb-8 max-w-4xl">
+            <h1 className="serif-headline text-4xl sm:text-5xl md:text-6xl text-foreground font-bold leading-[1.05] tracking-tighter mb-6 md:mb-8 max-w-4xl">
               Structured Capital <br />
               <span className="italic font-light text-primary/80 tracking-normal inline-block mt-2">Advisory</span> for Growing Businesses
             </h1>
 
             <div className="h-px w-32 bg-primary/25 mb-8"></div>
 
-            <p className="text-black/60 text-base sm:text-lg md:text-xl max-w-xl mb-10 md:mb-12 leading-relaxed font-medium">
+            <p className="text-foreground/60 text-base sm:text-lg md:text-xl max-w-xl mb-10 md:mb-12 leading-relaxed font-medium">
               We work in the space between bank debt and institutional equity, where traditional financing stops being adequate.
             </p>
 
@@ -120,7 +120,7 @@ const Hero = () => {
               initial={{ opacity: 0, scale: 0.95, rotate: -2 }}
               animate={{ opacity: 1, scale: 1, rotate: 0 }}
               transition={{ duration: 1.2, delay: 0.3 }}
-              className="relative aspect-[4.5/5.5] bg-neutral-100 rounded-[3rem] overflow-hidden border border-black/5 shadow-2xl group-hover:shadow-[0_60px_120px_-30px_rgba(0,0,0,0.18)] transition-shadow duration-700"
+              className="relative aspect-[4.5/5.5] bg-surface-container-high rounded-[3rem] overflow-hidden border border-border/60 shadow-2xl group-hover:shadow-[0_60px_120px_-30px_rgba(0,0,0,0.18)] transition-shadow duration-700"
             >
               <img
                 alt="Institutional Architecture"
@@ -133,16 +133,16 @@ const Hero = () => {
             {/* Floating Intelligence Card */}
             <motion.div
               style={{ x: useTransform(springX, x => x * -1.2), y: useTransform(springY, y => y * -1.2) }}
-              className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-2xl p-7 rounded-[2rem] shadow-xl border border-black/5 max-w-[240px] z-20 group-hover:-translate-y-2 transition-transform duration-500"
+              className="absolute -bottom-8 -left-8 bg-background/90 backdrop-blur-2xl p-7 rounded-[2rem] shadow-xl border border-border/60 max-w-[240px] z-20 group-hover:-translate-y-2 transition-transform duration-500"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                   <TrendingUp size={16} />
                 </div>
-                <p className="text-[9px] font-bold text-black/40 uppercase tracking-[0.15em]">Growth Metric</p>
+                <p className="text-[9px] font-bold text-foreground/40 uppercase tracking-[0.15em]">Growth Metric</p>
               </div>
-              <p className="text-4xl text-black font-bold tracking-tighter mb-1.5">${capitalMetric}M+</p>
-              <p className="text-[12px] font-medium text-black/60 leading-relaxed italic pr-2">
+              <p className="text-4xl text-foreground font-bold tracking-tighter mb-1.5">${capitalMetric}M+</p>
+              <p className="text-[12px] font-medium text-foreground/60 leading-relaxed italic pr-2">
                 in Structured Capital Solutions Delivered
               </p>
             </motion.div>

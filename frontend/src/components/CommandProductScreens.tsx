@@ -294,12 +294,12 @@ export const CommandProductScreens = () => {
   ];
 
   return (
-    <div className="relative w-full bg-paper">
+    <div className="relative w-full bg-surface-container">
       
       {/* =========================================================================
           SECTION 1: COMMAND OVERVIEW (immediately below the hero)
       ========================================================================== */}
-      <section className="py-16 md:py-24 bg-white border-b border-line" id="command-overview">
+      <section className="py-16 md:py-24 bg-card border-b border-border" id="command-overview">
         <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
           
           {/* Section Header */}
@@ -307,10 +307,10 @@ export const CommandProductScreens = () => {
             <span className="eyebrow block mb-3">
               Operating Platform • Command Overview
             </span>
-            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-4">
-              One connected <span className="text-blue italic font-light">operating flow.</span>
+            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4">
+              One connected <span className="text-primary italic font-light">operating flow.</span>
             </h2>
-            <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal">
               Whizunik Command brings your entire business operations into a unified interface: connecting Sales, Procurement, Checker / approvals, Factory & Production, Warehouse, Finance, and Management.
             </p>
           </div>
@@ -330,9 +330,9 @@ export const CommandProductScreens = () => {
               return (
                 <div
                   key={node.name}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-line text-xs font-semibold text-ink shadow-[0_4px_12px_rgba(16,34,73,0.04)] hover:border-blue/50 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border text-xs font-semibold text-foreground shadow-[0_4px_12px_rgba(16,34,73,0.04)] hover:border-primary/50 transition-colors"
                 >
-                  <Icon size={14} className="text-blue" />
+                  <Icon size={14} className="text-primary" />
                   <span>{node.name}</span>
                 </div>
               );
@@ -340,19 +340,19 @@ export const CommandProductScreens = () => {
           </div>
 
           {/* DIAGRAM 1: Interactive Operational Architecture Mesh Diagram */}
-          <div className="max-w-5xl mx-auto rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-[#f7fcff] to-[#edf8f7] border border-[#cde3e8] shadow-[0_20px_45px_rgba(16,34,73,0.08)] mb-14">
+          <div className="max-w-5xl mx-auto rounded-3xl p-6 sm:p-10 bg-surface-container border border-border shadow-[0_20px_45px_rgba(16,34,73,0.08)] mb-14">
             
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-[#cfe0e6] gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-border gap-4">
               <div>
-                <span className="eyebrow text-blue block mb-1">
+                <span className="eyebrow text-primary block mb-1">
                   Architecture Diagram
                 </span>
-                <h3 className="serif-headline text-xl sm:text-2xl font-bold text-ink tracking-tight">
+                <h3 className="serif-headline text-xl sm:text-2xl font-bold text-foreground tracking-tight">
                   Synchronized Operational Core
                 </h3>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#dff6eb] border border-[#b8ebd3] text-[#26845d] text-xs font-bold font-mono">
-                <span className="w-2 h-2 rounded-full bg-[#26845d] animate-pulse" />
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-success/10 border border-success/30 text-success text-xs font-bold font-mono">
+                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
                 <span>Zero Double Data Entry • Live Pulse</span>
               </div>
             </div>
@@ -368,32 +368,32 @@ export const CommandProductScreens = () => {
                     onClick={() => setActiveMeshNode(idx)}
                     className={`p-5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden ${
                       isSelected 
-                        ? "bg-white border-blue shadow-lg ring-2 ring-blue/20 -translate-y-1" 
-                        : "bg-white/90 border-line hover:border-blue/50 hover:bg-white hover:-translate-y-0.5 shadow-sm"
+                        ? "bg-card border-primary shadow-lg ring-2 ring-blue/20 -translate-y-1" 
+                        : "bg-background/90 border-border hover:border-primary/50 hover:bg-card hover:-translate-y-0.5 shadow-sm"
                     }`}
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                        isSelected ? "bg-blue text-white" : "bg-blue/10 text-blue"
+                        isSelected ? "bg-primary text-white" : "bg-primary/10 text-primary"
                       }`}>
                         <NodeIcon size={20} />
                       </div>
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-teal-light text-teal-accent border border-teal-border">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-success/10 text-success border border-success/30">
                         {node.status}
                       </span>
                     </div>
 
-                    <h4 className="font-bold text-ink text-sm mb-0.5">{node.name}</h4>
-                    <p className="text-blue text-xs font-semibold mb-3">{node.role}</p>
+                    <h4 className="font-bold text-foreground text-sm mb-0.5">{node.name}</h4>
+                    <p className="text-primary text-xs font-semibold mb-3">{node.role}</p>
 
-                    <div className="space-y-1.5 pt-3 border-t border-line text-[11px]">
-                      <div className="text-mutedBlue flex items-center justify-between">
+                    <div className="space-y-1.5 pt-3 border-t border-border text-[11px]">
+                      <div className="text-muted-foreground flex items-center justify-between">
                         <span>Input:</span>
-                        <span className="font-semibold text-ink">{node.input}</span>
+                        <span className="font-semibold text-foreground">{node.input}</span>
                       </div>
-                      <div className="text-mutedBlue flex items-center justify-between">
+                      <div className="text-muted-foreground flex items-center justify-between">
                         <span>Output:</span>
-                        <span className="font-semibold text-blue">{node.output}</span>
+                        <span className="font-semibold text-primary">{node.output}</span>
                       </div>
                     </div>
                   </div>
@@ -402,21 +402,21 @@ export const CommandProductScreens = () => {
             </div>
 
             {/* Central Synchronized Flow Summary */}
-            <div className="p-5 rounded-2xl bg-white border border-[#cde3e8] shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="p-5 rounded-2xl bg-card border border-border shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                   <Activity size={20} />
                 </div>
                 <div>
-                  <p className="text-xs sm:text-sm font-bold text-ink">
+                  <p className="text-xs sm:text-sm font-bold text-foreground">
                     Connected Architecture Flow: {meshNodes[activeMeshNode].name}
                   </p>
-                  <p className="text-xs text-mutedBlue">
-                    Triggered by <strong className="text-ink">{meshNodes[activeMeshNode].input}</strong> ➔ Validated via system rules ➔ Dispatches <strong className="text-blue">{meshNodes[activeMeshNode].output}</strong> downstream in real time.
+                  <p className="text-xs text-muted-foreground">
+                    Triggered by <strong className="text-foreground">{meshNodes[activeMeshNode].input}</strong> ➔ Validated via system rules ➔ Dispatches <strong className="text-primary">{meshNodes[activeMeshNode].output}</strong> downstream in real time.
                   </p>
                 </div>
               </div>
-              <span className="text-xs font-bold text-blue shrink-0 px-3.5 py-1.5 rounded-full bg-teal-light border border-teal-border self-start md:self-auto font-mono">
+              <span className="text-xs font-bold text-primary shrink-0 px-3.5 py-1.5 rounded-full bg-success/10 border border-success/30 self-start md:self-auto font-mono">
                 No Manual Spreadsheets
               </span>
             </div>
@@ -429,35 +429,35 @@ export const CommandProductScreens = () => {
       {/* =========================================================================
           SECTION 2: MANAGEMENT COMMAND CENTRE (after overview)
       ========================================================================== */}
-      <section className="py-16 md:py-24 bg-paper border-b border-line" id="management-command-centre">
+      <section className="py-16 md:py-24 bg-surface-container border-b border-border" id="management-command-centre">
         <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
           
           <div className="max-w-3xl mb-12 md:mb-16">
             <span className="eyebrow block mb-3">
               Executive Pulse • Management Command Centre
             </span>
-            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-4">
-              See the business <span className="text-blue italic font-light">as it moves.</span>
+            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4">
+              See the business <span className="text-primary italic font-light">as it moves.</span>
             </h2>
-            <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal">
               Whizunik Command brings operational and financial activity together so executives can see where the business stands, what is expected next, and what requires immediate attention.
             </p>
           </div>
 
           {/* Executive Real-Time Pulse Metric Cards */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-line shadow-[0_16px_35px_rgba(16,34,73,0.06)] mb-12">
-            <div className="flex flex-wrap items-center justify-between pb-5 border-b border-line gap-4 mb-6">
+          <div className="p-6 sm:p-8 rounded-3xl bg-card border border-border shadow-[0_16px_35px_rgba(16,34,73,0.06)] mb-12">
+            <div className="flex flex-wrap items-center justify-between pb-5 border-b border-border gap-4 mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue/10 flex items-center justify-center text-blue">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
                   <LineChart size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-ink text-base">Executive Real-Time Pulse</h4>
-                  <p className="text-mutedBlue text-xs font-medium font-mono">Live consolidated operations, receipts & payments ($ Millions / Thousands)</p>
+                  <h4 className="font-bold text-foreground text-base">Executive Real-Time Pulse</h4>
+                  <p className="text-muted-foreground text-xs font-medium font-mono">Live consolidated operations, receipts & payments ($ Millions / Thousands)</p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#dff6eb] border border-[#b8ebd3] text-[#26845d]">
-                <span className="w-2 h-2 rounded-full bg-[#26845d] animate-pulse" />
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-success/10 border border-success/30 text-success">
+                <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
                 <span className="text-xs font-bold font-mono uppercase tracking-wider">Live System Sync</span>
               </div>
             </div>
@@ -467,36 +467,36 @@ export const CommandProductScreens = () => {
               {commandCenterMetrics.map((item) => (
                 <div
                   key={item.label}
-                  className="p-4 sm:p-5 rounded-2xl bg-paper border border-line hover:border-blue/50 hover:bg-white hover:shadow-sm transition-all"
+                  className="p-4 sm:p-5 rounded-2xl bg-surface-container border border-border hover:border-primary/50 hover:bg-card hover:shadow-sm transition-all"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <p className="text-mutedBlue text-[10px] font-mono font-bold uppercase tracking-wider">{item.label}</p>
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue" />
+                    <p className="text-muted-foreground text-[10px] font-mono font-bold uppercase tracking-wider">{item.label}</p>
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   </div>
-                  <p className="text-xl sm:text-2xl font-bold font-mono text-ink tracking-tight mb-1">{item.val}</p>
-                  <p className="text-mutedBlue text-[11px] leading-tight font-medium">{item.sub}</p>
+                  <p className="text-xl sm:text-2xl font-bold font-mono text-foreground tracking-tight mb-1">{item.val}</p>
+                  <p className="text-muted-foreground text-[11px] leading-tight font-medium">{item.sub}</p>
                 </div>
               ))}
             </div>
 
             {/* DIAGRAM 2: 13-Week Cash & Liquidity Runway Diagram */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-paper border border-line mb-8">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-line gap-3">
+            <div className="p-6 sm:p-8 rounded-2xl bg-surface-container border border-border mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-border gap-3">
                 <div>
-                  <span className="eyebrow block text-blue mb-1">
+                  <span className="eyebrow block text-primary mb-1">
                     Liquidity Forecasting Diagram
                   </span>
-                  <h5 className="font-bold text-ink text-base">
+                  <h5 className="font-bold text-foreground text-base">
                     13-Week Realized Liquidity Runway vs Projected Inflows
                   </h5>
                 </div>
                 <div className="flex items-center gap-3 text-xs font-mono">
-                  <span className="inline-flex items-center gap-1.5 text-[#26845d] font-bold">
-                    <span className="w-2.5 h-2.5 rounded-sm bg-[#26845d]" />
+                  <span className="inline-flex items-center gap-1.5 text-success font-bold">
+                    <span className="w-2.5 h-2.5 rounded-sm bg-success" />
                     <span>Realized Bank Funds</span>
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-blue font-bold">
-                    <span className="w-2.5 h-2.5 rounded-sm bg-blue" />
+                  <span className="inline-flex items-center gap-1.5 text-primary font-bold">
+                    <span className="w-2.5 h-2.5 rounded-sm bg-primary" />
                     <span>Verified Collections</span>
                   </span>
                 </div>
@@ -506,52 +506,52 @@ export const CommandProductScreens = () => {
               <div className="space-y-4">
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-ink">Realized Bank Balance</span>
-                    <span className="font-mono font-bold text-ink">$1,120,000</span>
+                    <span className="text-foreground">Realized Bank Balance</span>
+                    <span className="font-mono font-bold text-foreground">$1,120,000</span>
                   </div>
-                  <div className="w-full h-3 bg-neutral-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-[#26845d] rounded-full" style={{ width: "72%" }} />
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-ink">Expected 14-Day Customer Collections (From Confirmed SOs)</span>
-                    <span className="font-mono font-bold text-blue">+$410,000</span>
-                  </div>
-                  <div className="w-full h-3 bg-neutral-200 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue rounded-full" style={{ width: "26%" }} />
+                  <div className="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+                    <div className="h-full bg-success rounded-full" style={{ width: "72%" }} />
                   </div>
                 </div>
 
                 <div>
                   <div className="flex justify-between text-xs font-semibold mb-1">
-                    <span className="text-ink">Scheduled Vendor Disbursements (Verified POs Due)</span>
+                    <span className="text-foreground">Expected 14-Day Customer Collections (From Confirmed SOs)</span>
+                    <span className="font-mono font-bold text-primary">+$410,000</span>
+                  </div>
+                  <div className="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
+                    <div className="h-full bg-primary rounded-full" style={{ width: "26%" }} />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-xs font-semibold mb-1">
+                    <span className="text-foreground">Scheduled Vendor Disbursements (Verified POs Due)</span>
                     <span className="font-mono font-bold text-rose-600">-$275,000</span>
                   </div>
-                  <div className="w-full h-3 bg-neutral-200 rounded-full overflow-hidden">
+                  <div className="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden">
                     <div className="h-full bg-rose-500 rounded-full" style={{ width: "18%" }} />
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-line flex flex-wrap items-center justify-between text-xs text-mutedBlue font-medium gap-2">
-                <span>Net Projected Working Capital Buffer: <strong className="text-ink font-mono font-bold">$1,255,000</strong></span>
-                <span className="text-blue font-bold font-mono">Zero speculative forecasting • 100% verified events</span>
+              <div className="mt-6 pt-4 border-t border-border flex flex-wrap items-center justify-between text-xs text-muted-foreground font-medium gap-2">
+                <span>Net Projected Working Capital Buffer: <strong className="text-foreground font-mono font-bold">$1,255,000</strong></span>
+                <span className="text-primary font-bold font-mono">Zero speculative forecasting • 100% verified events</span>
               </div>
             </div>
 
             {/* Expected receipts callout banner */}
-            <div className="p-5 rounded-2xl bg-teal-light border border-teal-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="p-5 rounded-2xl bg-success/10 border border-success/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1">
-                <p className="text-ink font-bold text-sm sm:text-base">Expected receipts and payments vs verified actuals</p>
-                <p className="text-mutedBlue text-xs sm:text-sm">
+                <p className="text-foreground font-bold text-sm sm:text-base">Expected receipts and payments vs verified actuals</p>
+                <p className="text-muted-foreground text-xs sm:text-sm">
                   Management sees operational bottlenecks alongside the real-time cash, debtor position, and outstanding commitments.
                 </p>
               </div>
               <Link
                 to="/contact?type=walkthrough"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue text-white text-xs font-bold tracking-widest uppercase hover:brightness-105 shrink-0 self-start sm:self-auto shadow-md shadow-blue/20"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-white text-xs font-bold tracking-widest uppercase hover:brightness-105 shrink-0 self-start sm:self-auto shadow-md shadow-blue/20"
               >
                 <span>Request Walkthrough</span>
                 <ArrowRight size={14} />
@@ -565,23 +565,23 @@ export const CommandProductScreens = () => {
       {/* =========================================================================
           SECTION 3: ROLE WORKSPACES (after management view)
       ========================================================================== */}
-      <section className="py-16 md:py-24 bg-white border-b border-line" id="role-workspaces">
+      <section className="py-16 md:py-24 bg-card border-b border-border" id="role-workspaces">
         <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
           
           <div className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
             <span className="eyebrow block mb-3">
               Departmental Workspaces • Role Execution
             </span>
-            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-4">
-              Every team sees <span className="text-blue italic font-light">the work it owns.</span>
+            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4">
+              Every team sees <span className="text-primary italic font-light">the work it owns.</span>
             </h2>
-            <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal">
               Tailored workspace views for Sales, Procurement, Checker, Factory & Production, Warehouse, Finance and Treasury. Each team works from an interface designed around its specific operational mandate.
             </p>
           </div>
 
           {/* Role Tabs Switcher */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 p-1.5 rounded-full bg-paper max-w-fit mx-auto border border-line">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 p-1.5 rounded-full bg-surface-container max-w-fit mx-auto border border-border">
             {roleWorkspaces.map((role) => {
               const Icon = role.icon;
               const isActive = activeWorkspace === role.id;
@@ -590,14 +590,14 @@ export const CommandProductScreens = () => {
                   key={role.id}
                   onClick={() => setActiveWorkspace(role.id)}
                   className={`relative px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-colors flex items-center gap-2 z-10 cursor-pointer ${
-                    isActive ? "text-white" : "text-ink/75 hover:text-ink"
+                    isActive ? "text-white" : "text-foreground/75 hover:text-foreground"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeRoleTab"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      className="absolute inset-0 bg-blue rounded-full z-[-1] shadow-md shadow-blue/25"
+                      className="absolute inset-0 bg-primary rounded-full z-[-1] shadow-md shadow-primary/25"
                     />
                   )}
                   <Icon size={15} />
@@ -615,48 +615,48 @@ export const CommandProductScreens = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.35 }}
-              className="p-6 sm:p-10 rounded-3xl bg-paper border border-line shadow-[0_16px_35px_rgba(16,34,73,0.06)] max-w-5xl mx-auto"
+              className="p-6 sm:p-10 rounded-3xl bg-surface-container border border-border shadow-[0_16px_35px_rgba(16,34,73,0.06)] max-w-5xl mx-auto"
             >
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-line">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-border">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-blue/10 flex items-center justify-center text-blue shadow-xs">
+                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shadow-xs">
                     <WorkspaceIcon size={24} />
                   </div>
                   <div>
-                    <h3 className="serif-headline text-2xl font-bold text-ink tracking-tight">{currentWorkspace.name} Workspace</h3>
-                    <p className="text-blue text-xs sm:text-sm font-semibold">{currentWorkspace.tagline}</p>
+                    <h3 className="serif-headline text-2xl font-bold text-foreground tracking-tight">{currentWorkspace.name} Workspace</h3>
+                    <p className="text-primary text-xs sm:text-sm font-semibold">{currentWorkspace.tagline}</p>
                   </div>
                 </div>
-                <div className="p-3.5 rounded-2xl bg-white border border-line text-xs text-mutedBlue max-w-sm shadow-xs">
-                  <span className="font-mono text-[10px] uppercase font-bold text-blue block mb-0.5">Assigned Queue Item:</span>
-                  <span className="font-semibold text-ink">{currentWorkspace.sampleAction}</span>
+                <div className="p-3.5 rounded-2xl bg-card border border-border text-xs text-muted-foreground max-w-sm shadow-xs">
+                  <span className="font-mono text-[10px] uppercase font-bold text-primary block mb-0.5">Assigned Queue Item:</span>
+                  <span className="font-semibold text-foreground">{currentWorkspace.sampleAction}</span>
                 </div>
               </div>
 
               {/* Departmental Metrics Ribbon */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 {currentWorkspace.metrics.map((m) => (
-                  <div key={m.label} className="p-4 rounded-2xl bg-white border border-line shadow-xs">
-                    <p className="text-mutedBlue font-mono text-[10px] font-bold uppercase tracking-wider mb-1">{m.label}</p>
-                    <p className="text-lg font-bold font-mono text-ink">{m.val}</p>
+                  <div key={m.label} className="p-4 rounded-2xl bg-card border border-border shadow-xs">
+                    <p className="text-muted-foreground font-mono text-[10px] font-bold uppercase tracking-wider mb-1">{m.label}</p>
+                    <p className="text-lg font-bold font-mono text-foreground">{m.val}</p>
                   </div>
                 ))}
               </div>
 
               {/* DIAGRAM 3: Departmental Operational Pipeline Diagram */}
-              <div className="p-6 rounded-2xl bg-white border border-line mb-8 shadow-xs">
-                <span className="eyebrow block text-blue mb-3">
+              <div className="p-6 rounded-2xl bg-card border border-border mb-8 shadow-xs">
+                <span className="eyebrow block text-primary mb-3">
                   Workflow Execution Pipeline
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                   {currentWorkspace.flowNodes.map((fn, idx) => (
-                    <div key={fn.step} className="p-3.5 rounded-xl bg-paper border border-line relative">
+                    <div key={fn.step} className="p-3.5 rounded-xl bg-surface-container border border-border relative">
                       <div className="flex items-center justify-between mb-1.5">
-                        <span className="font-mono text-blue text-xs font-bold">{fn.step}</span>
-                        {idx < 3 && <ChevronRight size={14} className="text-mutedBlue hidden lg:block" />}
+                        <span className="font-mono text-primary text-xs font-bold">{fn.step}</span>
+                        {idx < 3 && <ChevronRight size={14} className="text-muted-foreground hidden lg:block" />}
                       </div>
-                      <h5 className="font-bold text-ink text-xs mb-1">{fn.name}</h5>
-                      <p className="text-mutedBlue text-[11px] leading-tight">{fn.desc}</p>
+                      <h5 className="font-bold text-foreground text-xs mb-1">{fn.name}</h5>
+                      <p className="text-muted-foreground text-[11px] leading-tight">{fn.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -664,14 +664,14 @@ export const CommandProductScreens = () => {
 
               {/* Responsibilities Grid */}
               <div className="space-y-3">
-                <span className="eyebrow block text-mutedBlue mb-2">
+                <span className="eyebrow block text-muted-foreground mb-2">
                   Key Operational Mandates
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {currentWorkspace.points.map((pt) => (
-                    <div key={pt} className="flex items-start gap-3 p-4 rounded-xl bg-white border border-line shadow-xs hover:border-blue/50 transition-colors">
-                      <CheckCircle2 size={16} className="text-blue mt-0.5 shrink-0" />
-                      <span className="text-ink text-xs sm:text-sm font-medium leading-relaxed">{pt}</span>
+                    <div key={pt} className="flex items-start gap-3 p-4 rounded-xl bg-card border border-border shadow-xs hover:border-primary/50 transition-colors">
+                      <CheckCircle2 size={16} className="text-primary mt-0.5 shrink-0" />
+                      <span className="text-foreground text-xs sm:text-sm font-medium leading-relaxed">{pt}</span>
                     </div>
                   ))}
                 </div>
@@ -685,26 +685,26 @@ export const CommandProductScreens = () => {
       {/* =========================================================================
           SECTION 4: MY QUEUE (after role workspaces)
       ========================================================================== */}
-      <section className="py-16 md:py-24 bg-paper border-b border-line" id="my-queue">
+      <section className="py-16 md:py-24 bg-surface-container border-b border-border" id="my-queue">
         <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
           
           <div className="text-center max-w-3xl mx-auto mb-12">
             <span className="eyebrow block mb-3">
               Task Orchestration • My Queue & Approvals
             </span>
-            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink leading-tight mb-4">
-              Everyone knows <span className="text-blue italic font-light">what to do next.</span>
+            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight mb-4">
+              Everyone knows <span className="text-primary italic font-light">what to do next.</span>
             </h2>
-            <p className="text-mutedBlue text-base sm:text-lg leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
               Shows tasks, approvals, documents, collections follow-ups and exceptions. As transactions progress, tasks populate the responsible user's queue automatically.
             </p>
           </div>
 
           {/* Interactive Live Queue Simulator */}
-          <div className="max-w-5xl mx-auto bg-white rounded-3xl border border-line shadow-[0_16px_35px_rgba(16,34,73,0.06)] p-6 sm:p-8">
+          <div className="max-w-5xl mx-auto bg-card rounded-3xl border border-border shadow-[0_16px_35px_rgba(16,34,73,0.06)] p-6 sm:p-8">
             
             {/* Queue Filter Tabs */}
-            <div className="flex flex-wrap items-center justify-between pb-6 mb-6 border-b border-line gap-4">
+            <div className="flex flex-wrap items-center justify-between pb-6 mb-6 border-b border-border gap-4">
               <div className="flex flex-wrap gap-2">
                 {queueCategories.map((cat) => {
                   const isActive = activeQueueTab === cat.id;
@@ -714,12 +714,12 @@ export const CommandProductScreens = () => {
                       onClick={() => setActiveQueueTab(cat.id)}
                       className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                         isActive
-                          ? "bg-blue text-white shadow-xs"
-                          : "bg-paper text-ink/75 hover:bg-neutral-200 border border-line"
+                          ? "bg-primary text-white shadow-xs"
+                          : "bg-surface-container text-foreground/75 hover:bg-surface-container-highest border border-border"
                       }`}
                     >
                       <span>{cat.name}</span>
-                      <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${isActive ? "bg-white/20 text-white" : "bg-black/10 text-ink"}`}>
+                      <span className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${isActive ? "bg-white/20 text-white" : "bg-foreground/10 text-foreground"}`}>
                         {cat.count}
                       </span>
                     </button>
@@ -727,8 +727,8 @@ export const CommandProductScreens = () => {
                 })}
               </div>
 
-              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-mutedBlue">
-                <span className="w-2 h-2 rounded-full bg-[#26845d] animate-ping" />
+              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-muted-foreground">
+                <span className="w-2 h-2 rounded-full bg-success animate-ping" />
                 <span>Auto-populating Queue Desk</span>
               </div>
             </div>
@@ -738,15 +738,15 @@ export const CommandProductScreens = () => {
               {activeQueue.items.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-4 sm:p-5 rounded-2xl bg-paper border border-line hover:border-blue/50 hover:bg-white hover:shadow-sm transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+                  className="p-4 sm:p-5 rounded-2xl bg-surface-container border border-border hover:border-primary/50 hover:bg-card hover:shadow-sm transition-all duration-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                 >
                   <div className="flex items-start gap-3.5">
-                    <div className="w-9 h-9 rounded-xl bg-blue/10 flex items-center justify-center text-blue shrink-0 mt-0.5">
+                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5">
                       <ListTodo size={18} />
                     </div>
                     <div>
                       <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white text-ink border border-line">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-card text-foreground border border-border">
                           {item.dept}
                         </span>
                         <span className={`font-mono text-[10px] font-bold px-2 py-0.5 rounded ${
@@ -754,19 +754,19 @@ export const CommandProductScreens = () => {
                             ? "bg-rose-500/10 text-rose-700 border border-rose-500/20" 
                             : item.priority === "High"
                             ? "bg-amber-500/10 text-amber-700 border border-amber-500/20"
-                            : "bg-blue/10 text-blue border border-blue/20"
+                            : "bg-primary/10 text-primary border border-primary/20"
                         }`}>
                           {item.priority}
                         </span>
-                        <span className="font-mono text-[10px] text-mutedBlue">{item.time}</span>
+                        <span className="font-mono text-[10px] text-muted-foreground">{item.time}</span>
                       </div>
-                      <h4 className="font-bold text-ink text-sm">{item.title}</h4>
-                      <p className="text-mutedBlue text-xs mt-0.5 leading-relaxed">{item.desc}</p>
+                      <h4 className="font-bold text-foreground text-sm">{item.title}</h4>
+                      <p className="text-muted-foreground text-xs mt-0.5 leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
-                    <span className="text-xs font-bold text-blue px-3.5 py-1.5 rounded-full bg-blue/10 hover:bg-blue hover:text-white transition-colors cursor-pointer font-mono">
+                    <span className="text-xs font-bold text-primary px-3.5 py-1.5 rounded-full bg-primary/10 hover:bg-primary hover:text-white transition-colors cursor-pointer font-mono">
                       Action Desk
                     </span>
                   </div>
@@ -775,33 +775,33 @@ export const CommandProductScreens = () => {
             </div>
 
             {/* DIAGRAM 4: Task Ingestion & Resolution Pipeline Diagram */}
-            <div className="p-4 rounded-2xl bg-paper border border-line">
-              <span className="eyebrow block text-mutedBlue mb-2">
+            <div className="p-4 rounded-2xl bg-surface-container border border-border">
+              <span className="eyebrow block text-muted-foreground mb-2">
                 Automated Task Routing Diagram
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 text-xs">
-                <div className="p-2.5 rounded-xl bg-white border border-line text-center">
-                  <span className="font-mono text-[10px] font-bold text-blue block">Step 1</span>
-                  <span className="font-semibold text-ink">Business Event Occurs</span>
+                <div className="p-2.5 rounded-xl bg-card border border-border text-center">
+                  <span className="font-mono text-[10px] font-bold text-primary block">Step 1</span>
+                  <span className="font-semibold text-foreground">Business Event Occurs</span>
                 </div>
-                <div className="p-2.5 rounded-xl bg-white border border-line text-center">
-                  <span className="font-mono text-[10px] font-bold text-blue block">Step 2</span>
-                  <span className="font-semibold text-ink">Auto-Routed to Owner Desk</span>
+                <div className="p-2.5 rounded-xl bg-card border border-border text-center">
+                  <span className="font-mono text-[10px] font-bold text-primary block">Step 2</span>
+                  <span className="font-semibold text-foreground">Auto-Routed to Owner Desk</span>
                 </div>
-                <div className="p-2.5 rounded-xl bg-white border border-line text-center">
-                  <span className="font-mono text-[10px] font-bold text-blue block">Step 3</span>
-                  <span className="font-semibold text-ink">Checker Audit Sign-off</span>
+                <div className="p-2.5 rounded-xl bg-card border border-border text-center">
+                  <span className="font-mono text-[10px] font-bold text-primary block">Step 3</span>
+                  <span className="font-semibold text-foreground">Checker Audit Sign-off</span>
                 </div>
-                <div className="p-2.5 rounded-xl bg-white border border-line text-center">
-                  <span className="font-mono text-[10px] font-bold text-blue block">Step 4</span>
-                  <span className="font-semibold text-ink">Fulfillment Release</span>
+                <div className="p-2.5 rounded-xl bg-card border border-border text-center">
+                  <span className="font-mono text-[10px] font-bold text-primary block">Step 4</span>
+                  <span className="font-semibold text-foreground">Fulfillment Release</span>
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-line flex flex-wrap items-center justify-between gap-3 text-xs text-mutedBlue font-medium">
+            <div className="mt-6 pt-4 border-t border-border flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground font-medium">
               <span>Zero separate spreadsheets or forgotten to-do lists.</span>
-              <span className="text-blue font-bold font-mono">100% Audit Traceability</span>
+              <span className="text-primary font-bold font-mono">100% Audit Traceability</span>
             </div>
           </div>
 
@@ -811,20 +811,20 @@ export const CommandProductScreens = () => {
       {/* =========================================================================
           SECTION 5: CONNECTED TRANSACTION VIEW (near end of page)
       ========================================================================== */}
-      <section className="py-16 md:py-24 bg-white border-b border-line" id="connected-transaction-view">
+      <section className="py-16 md:py-24 bg-card border-b border-border" id="connected-transaction-view">
         <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
           
           <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
             <span className="eyebrow block mb-3">
               Transaction Lifecycle • Connected Flow
             </span>
-            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-4">
-              One transaction. <span className="text-blue italic font-light">One connected flow.</span>
+            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4">
+              One transaction. <span className="text-primary italic font-light">One connected flow.</span>
             </h2>
-            <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal">
               From inception to bank realization, information travels along the full transaction sequence:
             </p>
-            <div className="mt-4 p-3 rounded-2xl bg-paper border border-line text-xs sm:text-sm font-bold text-blue w-max max-w-[92vw] relative left-1/2 -translate-x-1/2 font-mono">
+            <div className="mt-4 p-3 rounded-2xl bg-surface-container border border-border text-xs sm:text-sm font-bold text-primary w-max max-w-[92vw] relative left-1/2 -translate-x-1/2 font-mono">
               Order → Approval → Procurement → Factory & Production → Invoice → Payment → Receipt / Dispatch → Management
             </div>
           </div>
@@ -834,19 +834,19 @@ export const CommandProductScreens = () => {
             {transactionSequence.map((item) => (
               <div
                 key={item.step}
-                className="p-4 rounded-2xl bg-paper border border-line hover:border-blue/50 hover:bg-white hover:shadow-xs transition-all duration-200 flex flex-col justify-between"
+                className="p-4 rounded-2xl bg-surface-container border border-border hover:border-primary/50 hover:bg-card hover:shadow-xs transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="font-mono text-blue text-xs font-bold">{item.step}</span>
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-mutedBlue bg-white border border-line px-2 py-0.5 rounded">
+                    <span className="font-mono text-primary text-xs font-bold">{item.step}</span>
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground bg-card border border-border px-2 py-0.5 rounded">
                       {item.actor}
                     </span>
                   </div>
-                  <h4 className="font-bold text-ink text-sm mb-1">{item.name}</h4>
-                  <p className="text-mutedBlue text-xs leading-relaxed mb-3">{item.desc}</p>
+                  <h4 className="font-bold text-foreground text-sm mb-1">{item.name}</h4>
+                  <p className="text-muted-foreground text-xs leading-relaxed mb-3">{item.desc}</p>
                 </div>
-                <div className="pt-2 border-t border-line text-[10px] font-mono font-bold text-blue">
+                <div className="pt-2 border-t border-border text-[10px] font-mono font-bold text-primary">
                   {item.badge}
                 </div>
               </div>
@@ -866,7 +866,7 @@ export const CommandProductScreens = () => {
                 <span className="text-white/80 font-normal">Strategic Capital Advisory helps when capital becomes the question.</span>
               </h3>
             </div>
-            <div className="absolute right-0 bottom-0 w-96 h-96 bg-blue/20 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute right-0 bottom-0 w-96 h-96 bg-primary/20 rounded-full blur-[140px] pointer-events-none" />
           </div>
 
         </div>
@@ -876,18 +876,18 @@ export const CommandProductScreens = () => {
           SECTION 6: MARKETPLACE & ACCOUNTING SOFTWARE INTEGRATIONS (HIGHLIGHT)
           (Marketplace integration and accounting software integrations highlight)
       ========================================================================== */}
-      <section className="py-16 md:py-24 bg-white" id="integrations">
+      <section className="py-16 md:py-24 bg-card" id="integrations">
         <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12">
           
           <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
             <span className="eyebrow block mb-3">
               Connected Ecosystem • Integrations
             </span>
-            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-4">
+            <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4">
               Connect your marketplaces, <br />
-              <span className="text-blue italic font-light">accounting software & banks.</span>
+              <span className="text-primary italic font-light">accounting software & banks.</span>
             </h2>
-            <p className="text-mutedBlue text-base sm:text-lg leading-relaxed font-normal">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed font-normal">
               Whizunik Command orchestrates your daily business without forcing you to replace existing financial records or marketplace portals. Everything stays synchronized in real time.
             </p>
           </div>
@@ -896,139 +896,139 @@ export const CommandProductScreens = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-14">
             
             {/* 1. Marketplace Integrations */}
-            <div className="p-8 rounded-3xl bg-paper border border-line hover:border-blue/50 hover:shadow-lg transition-all flex flex-col justify-between">
+            <div className="p-8 rounded-3xl bg-surface-container border border-border hover:border-primary/50 hover:shadow-lg transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-blue/10 flex items-center justify-center text-blue mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
                   <Store size={24} />
                 </div>
-                <span className="eyebrow block text-blue mb-2">
+                <span className="eyebrow block text-primary mb-2">
                   Sales Channels
                 </span>
-                <h3 className="serif-headline text-xl font-bold text-ink mb-3">
+                <h3 className="serif-headline text-xl font-bold text-foreground mb-3">
                   Marketplace & Channel Integration
                 </h3>
-                <p className="text-mutedBlue text-xs sm:text-sm leading-relaxed mb-6">
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-6">
                   Seamlessly connect major ecommerce marketplaces and B2B portals. Customer orders synchronize automatically, reserve inventory, and decrement live stocks upon gate dispatch.
                 </p>
 
                 {/* Popular Integrations Badges */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {["Amazon", "Flipkart", "Shopify", "WooCommerce", "Meesho", "IndiaMART", "TradeIndia", "Custom B2B"].map((ch) => (
-                    <span key={ch} className="px-2.5 py-1 rounded-full bg-white border border-line text-xs font-semibold text-ink shadow-2xs">
+                    <span key={ch} className="px-2.5 py-1 rounded-full bg-card border border-border text-xs font-semibold text-foreground shadow-2xs">
                       {ch}
                     </span>
                   ))}
                 </div>
 
-                <div className="space-y-2.5 pt-4 border-t border-line text-xs text-ink/80 font-medium">
+                <div className="space-y-2.5 pt-4 border-t border-border text-xs text-foreground/80 font-medium">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>Real-time multi-channel inventory sync</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>Automated sales order ingestion</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>Zero overselling or manual stock reconciliations</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-line text-[11px] text-mutedBlue font-semibold font-mono">
+              <div className="mt-8 pt-4 border-t border-border text-[11px] text-muted-foreground font-semibold font-mono">
                 Synchronized channel stock & order dispatch
               </div>
             </div>
 
             {/* 2. Accounting Software Integrations */}
-            <div className="p-8 rounded-3xl bg-paper border border-line hover:border-blue/50 hover:shadow-lg transition-all flex flex-col justify-between">
+            <div className="p-8 rounded-3xl bg-surface-container border border-border hover:border-primary/50 hover:shadow-lg transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-blue/10 flex items-center justify-center text-blue mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
                   <FileSpreadsheet size={24} />
                 </div>
-                <span className="eyebrow block text-blue mb-2">
+                <span className="eyebrow block text-primary mb-2">
                   Statutory Books
                 </span>
-                <h3 className="serif-headline text-xl font-bold text-ink mb-3">
+                <h3 className="serif-headline text-xl font-bold text-foreground mb-3">
                   Tally & Accounting Software
                 </h3>
-                <p className="text-mutedBlue text-xs sm:text-sm leading-relaxed mb-6">
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-6">
                   Designed to connect with Tally Prime, Tally ERP 9, and standard accounting software to exchange customer masters, verified invoices, and payment vouchers without duplicate data entry.
                 </p>
 
                 {/* Popular Integrations Badges */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {["Tally Prime", "Tally ERP 9", "Zoho Books", "QuickBooks", "Busy", "SAP", "ERP Ledgers"].map((acc) => (
-                    <span key={acc} className="px-2.5 py-1 rounded-full bg-white border border-line text-xs font-semibold text-ink shadow-2xs">
+                    <span key={acc} className="px-2.5 py-1 rounded-full bg-card border border-border text-xs font-semibold text-foreground shadow-2xs">
                       {acc}
                     </span>
                   ))}
                 </div>
 
-                <div className="space-y-2.5 pt-4 border-t border-line text-xs text-ink/80 font-medium">
+                <div className="space-y-2.5 pt-4 border-t border-border text-xs text-foreground/80 font-medium">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>Bi-directional master & voucher synchronization</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>Tax invoice & statutory ledger push</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>Eliminate 100% of double manual data entry</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-line text-[11px] text-mutedBlue font-semibold font-mono">
+              <div className="mt-8 pt-4 border-t border-border text-[11px] text-muted-foreground font-semibold font-mono">
                 Operational queue feeds statutory books directly
               </div>
             </div>
 
             {/* 3. Banking & Treasury Rails */}
-            <div className="p-8 rounded-3xl bg-paper border border-line hover:border-blue/50 hover:shadow-lg transition-all flex flex-col justify-between">
+            <div className="p-8 rounded-3xl bg-surface-container border border-border hover:border-primary/50 hover:shadow-lg transition-all flex flex-col justify-between">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-blue/10 flex items-center justify-center text-blue mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
                   <CreditCard size={24} />
                 </div>
-                <span className="eyebrow block text-blue mb-2">
+                <span className="eyebrow block text-primary mb-2">
                   Treasury & Cash
                 </span>
-                <h3 className="serif-headline text-xl font-bold text-ink mb-3">
+                <h3 className="serif-headline text-xl font-bold text-foreground mb-3">
                   Banking & Payment Gateways
                 </h3>
-                <p className="text-mutedBlue text-xs sm:text-sm leading-relaxed mb-6">
+                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-6">
                   Connect corporate net banking and payment gateways for verified bank realization. Payments and collections reflect in books only when physically realized in bank feeds.
                 </p>
 
                 {/* Popular Integrations Badges */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {["Corporate Net Banking", "HDFC / ICICI / SBI", "Razorpay", "Cashfree", "Direct Bank API"].map((bank) => (
-                    <span key={bank} className="px-2.5 py-1 rounded-full bg-white border border-line text-xs font-semibold text-ink shadow-2xs">
+                    <span key={bank} className="px-2.5 py-1 rounded-full bg-card border border-border text-xs font-semibold text-foreground shadow-2xs">
                       {bank}
                     </span>
                   ))}
                 </div>
 
-                <div className="space-y-2.5 pt-4 border-t border-line text-xs text-ink/80 font-medium">
+                <div className="space-y-2.5 pt-4 border-t border-border text-xs text-foreground/80 font-medium">
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>Realized bank balance verification</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>Automated payment settlement reconciliation</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle2 size={14} className="text-blue shrink-0" />
+                    <CheckCircle2 size={14} className="text-primary shrink-0" />
                     <span>13-week forward cash forecasting</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 pt-4 border-t border-line text-[11px] text-mutedBlue font-semibold font-mono">
+              <div className="mt-8 pt-4 border-t border-border text-[11px] text-muted-foreground font-semibold font-mono">
                 Strict separation between projected and realized cash
               </div>
             </div>
@@ -1036,16 +1036,16 @@ export const CommandProductScreens = () => {
           </div>
 
           {/* Bottom Integrated Architecture Highlight Card */}
-          <div className="max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-blue/10 via-teal-light to-transparent border border-teal-border text-center space-y-4 shadow-sm">
-            <span className="eyebrow block text-blue">
+          <div className="max-w-4xl mx-auto p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-blue/10 via-teal-light to-transparent border border-success/30 text-center space-y-4 shadow-sm">
+            <span className="eyebrow block text-primary">
               The Whizunik Ecosystem Guarantee
             </span>
-            <h4 className="serif-headline text-2xl sm:text-3xl font-bold text-ink">
+            <h4 className="serif-headline text-2xl sm:text-3xl font-bold text-foreground">
               Your accounting software keeps statutory books. <br />
-              <span className="text-blue italic font-light">Your marketplaces bring commercial demand.</span> <br />
+              <span className="text-primary italic font-light">Your marketplaces bring commercial demand.</span> <br />
               Whizunik Command orchestrates the operations in between.
             </h4>
-            <p className="text-mutedBlue text-xs sm:text-sm max-w-xl mx-auto font-medium">
+            <p className="text-muted-foreground text-xs sm:text-sm max-w-xl mx-auto font-medium">
               Teams work from clean, focused queues with zero duplicate entries, while management and finance enjoy real-time clarity across every transaction.
             </p>
           </div>

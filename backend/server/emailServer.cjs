@@ -16,7 +16,7 @@ const smtpUser = process.env.SMTP_USER;
 const smtpPass = process.env.SMTP_PASS;
 const contactReceiverEmail = process.env.CONTACT_RECEIVER_EMAIL || process.env.ADMIN_EMAIL || "sankalp@whizunik.com";
 const port = Number(process.env.PORT || process.env.CONTACT_SERVER_PORT || 4040);
-const logoPath = path.join(__dirname, "..", "public", "logo-vertical-light (2).png");
+const logoPath = path.join(__dirname, "..", "public", "whizunik-mark-white.png");
 
 if (!smtpHost || !smtpUser || !smtpPass) {
   console.error("Missing SMTP configuration. Set SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS in .env");
@@ -60,10 +60,10 @@ const createEmailShell = ({ preheader, title, subtitle, bodyHtml, footerHtml = "
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                   <tr>
                     <td align="left" valign="middle">
-                      <img src="cid:whizunik-logo" alt="Whiz-Unik" style="height:50px;width:auto;display:block;" />
+                      <img src="cid:whizunik-logo" alt="Whizunik" style="height:44px;width:auto;display:block;" />
                     </td>
                     <td align="right" valign="middle" style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#97a1d1;font-weight:700;">
-                      Whiz-Unik Intelligence
+                      Whizunik
                     </td>
                   </tr>
                 </table>
@@ -81,7 +81,7 @@ const createEmailShell = ({ preheader, title, subtitle, bodyHtml, footerHtml = "
             <tr>
               <td style="padding:20px 28px 26px 28px;border-top:1px solid rgba(255,255,255,0.08);">
                 <p style="margin:0;color:#9aa4d9;font-size:12px;line-height:1.6;">
-                  Whiz-Unik • Structured Capital Advisory • India
+                  Whizunik • Whizunik Command • India
                 </p>
                 ${footerHtml}
               </td>
@@ -116,7 +116,7 @@ app.post("/api/contact", async (req, res) => {
     const attachments = fs.existsSync(logoPath)
       ? [
           {
-            filename: "whiz-unik-logo.png",
+            filename: "whizunik-mark.png",
             path: logoPath,
             cid: "whizunik-logo",
           },
@@ -170,10 +170,10 @@ app.post("/api/contact", async (req, res) => {
       <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 18px;margin-bottom:14px;">
         <p style="margin:0 0 8px 0;font-size:14px;color:#e8ecff;line-height:1.7;">Hi ${safeName},</p>
         <p style="margin:0 0 10px 0;font-size:14px;color:#c8cff3;line-height:1.8;">
-          Thank you for reaching out to <strong style="color:#ffffff;">Whiz-Unik</strong>. Your consultation request has been successfully received.
+          Thank you for reaching out to <strong style="color:#ffffff;">Whizunik</strong>. Your request has been successfully received.
         </p>
         <p style="margin:0;font-size:14px;color:#c8cff3;line-height:1.8;">
-          Our advisory team will connect with you shortly with the next steps.
+          Our team will connect with you shortly with the next steps.
         </p>
       </div>
       <div style="background:rgba(59,62,234,0.16);border:1px solid rgba(132,145,255,0.4);border-radius:14px;padding:14px 16px;">
@@ -194,7 +194,7 @@ app.post("/api/contact", async (req, res) => {
     console.log(`➡️  Sending lead email to admin (${contactReceiverEmail})...`);
 
     await transporter.sendMail({
-      from: `Whiz-Unik Website <${smtpUser}>`,
+      from: `Whizunik Website <${smtpUser}>`,
       to: contactReceiverEmail,
       replyTo: email,
       subject: `[${inquiryType}] ${name} (${company})`,
@@ -220,20 +220,20 @@ app.post("/api/contact", async (req, res) => {
 
     console.log(`➡️  Sending auto-reply confirmation to client (${email})...`);
     await transporter.sendMail({
-      from: `Whiz-Unik Team <${smtpUser}>`,
+      from: `Whizunik Team <${smtpUser}>`,
       to: email,
-      subject: "Thank you for reaching out to Whiz-Unik",
+      subject: "Thank you for reaching out to Whizunik",
       text: [
         `Hi ${name},`,
         "",
-        "Thank you for reaching out to Whiz-Unik.",
+        "Thank you for reaching out to Whizunik.",
         "We have received your consultation request and our team will contact you shortly.",
         "",
         "Regards,",
-        "Whiz-Unik Team",
+        "Whizunik Team",
       ].join("\n"),
       html: createEmailShell({
-        preheader: "Thank you for contacting Whiz-Unik. Our team will contact you shortly.",
+        preheader: "Thank you for contacting Whizunik. Our team will contact you shortly.",
         title: "Consultation Request Received",
         subtitle: "Thank you for your interest. We appreciate the opportunity to support your growth journey.",
         bodyHtml: autoReplyBody,

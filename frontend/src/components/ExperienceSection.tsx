@@ -27,7 +27,7 @@ const ExperienceSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.21, 0.45, 0.32, 0.9] as any }
+      transition: { duration: 0.8, ease: [0.21, 0.45, 0.32, 0.9] as [number, number, number, number] }
     },
   };
 
@@ -35,7 +35,7 @@ const ExperienceSection = () => {
     hidden: { height: 0 },
     visible: {
       height: '80%', // Slightly less than full height for elegance
-      transition: { duration: 1.5, ease: "easeInOut" as any, delay: 0.8 }
+      transition: { duration: 1.5, ease: "easeInOut" as const, delay: 0.8 }
     },
   };
 
@@ -87,7 +87,7 @@ const ExperienceSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="serif-headline text-4xl md:text-6xl text-black mb-4 tracking-tight font-bold"
+            className="serif-headline text-4xl md:text-6xl text-foreground mb-4 tracking-tight font-bold"
           >
             Institutional <span className="italic font-light text-primary/80">Expertise</span>
           </motion.h2>
@@ -101,7 +101,7 @@ const ExperienceSection = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-black/60 font-sans max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-medium"
+            className="text-foreground/60 font-sans max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-medium"
           >
             Decades of strategic market navigation and structured finance excellence.
           </motion.p>
@@ -127,7 +127,7 @@ const ExperienceSection = () => {
                 <div className="absolute inset-4 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
                   style={{
                     background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(243, 244, 246, 0.4) 100%)',
-                    border: '1px solid rgba(var(--primary), 0.1)',
+                    border: '1px solid hsl(var(--primary) / 0.1)',
                     boxShadow: '0 20px 40px -20px rgba(0, 0, 0, 0.05)',
                   }}
                 />
@@ -138,7 +138,7 @@ const ExperienceSection = () => {
                   {React.cloneElement(exp.icon as React.ReactElement, { className: "w-6 h-6" })}
                 </motion.div>
 
-                <h3 className="serif-headline text-lg md:text-xl font-bold text-black mb-0 tracking-tight group-hover:text-primary transition-colors">
+                <h3 className="serif-headline text-lg md:text-xl font-bold text-foreground mb-0 tracking-tight group-hover:text-primary transition-colors">
                   {exp.title}
                 </h3>
               </motion.div>
@@ -157,10 +157,6 @@ const ExperienceSection = () => {
         </motion.div>
       </div>
 
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        .bg-background { background-color: #f9f9fb; }
-      `}} />
     </section>
   );
 };

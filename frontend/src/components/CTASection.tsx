@@ -16,7 +16,7 @@ const CTASection = () => {
   const glowRadius = useTransform(scrollYProgress, [0.2, 0.6], [0, 1]);
 
   return (
-    <section ref={ref} className="py-24 md:py-32 relative overflow-hidden bg-white">
+    <section ref={ref} className="py-24 md:py-32 relative overflow-hidden bg-card">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-t from-background via-primary/5 to-background" />
         <motion.div
@@ -37,7 +37,7 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-black font-body text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold mb-6"
+          className="text-foreground font-body text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold mb-6"
         >
           Chapter VI — Your Next Move
         </motion.p>
@@ -46,7 +46,7 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="serif-headline text-4xl md:text-6xl lg:text-7xl font-bold mb-10 text-black tracking-tight"
+          className="serif-headline text-4xl md:text-6xl lg:text-7xl font-bold mb-10 text-foreground tracking-tight"
         >
           Ready to <span className="blue-gradient-text italic font-light">Structure</span> Your Growth?
         </motion.h2>
@@ -55,7 +55,7 @@ const CTASection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-black/60 font-body text-lg md:text-xl leading-relaxed mb-14 max-w-3xl mx-auto font-medium"
+          className="text-foreground/60 font-body text-lg md:text-xl leading-relaxed mb-14 max-w-3xl mx-auto font-medium"
         >
           Schedule a confidential consultation with our advisory team. We specialize in architecting capital structures that align with your unique trajectory.
         </motion.p>
@@ -75,7 +75,7 @@ const CTASection = () => {
           
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="text-black text-lg md:text-xl font-headline italic border-l-2 border-primary/20 pl-6 text-left"
+            className="text-foreground text-lg md:text-xl font-headline italic border-l-2 border-primary/20 pl-6 text-left"
           >
             "Most advisors arrange capital.<br/> We structure it."
           </motion.div>

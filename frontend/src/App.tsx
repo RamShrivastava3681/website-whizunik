@@ -1,36 +1,40 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import HowItWorks from "./pages/HowItWorks.tsx";
-import About from "./pages/About.tsx";
-import Services from "./pages/Services.tsx";
-import Insights from "./pages/Insights.tsx";
-import Contact from "./pages/Contact.tsx";
-import Hub from "./pages/Hub.tsx";
-import NotFound from "./pages/NotFound.tsx";
-
-import { motion, AnimatePresence } from "framer-motion";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import SmoothScroll from "@/components/SmoothScroll";
+import Index from "./pages/Index";
+import Command from "./pages/Command";
+import HowItWorks from "./pages/HowItWorks";
+import Services from "./pages/Services";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import NotFound from "./pages/NotFound";
+import { initAnalytics, trackPageView } from "./lib/analytics";
 
 const queryClient = new QueryClient();
+
+initAnalytics();
 
 const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    trackPageView(pathname);
+  }, [pathname]);
+
+  useEffect(() => {
     if (hash) {
-      setTimeout(() => {
-        const id = hash.replace("#", "");
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-      return;
+      const id = hash.replace("#", "");
+      const timer = window.setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 60);
+      return () => window.clearTimeout(timer);
     }
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [pathname, hash]);
@@ -38,52 +42,39 @@ const ScrollToTop = () => {
   return null;
 };
 
-const PageWrapper = ({ children }: { children: React.ReactNode }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    exit={{ opacity: 0 }}
-    transition={{ duration: 0.45, ease: "easeOut" }}
-    className="min-h-screen relative"
-  >
-    {children}
-  </motion.div>
-);
-
-import SmoothScroll from "@/components/SmoothScroll";
-
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <SmoothScroll>
-          <ScrollToTop />
-          {/* Global Noise Layer */}
-          <div className="fixed inset-0 pointer-events-none z-[9999] opacity-[0.03] noise-bg"></div>
-          
-          <AnimatePresence mode="wait">
+  <ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <SmoothScroll>
+            <ScrollToTop />
             <Routes>
-              <Route path="/" element={<PageWrapper><Index /></PageWrapper>} />
-              <Route path="/command" element={<PageWrapper><Index /></PageWrapper>} />
-              <Route path="/whizunik-command" element={<PageWrapper><Index /></PageWrapper>} />
-              <Route path="/how-it-works" element={<PageWrapper><HowItWorks /></PageWrapper>} />
-              <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
-              <Route path="/strategic-advisory" element={<PageWrapper><Services /></PageWrapper>} />
-              <Route path="/strategic-capital-advisory" element={<PageWrapper><Services /></PageWrapper>} />
-              <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
-              <Route path="/hub" element={<PageWrapper><Hub /></PageWrapper>} />
-              <Route path="/whizunik-hub" element={<PageWrapper><Hub /></PageWrapper>} />
-              <Route path="/insights" element={<PageWrapper><Insights /></PageWrapper>} />
-              <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+              <Route path="/" element={<Index />} />
+              <Route path="/command" element={<Command />} />
+              <Route path="/whizunik-command" element={<Command />} />
+              <Route path="/hub" element={<Navigate to="/command" replace />} />
+              <Route path="/whizunik-hub" element={<Navigate to="/command" replace />} />
+              <Route path="/how-it-works" element={<HowItWorks />} />
+              <Route path="/strategic-advisory" element={<Services />} />
+              <Route
+                path="/strategic-capital-advisory"
+                element={<Navigate to="/strategic-advisory" replace />}
+              />
+              <Route path="/services" element={<Navigate to="/strategic-advisory" replace />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-          </AnimatePresence>
-        </SmoothScroll>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+          </SmoothScroll>
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </ThemeProvider>
 );
 
 export default App;
