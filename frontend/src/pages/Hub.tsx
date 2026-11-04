@@ -74,13 +74,6 @@ const screenshots: ScreenshotItem[] = [
     tag: "Action Centre"
   },
   {
-    id: "forecast",
-    title: "Demand & SKU Forecast",
-    subtitle: "12-month stock movement history, reorder intelligence, velocity, and stockout risks.",
-    src: "/assets/hub/sku-forecast.png",
-    tag: "Demand Planning"
-  },
-  {
     id: "marketplace",
     title: "Marketplace Hub",
     subtitle: "Centralized channel synchronization, stock reservation ledger, and 8-step fulfillment queue.",
@@ -490,47 +483,47 @@ const Hub = () => {
             </div>
 
             {/* Workflow Item 3 */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center">
-              <div className="lg:col-span-5 order-2 lg:order-1">
-                <span className="text-primary text-xs font-bold uppercase tracking-wider block mb-2">
-                  Forecasting & Channels
-                </span>
-                <h3 className="serif-headline text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
-                  Make the business easier to understand.
-                </h3>
-                <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6">
-                  Use structured operational information for management reporting, lender packs, and funding-readiness conversations across inventory velocity and marketplace synchronization.
-                </p>
-                <div className="space-y-2.5 text-xs text-white/80 mb-8">
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span>SKU-level stockout risk and days cover modeling</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span>Channel integration across Amazon, Flipkart, Shopify, and offline</span>
-                  </div>
+            <div className="max-w-3xl">
+              <span className="text-primary text-xs font-bold uppercase tracking-wider block mb-2">
+                Forecasting & Channels
+              </span>
+              <h3 className="serif-headline text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">
+                Make the business easier to understand.
+              </h3>
+              <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-6">
+                Use structured operational information for management reporting, lender packs, and funding-readiness conversations across inventory velocity and marketplace synchronization.
+              </p>
+              <div className="space-y-2.5 text-xs text-white/80 mb-8">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <span>SKU-level stockout risk and days cover modeling</span>
                 </div>
-                <Link
-                  to="/contact?type=demo"
-                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-bold text-xs uppercase tracking-widest transition-colors"
-                >
-                  <span>Explore Demand Planning</span>
-                  <ArrowRight size={14} />
-                </Link>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <span>Channel integration across Amazon, Flipkart, Shopify, and offline</span>
+                </div>
               </div>
 
-              <div 
-                className="lg:col-span-7 order-1 lg:order-2 rounded-2xl md:rounded-3xl overflow-hidden border border-white/15 bg-secondary shadow-2xl cursor-pointer group"
-                onClick={() => setModalImage("/assets/hub/sku-forecast.png")}
+              <Link
+                to="/contact?type=demo"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-bold text-xs uppercase tracking-widest transition-colors"
               >
-                <img
-                  src="/assets/hub/sku-forecast.png"
-                  alt="SKU Forecast and Demand Planning"
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
+                <span>Explore Demand Planning</span>
+                <ArrowRight size={14} />
+              </Link>
             </div>
+
+            <div
+              className="lg:col-span-7 order-1 lg:order-2 rounded-2xl md:rounded-3xl overflow-hidden border border-white/15 bg-secondary shadow-2xl cursor-pointer group"
+              onClick={() => setModalImage("/assets/hub/sku-forecast.png")}
+            >
+              <img
+                src="/assets/hub/sku-forecast.png"
+                alt="SKU Forecasting and Demand Planning"
+                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+
           </div>
         </section>
 
