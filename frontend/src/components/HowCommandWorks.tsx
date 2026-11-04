@@ -131,7 +131,7 @@ const HowCommandWorks = () => {
   const DeptIcon = currentDept.icon;
 
   return (
-    <section className="relative py-20 md:py-32 bg-white text-black overflow-hidden" id="how-it-works">
+    <section className="relative py-20 md:py-32 bg-card text-foreground overflow-hidden" id="how-it-works">
       {/* Background Animated Ambient Lights (Original Light Theme) */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -164,7 +164,7 @@ const HowCommandWorks = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1, duration: 0.7 }}
-            className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-black mb-6 leading-[1.15]"
+            className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6 leading-[1.15]"
           >
             One transaction.{" "}
             <span className="text-primary font-light italic">One connected flow.</span>
@@ -174,7 +174,7 @@ const HowCommandWorks = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="text-black/75 text-base md:text-lg leading-relaxed font-normal"
+            className="text-foreground/75 text-base md:text-lg leading-relaxed font-normal"
           >
             Information is entered once and moves with the transaction. As the workflow progresses, responsibility moves to the team that needs to act next.
           </motion.p>
@@ -183,7 +183,7 @@ const HowCommandWorks = () => {
         {/* ANIMATED STEP FLOW DIAGRAM WITH CONNECTING PIPELINE */}
         <div className="relative mb-20">
           {/* Subtle connecting track line on desktop */}
-          <div className="hidden lg:block absolute top-[28px] left-[5%] right-[5%] h-[2px] bg-neutral-200 z-0">
+          <div className="hidden lg:block absolute top-[28px] left-[5%] right-[5%] h-[2px] bg-surface-container-highest z-0">
             <motion.div
               animate={{ x: ["0%", "100%", "0%"] }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -200,7 +200,7 @@ const HowCommandWorks = () => {
                 whileHover={{ y: -6, scale: 1.02 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.08, duration: 0.5, ease: "easeOut" }}
-                className="p-5 rounded-2xl bg-neutral-50/90 backdrop-blur-xs border border-black/10 hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                className="p-5 rounded-2xl bg-surface-container/90 backdrop-blur-xs border border-border hover:border-primary/40 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
@@ -209,24 +209,24 @@ const HowCommandWorks = () => {
                     </span>
                     <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
                   </div>
-                  <h4 className="text-black font-bold text-base md:text-lg tracking-tight mb-1">{step.title}</h4>
+                  <h4 className="text-foreground font-bold text-base md:text-lg tracking-tight mb-1">{step.title}</h4>
                   <p className="text-primary text-[11px] font-semibold">{step.sub}</p>
                 </div>
-                <p className="text-black/60 text-xs mt-3 leading-snug font-medium pt-3 border-t border-black/5">{step.desc}</p>
+                <p className="text-foreground/60 text-xs mt-3 leading-snug font-medium pt-3 border-t border-border/60">{step.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
 
         {/* THREE CORE PILLARS WITH HOVER TRANSFORMS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 sm:p-8 rounded-3xl bg-neutral-50 border border-black/10 mb-20 md:mb-28 shadow-xs">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 sm:p-8 rounded-3xl bg-surface-container border border-border mb-20 md:mb-28 shadow-xs">
           <motion.div whileHover={{ y: -3 }} className="flex items-start gap-4">
             <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-0.5 shadow-2xs">
               <CheckCircle2 size={20} />
             </div>
             <div>
-              <h5 className="text-black font-bold text-base mb-1">The data moves forward</h5>
-              <p className="text-black/65 text-xs sm:text-sm leading-relaxed">No re-typing or copy-pasting between systems. Every field remains unified.</p>
+              <h5 className="text-foreground font-bold text-base mb-1">The data moves forward</h5>
+              <p className="text-foreground/65 text-xs sm:text-sm leading-relaxed">No re-typing or copy-pasting between systems. Every field remains unified.</p>
             </div>
           </motion.div>
 
@@ -235,8 +235,8 @@ const HowCommandWorks = () => {
               <Layers size={20} />
             </div>
             <div>
-              <h5 className="text-black font-bold text-base mb-1">The responsibility changes</h5>
-              <p className="text-black/65 text-xs sm:text-sm leading-relaxed">Automatic handoffs assign tasks to the right department workspace instantly.</p>
+              <h5 className="text-foreground font-bold text-base mb-1">The responsibility changes</h5>
+              <p className="text-foreground/65 text-xs sm:text-sm leading-relaxed">Automatic handoffs assign tasks to the right department workspace instantly.</p>
             </div>
           </motion.div>
 
@@ -245,8 +245,8 @@ const HowCommandWorks = () => {
               <FileCheck2 size={20} />
             </div>
             <div>
-              <h5 className="text-black font-bold text-base mb-1">The transaction stays connected</h5>
-              <p className="text-black/65 text-xs sm:text-sm leading-relaxed">Full audit trail from initial sales order to final cash receipt and dispatch.</p>
+              <h5 className="text-foreground font-bold text-base mb-1">The transaction stays connected</h5>
+              <p className="text-foreground/65 text-xs sm:text-sm leading-relaxed">Full audit trail from initial sales order to final cash receipt and dispatch.</p>
             </div>
           </motion.div>
         </div>
@@ -259,10 +259,10 @@ const HowCommandWorks = () => {
               <ListTodo size={13} />
               <span>My Queue</span>
             </div>
-            <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black mb-5 leading-tight">
+            <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-5 leading-tight">
               Everyone knows <span className="text-primary font-light italic">what to do next.</span>
             </h3>
-            <p className="text-black/75 text-sm sm:text-base leading-relaxed mb-4 font-normal">
+            <p className="text-foreground/75 text-sm sm:text-base leading-relaxed mb-4 font-normal">
               Every department works from its own workspace. Every user works from <strong>My Queue</strong>. It shows each user the actions currently waiting for them, based on their role and where each transaction stands.
             </p>
             <p className="text-primary font-bold text-sm sm:text-base">
@@ -271,20 +271,20 @@ const HowCommandWorks = () => {
           </div>
 
           {/* Connected Flow Strip */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-black/10 shadow-xs mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-black/50 shrink-0">
+          <div className="p-4 sm:p-5 rounded-2xl bg-surface-container border border-border shadow-xs mb-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-foreground/50 shrink-0">
               Direct Workflow Navigation
             </span>
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-black/85">
-              <span className="px-3 py-1.5 rounded-xl bg-white border border-black/10 shadow-2xs">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-semibold text-foreground/85">
+              <span className="px-3 py-1.5 rounded-xl bg-card border border-border shadow-2xs">
                 01 Role Workspace
               </span>
               <ChevronRight size={14} className="text-primary shrink-0" />
-              <span className="px-3 py-1.5 rounded-xl bg-white border border-primary/30 text-primary font-bold shadow-2xs">
+              <span className="px-3 py-1.5 rounded-xl bg-card border border-primary/30 text-primary font-bold shadow-2xs">
                 02 My Queue Action
               </span>
               <ChevronRight size={14} className="text-primary shrink-0" />
-              <span className="px-3 py-1.5 rounded-xl bg-white border border-black/10 shadow-2xs">
+              <span className="px-3 py-1.5 rounded-xl bg-card border border-border shadow-2xs">
                 03 Select Action
               </span>
               <ChevronRight size={14} className="text-primary shrink-0" />
@@ -332,24 +332,24 @@ const HowCommandWorks = () => {
                   key={card.num}
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
-                  className="p-6 sm:p-7 rounded-3xl bg-neutral-50/70 border border-black/10 hover:border-primary/40 hover:bg-white hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                  className="p-6 sm:p-7 rounded-3xl bg-surface-container/70 border border-border hover:border-primary/40 hover:bg-card hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-3 mb-5">
                       <div className="w-11 h-11 rounded-2xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
                         <Icon size={20} />
                       </div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white border border-black/5 text-primary">
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-card border border-border/60 text-primary">
                         {card.tag}
                       </span>
                     </div>
                     <span className="font-mono text-xs font-bold text-primary mb-1 block">
                       Principle {card.num}
                     </span>
-                    <h4 className="text-black font-bold text-lg sm:text-xl tracking-tight mb-2 group-hover:text-primary transition-colors">
+                    <h4 className="text-foreground font-bold text-lg sm:text-xl tracking-tight mb-2 group-hover:text-primary transition-colors">
                       {card.title}
                     </h4>
-                    <p className="text-black/70 text-xs sm:text-sm leading-relaxed">
+                    <p className="text-foreground/70 text-xs sm:text-sm leading-relaxed">
                       {card.desc}
                     </p>
                   </div>
@@ -365,16 +365,16 @@ const HowCommandWorks = () => {
             <span className="text-primary font-body text-[11px] md:text-xs uppercase tracking-[0.35em] font-bold mb-3 inline-block">
               One Platform. Different Views.
             </span>
-            <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black mb-4">
+            <h3 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
               Every team sees <span className="text-primary font-light italic">the work it owns.</span>
             </h3>
-            <p className="text-black/65 text-sm md:text-base">
+            <p className="text-foreground/65 text-sm md:text-base">
               Each department operates within a tailored interface focused precisely on its domain responsibilities.
             </p>
           </div>
 
           {/* Department Selector Tabs with Sliding Pill Animation */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 p-1.5 rounded-full bg-neutral-100 max-w-fit mx-auto border border-black/5">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 p-1.5 rounded-full bg-surface-container-high max-w-fit mx-auto border border-border/60">
             {departmentViews.map((dept) => {
               const Icon = dept.icon;
               const isActive = activeDept === dept.id;
@@ -383,7 +383,7 @@ const HowCommandWorks = () => {
                   key={dept.id}
                   onClick={() => setActiveDept(dept.id)}
                   className={`relative px-4 sm:px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-colors flex items-center gap-2 z-10 ${
-                    isActive ? "text-white" : "text-black/70 hover:text-black"
+                    isActive ? "text-white" : "text-foreground/70 hover:text-foreground"
                   }`}
                 >
                   {isActive && (
@@ -408,23 +408,23 @@ const HowCommandWorks = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="p-8 sm:p-10 rounded-3xl bg-neutral-50 border border-black/10 max-w-4xl mx-auto shadow-sm"
+              className="p-8 sm:p-10 rounded-3xl bg-surface-container border border-border max-w-4xl mx-auto shadow-sm"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shadow-xs">
                   <DeptIcon size={24} />
                 </div>
                 <div>
-                  <h4 className="text-2xl font-bold text-black tracking-tight">{currentDept.name} Workspace</h4>
+                  <h4 className="text-2xl font-bold text-foreground tracking-tight">{currentDept.name} Workspace</h4>
                   <p className="text-primary text-xs sm:text-sm font-semibold">{currentDept.tagline}</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 {currentDept.points.map((pt) => (
-                  <div key={pt} className="flex items-start gap-3 p-4 rounded-xl bg-white border border-black/5 shadow-2xs">
+                  <div key={pt} className="flex items-start gap-3 p-4 rounded-xl bg-card border border-border/60 shadow-2xs">
                     <span className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
-                    <span className="text-black/80 text-xs sm:text-sm leading-relaxed font-medium">{pt}</span>
+                    <span className="text-foreground/80 text-xs sm:text-sm leading-relaxed font-medium">{pt}</span>
                   </div>
                 ))}
               </div>
@@ -432,7 +432,7 @@ const HowCommandWorks = () => {
               <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <span className="text-primary text-xs uppercase font-bold tracking-widest">Next Queue Step:</span>
-                  <span className="text-black font-semibold text-xs sm:text-sm">{currentDept.sampleAction}</span>
+                  <span className="text-foreground font-semibold text-xs sm:text-sm">{currentDept.sampleAction}</span>
                 </div>
                 <ArrowRight size={16} className="text-primary shrink-0" />
               </div>

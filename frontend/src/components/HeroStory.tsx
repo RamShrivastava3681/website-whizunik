@@ -31,13 +31,13 @@ const HeroStory = () => {
       transition: {
         duration: 1.2,
         delay: 0.5 + i * 0.1,
-        ease: [0.215, 0.61, 0.355, 1] as any,
+        ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number],
       },
     }),
   };
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-white pt-20">
+    <section ref={ref} className="relative min-h-screen flex items-center overflow-hidden bg-background pt-24">
       {/* Background Image with Parallax & Darkening Overlay */}
       <motion.div className="absolute inset-0 z-0" style={{ y: bgY, scale: bgScale }}>
         <img
@@ -45,19 +45,19 @@ const HeroStory = () => {
           alt="Whiz-Unik Building"
           className="w-full h-[120%] object-cover opacity-[0.16]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/60 to-background" />
       </motion.div>
 
       <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div
           animate={{ scale: [1, 1.1, 1], rotate: [0, 15, 0] }}
           transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-[15%] -right-[5%] w-[60vw] h-[60vw] bg-blue/5 rounded-full blur-[140px]"
+          className="absolute -top-[15%] -right-[5%] w-[60vw] h-[60vw] bg-primary/5 rounded-full blur-[140px]"
         />
         <motion.div
           animate={{ scale: [1, 1.15, 1], x: [0, -20, 0] }}
           transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-15%] -left-[5%] w-[45vw] h-[45vw] bg-teal-accent/5 rounded-full blur-[120px]"
+          className="absolute bottom-[-15%] -left-[5%] w-[45vw] h-[45vw] bg-primary/5 rounded-full blur-[120px]"
         />
       </div>
 
@@ -69,17 +69,17 @@ const HeroStory = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="eyebrow mb-8 flex items-center gap-3 text-blue"
+          className="eyebrow mb-8 flex items-center gap-3 text-primary"
         >
           <motion.span
             animate={{ opacity: [0.4, 1, 0.4], scale: [0.95, 1.05, 0.95] }}
             transition={{ duration: 4, repeat: Infinity }}
-            className="inline-block w-2.5 h-2.5 rounded-full bg-blue shadow-[0_0_12px_rgba(8,119,201,0.5)]"
+            className="inline-block w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_12px_rgba(8,119,201,0.5)]"
           />
           WhizUnik Command • Business Operating System
         </motion.p>
 
-        <h1 className="serif-headline text-5xl md:text-7xl lg:text-[5.2rem] xl:text-[6.2rem] font-bold leading-[0.98] tracking-tighter mb-8 max-w-5xl text-black">
+        <h1 className="serif-headline text-5xl md:text-7xl lg:text-[5.2rem] xl:text-[6.2rem] font-bold leading-[0.98] tracking-tighter mb-8 max-w-5xl text-foreground">
           <div className="flex flex-wrap gap-x-[0.25em] overflow-hidden py-1">
             {wordsLine1.map((word, i) => (
               <motion.span
@@ -114,7 +114,7 @@ const HeroStory = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
-          className="text-black/75 text-base sm:text-lg md:text-xl max-w-3xl mb-8 leading-relaxed font-normal"
+          className="text-foreground/75 text-base sm:text-lg md:text-xl max-w-3xl mb-8 leading-relaxed font-normal"
         >
           WhizUnik Command connects sales, procurement, inventory, factory and warehouse workflows so every team knows what to do next — while management sees the business as it moves.
         </motion.p>
@@ -148,7 +148,7 @@ const HeroStory = () => {
           <Magnetic>
             <a
               href="#command-overview"
-              className="bg-white text-ink border border-line px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:bg-paper active:scale-[0.98] transition-all duration-300 flex items-center gap-3 shadow-xs"
+              className="bg-card text-foreground border border-border px-8 sm:px-10 py-4 sm:py-5 rounded-full text-xs font-bold tracking-[0.2em] uppercase hover:bg-surface-container active:scale-[0.98] transition-all duration-300 flex items-center gap-3 shadow-xs"
             >
               <span>Explore Command</span>
             </a>
@@ -161,7 +161,7 @@ const HeroStory = () => {
         style={{ opacity: useTransform(smoothYProgress, [0, 0.1], [1, 0]) }}
         className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none"
       >
-        <span className="text-black/30 font-body text-[9px] md:text-[10px] tracking-[0.4em] uppercase">
+        <span className="text-foreground/30 font-body text-[9px] md:text-[10px] tracking-[0.4em] uppercase">
           Begin the Journey
         </span>
         <motion.div

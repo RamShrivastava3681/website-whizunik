@@ -1,6 +1,6 @@
-# Whiz-Unik Website
+# Whizunik Website
 
-Structured Capital Advisory for Growth-Stage Businesses.
+Whizunik Command — operating software for growing businesses. Structured Capital Advisory is a separate service, available when capital strategy becomes the next question.
 
 ## Project Structure
 
@@ -34,7 +34,9 @@ npm run build      # Outputs to frontend/dist/
 
 ### Environment Variables
 
-The frontend reads `VITE_CONTACT_API_URL` for the contact form API endpoint. In development it defaults to `http://localhost:8787/api/contact`.
+The frontend reads `VITE_CONTACT_API_URL` for the contact form API endpoint. In development it defaults to `http://localhost:4040/api/contact`.
+
+Google Analytics 4 is optional. Set `VITE_GA_MEASUREMENT_ID` to enable page views and the `generate_lead` conversion event; nothing loads when it is unset.
 
 For production deployment, set:
 ```

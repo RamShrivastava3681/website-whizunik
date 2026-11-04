@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!assets|brand|_redirects).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

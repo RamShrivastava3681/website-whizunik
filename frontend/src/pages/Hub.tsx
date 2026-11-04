@@ -145,7 +145,7 @@ const Hub = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-black/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10 font-normal"
+              className="text-foreground/70 text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10 font-normal"
             >
               Whizunik Hub is an independent operating layer for management teams. It connects operational activity, working capital, reporting, and accountability in one practical system.
             </motion.p>
@@ -168,7 +168,7 @@ const Hub = () => {
 
               <Link
                 to="/services"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-neutral-100 text-black/80 hover:text-black hover:bg-neutral-200 text-xs md:text-sm font-bold uppercase tracking-widest transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-surface-container-high text-foreground/80 hover:text-foreground hover:bg-surface-container-highest text-xs md:text-sm font-bold uppercase tracking-widest transition-all"
               >
                 <span>Speak to an Advisor</span>
                 <ArrowRight size={15} />
@@ -180,7 +180,7 @@ const Hub = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.45 }}
-              className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mt-12 text-xs text-black/60 font-medium"
+              className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mt-12 text-xs text-foreground/60 font-medium"
             >
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 size={15} className="text-primary" /> Independent Operating Layer
@@ -199,7 +199,7 @@ const Hub = () => {
         {/* SECTION 2: PRODUCT SHOWCASE (WHIZUNIK COMMAND INTERFACE) */}
         {/* ========================================================= */}
         <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 py-12 md:py-20">
-          <div className="bg-neutral-50/80 border border-black/10 rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-14 shadow-xl">
+          <div className="bg-surface-container/80 border border-border rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-14 shadow-xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-10">
               <div className="lg:col-span-8">
                 <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] block mb-3">
@@ -208,26 +208,26 @@ const Hub = () => {
                 <h2 className="serif-headline text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight tracking-tight">
                   See how work moves <span className="text-primary italic font-light">across the business.</span>
                 </h2>
-                <p className="text-black/70 text-sm sm:text-base md:text-lg leading-relaxed mt-4 max-w-2xl font-normal">
+                <p className="text-foreground/70 text-sm sm:text-base md:text-lg leading-relaxed mt-4 max-w-2xl font-normal">
                   Command connects sales, procurement, inventory, finance, warehouse, and management so every team knows what to do next.
                 </p>
               </div>
 
               <div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end">
-                <span className="px-3 py-1.5 rounded-full bg-white border border-primary/20 text-primary text-xs font-semibold shadow-sm">
+                <span className="px-3 py-1.5 rounded-full bg-card border border-primary/20 text-primary text-xs font-semibold shadow-sm">
                   6 workspaces
                 </span>
-                <span className="px-3 py-1.5 rounded-full bg-white border border-primary/20 text-primary text-xs font-semibold shadow-sm">
+                <span className="px-3 py-1.5 rounded-full bg-card border border-primary/20 text-primary text-xs font-semibold shadow-sm">
                   Real-time handoffs
                 </span>
-                <span className="px-3 py-1.5 rounded-full bg-white border border-primary/20 text-primary text-xs font-semibold shadow-sm">
+                <span className="px-3 py-1.5 rounded-full bg-card border border-primary/20 text-primary text-xs font-semibold shadow-sm">
                   Management visibility
                 </span>
               </div>
             </div>
 
             {/* Workspace Tab Switcher */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none border-b border-black/5">
+            <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-none border-b border-border/60">
               {screenshots.map((s) => (
                 <button
                   key={s.id}
@@ -235,12 +235,12 @@ const Hub = () => {
                   className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold whitespace-nowrap transition-all duration-300 flex items-center gap-2 ${
                     activeTab === s.id
                       ? "bg-primary text-white shadow-md shadow-primary/20 scale-[1.02]"
-                      : "bg-white text-black/70 border border-black/5 hover:border-black/20 hover:text-black"
+                      : "bg-card text-foreground/70 border border-border/60 hover:border-border hover:text-foreground"
                   }`}
                 >
                   <span>{s.title}</span>
                   <span className={`text-[10px] px-1.5 py-0.5 rounded-md ${
-                    activeTab === s.id ? "bg-white/20 text-white" : "bg-neutral-100 text-black/50"
+                    activeTab === s.id ? "bg-white/20 text-white" : "bg-surface-container-high text-foreground/50"
                   }`}>
                     {s.tag}
                   </span>
@@ -254,22 +254,22 @@ const Hub = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-black/15 bg-white shadow-2xl group"
+              className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-border bg-card shadow-2xl group"
             >
               {/* Window Controls Bar */}
-              <div className="bg-neutral-100/90 border-b border-black/10 px-4 py-3 flex items-center justify-between">
+              <div className="bg-surface-container-high/90 border-b border-border px-4 py-3 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-rose-400" />
                   <div className="w-3 h-3 rounded-full bg-amber-400" />
                   <div className="w-3 h-3 rounded-full bg-emerald-400" />
-                  <span className="text-xs font-medium text-black/50 ml-3 hidden sm:inline">
+                  <span className="text-xs font-medium text-foreground/50 ml-3 hidden sm:inline">
                     Command Centre — {selectedScreenshot.title}
                   </span>
                 </div>
                 
                 <button
                   onClick={() => setModalImage(selectedScreenshot.src)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors bg-white px-3 py-1 rounded-lg border border-primary/20 shadow-sm"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:text-primary/80 transition-colors bg-card px-3 py-1 rounded-lg border border-primary/20 shadow-sm"
                   title="View full resolution"
                 >
                   <Maximize2 size={13} />
@@ -279,7 +279,7 @@ const Hub = () => {
 
               {/* Main Screenshot Image */}
               <div 
-                className="relative cursor-pointer overflow-hidden bg-neutral-900"
+                className="relative cursor-pointer overflow-hidden bg-secondary"
                 onClick={() => setModalImage(selectedScreenshot.src)}
               >
                 <img
@@ -296,8 +296,8 @@ const Hub = () => {
               </div>
 
               {/* Caption Footer */}
-              <div className="p-4 sm:p-5 bg-white border-t border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-black/70">
-                <p className="font-medium text-black">
+              <div className="p-4 sm:p-5 bg-card border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-foreground/70">
+                <p className="font-medium text-foreground">
                   <strong className="text-primary font-bold mr-2">{selectedScreenshot.title}:</strong>
                   {selectedScreenshot.subtitle}
                 </p>
@@ -328,7 +328,7 @@ const Hub = () => {
               </h2>
             </div>
             <div className="lg:col-span-5 lg:pt-4">
-              <p className="text-black/70 text-base sm:text-lg leading-relaxed font-normal border-l-2 border-primary/30 pl-5">
+              <p className="text-foreground/70 text-base sm:text-lg leading-relaxed font-normal border-l-2 border-primary/30 pl-5">
                 Finance teams often manage essential information across spreadsheets, email threads, shared folders, and manual reports. Hub provides a focused operating layer for the workflows that sit behind working-capital and lender conversations.
               </p>
             </div>
@@ -361,7 +361,7 @@ const Hub = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
-                className="bg-neutral-50 p-8 sm:p-10 rounded-3xl border border-black/10 hover:border-primary/40 hover:shadow-xl transition-all duration-300 group"
+                className="bg-surface-container p-8 sm:p-10 rounded-3xl border border-border hover:border-primary/40 hover:shadow-xl transition-all duration-300 group"
               >
                 <div className="flex items-center justify-between mb-8">
                   <span className="text-3xl sm:text-4xl font-headline font-bold text-primary/30 group-hover:text-primary transition-colors">
@@ -374,7 +374,7 @@ const Hub = () => {
                 <h3 className="serif-headline text-2xl font-bold text-foreground mb-3">
                   {card.title}
                 </h3>
-                <p className="text-black/70 text-sm sm:text-base leading-relaxed">
+                <p className="text-foreground/70 text-sm sm:text-base leading-relaxed">
                   {card.desc}
                 </p>
               </motion.div>
@@ -385,7 +385,7 @@ const Hub = () => {
         {/* ========================================================= */}
         {/* SECTION 4: PRODUCT WORKFLOWS (DEEP DIVE IN INTERFACE) */}
         {/* ========================================================= */}
-        <section className="bg-neutral-900 text-white py-20 md:py-32 relative overflow-hidden">
+        <section className="bg-secondary text-white py-20 md:py-32 relative overflow-hidden">
           <div className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 relative z-10">
             <div className="max-w-3xl mb-16 md:mb-24">
               <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] block mb-3">
@@ -428,7 +428,7 @@ const Hub = () => {
               </div>
 
               <div 
-                className="lg:col-span-7 order-1 lg:order-2 rounded-2xl md:rounded-3xl overflow-hidden border border-white/15 bg-neutral-800 shadow-2xl cursor-pointer group"
+                className="lg:col-span-7 order-1 lg:order-2 rounded-2xl md:rounded-3xl overflow-hidden border border-white/15 bg-secondary shadow-2xl cursor-pointer group"
                 onClick={() => setModalImage("/assets/hub/finance-workbench.png")}
               >
                 <img
@@ -442,7 +442,7 @@ const Hub = () => {
             {/* Workflow Item 2 */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-center mb-20 md:mb-28 pb-16 border-b border-white/10">
               <div 
-                className="lg:col-span-7 rounded-2xl md:rounded-3xl overflow-hidden border border-white/15 bg-neutral-800 shadow-2xl cursor-pointer group"
+                className="lg:col-span-7 rounded-2xl md:rounded-3xl overflow-hidden border border-white/15 bg-secondary shadow-2xl cursor-pointer group"
                 onClick={() => setModalImage("/assets/hub/sales-workbench.png")}
               >
                 <img
@@ -503,6 +503,7 @@ const Hub = () => {
                   <span>Channel integration across Amazon, Flipkart, Shopify, and offline</span>
                 </div>
               </div>
+
               <Link
                 to="/contact?type=demo"
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-bold text-xs uppercase tracking-widest transition-colors"
@@ -511,6 +512,18 @@ const Hub = () => {
                 <ArrowRight size={14} />
               </Link>
             </div>
+
+            <div
+              className="lg:col-span-7 order-1 lg:order-2 rounded-2xl md:rounded-3xl overflow-hidden border border-white/15 bg-secondary shadow-2xl cursor-pointer group"
+              onClick={() => setModalImage("/assets/hub/sku-forecast.png")}
+            >
+              <img
+                src="/assets/hub/sku-forecast.png"
+                alt="SKU Forecasting and Demand Planning"
+                className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+
           </div>
         </section>
 
@@ -557,7 +570,7 @@ const Hub = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
-                className="p-8 rounded-3xl bg-neutral-50 border border-black/10 hover:border-primary/30 hover:shadow-lg transition-all relative flex flex-col justify-between"
+                className="p-8 rounded-3xl bg-surface-container border border-border hover:border-primary/30 hover:shadow-lg transition-all relative flex flex-col justify-between"
               >
                 <div>
                   <span className="text-xs font-bold text-primary tracking-widest uppercase block mb-3">
@@ -566,7 +579,7 @@ const Hub = () => {
                   <h3 className="serif-headline text-2xl font-bold text-foreground mb-3">
                     {item.name}
                   </h3>
-                  <p className="text-black/70 text-sm leading-relaxed">
+                  <p className="text-foreground/70 text-sm leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -578,7 +591,7 @@ const Hub = () => {
         {/* ========================================================= */}
         {/* SECTION 6: BUILT FOR AUDIENCE */}
         {/* ========================================================= */}
-        <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 py-12 md:py-20 border-t border-black/5">
+        <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 py-12 md:py-20 border-t border-border/60">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-14 items-start mb-14">
             <div className="lg:col-span-7">
               <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] block mb-3">
@@ -589,7 +602,7 @@ const Hub = () => {
               </h2>
             </div>
             <div className="lg:col-span-5 lg:pt-4">
-              <p className="text-black/70 text-base sm:text-lg leading-relaxed font-normal border-l-2 border-primary/30 pl-5">
+              <p className="text-foreground/70 text-base sm:text-lg leading-relaxed font-normal border-l-2 border-primary/30 pl-5">
                 Hub is designed for businesses that have outgrown disconnected spreadsheets but do not need a painful ERP replacement programme.
               </p>
             </div>
@@ -620,14 +633,14 @@ const Hub = () => {
             ].map((aud) => (
               <div
                 key={aud.title}
-                className="p-7 rounded-3xl bg-neutral-50 border border-black/10 hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between"
+                className="p-7 rounded-3xl bg-surface-container border border-border hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-5">
                     <aud.icon size={20} />
                   </div>
                   <h4 className="font-bold text-lg text-foreground mb-2">{aud.title}</h4>
-                  <p className="text-black/70 text-sm leading-relaxed">{aud.desc}</p>
+                  <p className="text-foreground/70 text-sm leading-relaxed">{aud.desc}</p>
                 </div>
               </div>
             ))}
@@ -637,7 +650,7 @@ const Hub = () => {
         {/* ========================================================= */}
         {/* SECTION 7: FAQ ACCORDION */}
         {/* ========================================================= */}
-        <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 py-16 md:py-24 border-t border-black/5">
+        <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 py-16 md:py-24 border-t border-border/60">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
               <span className="text-primary text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] block mb-3">
@@ -654,7 +667,7 @@ const Hub = () => {
                 return (
                   <div
                     key={faq.question}
-                    className="rounded-2xl border border-black/10 bg-white overflow-hidden transition-all shadow-sm"
+                    className="rounded-2xl border border-border bg-card overflow-hidden transition-all shadow-sm"
                   >
                     <button
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
@@ -677,7 +690,7 @@ const Hub = () => {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <div className="px-6 pb-6 pt-0 text-black/70 text-sm md:text-base leading-relaxed border-t border-black/5">
+                          <div className="px-6 pb-6 pt-0 text-foreground/70 text-sm md:text-base leading-relaxed border-t border-border/60">
                             {faq.answer}
                           </div>
                         </motion.div>
@@ -694,7 +707,7 @@ const Hub = () => {
         {/* SECTION 8: FINAL CTA */}
         {/* ========================================================= */}
         <section className="max-w-[1440px] mx-auto px-5 sm:px-6 md:px-12 py-16 md:py-28">
-          <div className="p-10 sm:p-14 md:p-20 rounded-3xl md:rounded-[2.5rem] bg-gradient-to-br from-neutral-900 via-neutral-900 to-[#121630] border border-white/10 text-white shadow-2xl relative overflow-hidden">
+          <div className="p-10 sm:p-14 md:p-20 rounded-3xl md:rounded-[2.5rem] bg-gradient-to-br from-secondary via-secondary to-[#121630] border border-white/10 text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
@@ -743,7 +756,7 @@ const Hub = () => {
               initial={{ scale: 0.95 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
-              className="relative max-w-7xl w-full max-h-[92vh] overflow-auto rounded-2xl bg-neutral-900 border border-white/20 shadow-2xl"
+              className="relative max-w-7xl w-full max-h-[92vh] overflow-auto rounded-2xl bg-secondary border border-white/20 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button

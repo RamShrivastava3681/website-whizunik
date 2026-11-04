@@ -43,7 +43,7 @@ const ServicesSection = () => {
   const bloomY = useTransform(scrollYProgress, [0, 1], [80, -60]);
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24 bg-white relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 md:py-24 bg-card relative overflow-hidden">
       <motion.div
         style={{ y: bloomY }}
         className="absolute -top-24 -left-20 w-[34rem] h-[34rem] bg-primary/10 rounded-full blur-[130px] pointer-events-none"
@@ -72,7 +72,7 @@ const ServicesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-black font-bold tracking-tight leading-tight mb-8"
+              className="serif-headline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-foreground font-bold tracking-tight leading-tight mb-8"
             >
               Capital, <br />
               <motion.span
@@ -98,7 +98,7 @@ const ServicesSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="text-black/60 text-sm sm:text-base md:text-lg leading-relaxed max-w-sm font-medium italic border-l-2 border-primary/15 pl-4 md:pl-5 pb-1"
+            className="text-foreground/60 text-sm sm:text-base md:text-lg leading-relaxed max-w-sm font-medium italic border-l-2 border-primary/15 pl-4 md:pl-5 pb-1"
           >
             We design capital around the business — completely customized to fit your unique trajectory.
           </motion.p>
@@ -114,7 +114,7 @@ const ServicesSection = () => {
               transition={{ delay: index * 0.16, duration: 0.62, ease: "easeOut" }}
               viewport={{ once: true }}
               style={{ transformPerspective: 1000 }}
-              className="group relative p-8 rounded-[2rem] border border-primary/20 bg-white/70 backdrop-blur-xl shadow-[0_20px_52px_-28px_hsl(var(--primary)/0.28)] hover:shadow-[0_32px_70px_-26px_hsl(var(--primary)/0.4)] transition-all duration-500 flex flex-col"
+              className="group relative p-8 rounded-[2rem] border border-primary/20 bg-background/70 backdrop-blur-xl shadow-[0_20px_52px_-28px_hsl(var(--primary)/0.28)] hover:shadow-[0_32px_70px_-26px_hsl(var(--primary)/0.4)] transition-all duration-500 flex flex-col"
             >
               <div className="absolute inset-0 rounded-[2rem] bg-[linear-gradient(125deg,hsl(var(--primary)/0.12)_0%,rgba(255,255,255,0.45)_42%,hsl(var(--primary)/0.08)_100%)] opacity-75 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative z-10 flex flex-col h-full">
@@ -126,17 +126,17 @@ const ServicesSection = () => {
                   {service.icon}
                 </motion.div>
 
-                <h3 className="serif-headline text-xl text-black mb-5 font-bold leading-tight group-hover:text-primary transition-colors">
+                <h3 className="serif-headline text-xl text-foreground mb-5 font-bold leading-tight group-hover:text-primary transition-colors">
                   {service.title}
                 </h3>
 
                 <div className="h-px w-0 bg-primary/60 mb-5 group-hover:w-16 transition-all duration-500" />
 
-                <ul className="space-y-3 text-black/60 text-sm leading-relaxed mb-8 flex-grow">
+                <ul className="space-y-3 text-foreground/60 text-sm leading-relaxed mb-8 flex-grow">
                   {service.points.map((point) => (
                     <li key={point} className="flex items-center gap-2.5 group/item">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary/30 group-hover/item:bg-primary group-hover/item:scale-125 transition-all duration-300"></div>
-                      <span className="group-hover/item:text-black font-medium transition-colors">{point}</span>
+                      <span className="group-hover/item:text-foreground font-medium transition-colors">{point}</span>
                     </li>
                   ))}
                 </ul>

@@ -61,7 +61,7 @@ const ProblemSection = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-28 bg-white" id="problem">
+    <section className="relative overflow-hidden py-20 md:py-28 bg-card" id="problem">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_15%,hsl(var(--primary)/0.12)_0%,rgba(255,255,255,0.92)_42%,rgba(255,255,255,1)_100%)] pointer-events-none" />
       <div className="absolute top-[-8%] right-[-8%] w-[30rem] h-[30rem] rounded-full bg-primary/10 blur-[95px] pointer-events-none" />
       <div className="absolute bottom-[-24%] left-[-12%] w-[24rem] h-[24rem] rounded-full bg-primary/10 blur-[85px] pointer-events-none" />
@@ -80,19 +80,19 @@ const ProblemSection = () => {
               The Disconnected Reality
             </p>
 
-            <h2 className="serif-headline text-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight mb-6">
+            <h2 className="serif-headline text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight mb-6">
               Your business is connected.{" "}
               <span className="italic font-light text-primary block sm:inline">
                 Your systems often aren't.
               </span>
             </h2>
 
-            <p className="text-black/75 text-base md:text-lg leading-relaxed mb-6 font-normal">
+            <p className="text-foreground/75 text-base md:text-lg leading-relaxed mb-6 font-normal">
               As businesses grow, departments begin working across different spreadsheets, software, and communication channels.
             </p>
 
             <div className="p-6 rounded-2xl bg-gradient-to-r from-primary/[0.08] to-primary/[0.02] border border-primary/20 mb-8">
-              <p className="text-black/85 text-sm md:text-base leading-relaxed font-medium mb-3">
+              <p className="text-foreground/85 text-sm md:text-base leading-relaxed font-medium mb-3">
                 Management is often left bringing these pieces together manually.
               </p>
               <div className="flex items-center gap-3 text-primary font-bold text-sm md:text-base">
@@ -101,7 +101,7 @@ const ProblemSection = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 text-xs md:text-sm text-black/60 font-medium">
+            <div className="flex items-center gap-3 text-xs md:text-sm text-foreground/60 font-medium">
               <span className="w-2.5 h-2.5 rounded-full bg-primary/70 animate-pulse" />
               <span>Real-time handoffs eliminate blind spots between departments.</span>
             </div>
@@ -114,7 +114,7 @@ const ProblemSection = () => {
             {/* Timeline track container */}
             <div className="relative pl-7 sm:pl-9 space-y-3.5 z-10">
               {/* Continuous vertical timeline connector track line with traveling pulse */}
-              <div className="absolute left-[13px] sm:left-[17px] top-6 bottom-6 w-[2px] bg-neutral-200 overflow-hidden rounded-full">
+              <div className="absolute left-[13px] sm:left-[17px] top-6 bottom-6 w-[2px] bg-surface-container-highest overflow-hidden rounded-full">
                 <motion.div
                   animate={{ y: ["-100%", "250%"] }}
                   transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
@@ -144,7 +144,7 @@ const ProblemSection = () => {
                       className={`absolute -left-[27px] sm:-left-[35px] top-4 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs font-mono font-bold transition-all duration-300 z-20 cursor-pointer ${
                         isActive
                           ? "bg-primary text-white ring-4 ring-primary/25 shadow-[0_0_20px_rgba(47,99,255,0.55)] scale-110"
-                          : "bg-white text-black/60 border-2 border-black/15 hover:border-primary/50 hover:text-primary hover:scale-105 shadow-2xs"
+                          : "bg-card text-foreground/60 border-2 border-border hover:border-primary/50 hover:text-primary hover:scale-105 shadow-2xs"
                       }`}
                     >
                       {item.step}
@@ -155,8 +155,8 @@ const ProblemSection = () => {
                       onClick={() => setActiveStep(index)}
                       className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 cursor-pointer relative overflow-hidden group ${
                         isActive
-                          ? "bg-white border-primary shadow-[0_12px_32px_rgba(47,99,255,0.14)] ring-1 ring-primary/30"
-                          : "bg-white/85 border-black/10 shadow-2xs hover:bg-white hover:border-primary/30 hover:shadow-xs"
+                          ? "bg-card border-primary shadow-[0_12px_32px_rgba(47,99,255,0.14)] ring-1 ring-primary/30"
+                          : "bg-background/85 border-border shadow-2xs hover:bg-card hover:border-primary/30 hover:shadow-xs"
                       }`}
                     >
                       {/* Radiant glow light in active state */}
@@ -170,7 +170,7 @@ const ProblemSection = () => {
                           className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
                             isActive
                               ? "bg-primary text-white shadow-[0_0_16px_rgba(47,99,255,0.35)] scale-105"
-                              : "bg-neutral-100 text-black/60 group-hover:text-primary group-hover:bg-primary/10"
+                              : "bg-surface-container-high text-foreground/60 group-hover:text-primary group-hover:bg-primary/10"
                           }`}
                         >
                           <Icon size={19} />
@@ -180,14 +180,14 @@ const ProblemSection = () => {
                           {/* Title */}
                           <div className="mb-1">
                             <h4 className={`font-bold text-sm sm:text-base tracking-tight transition-colors ${
-                              isActive ? "text-primary" : "text-black group-hover:text-primary"
+                              isActive ? "text-primary" : "text-foreground group-hover:text-primary"
                             }`}>
                               {item.role}
                             </h4>
                           </div>
 
                           {/* Primary Status (Official Word Doc text) */}
-                          <p className="text-black/85 font-semibold text-xs sm:text-sm leading-snug">
+                          <p className="text-foreground/85 font-semibold text-xs sm:text-sm leading-snug">
                             {item.status}
                           </p>
 
@@ -203,7 +203,7 @@ const ProblemSection = () => {
                               >
                                 <div className="pt-2.5 border-t border-primary/20 flex items-start gap-2 bg-primary/[0.03] p-2.5 rounded-xl border border-primary/10">
                                   <ArrowRight size={13} className="text-primary mt-0.5 shrink-0" />
-                                  <p className="text-[11px] sm:text-xs text-black/80 font-medium leading-relaxed">
+                                  <p className="text-[11px] sm:text-xs text-foreground/80 font-medium leading-relaxed">
                                     <strong className="text-primary font-bold">WhizUnik Connection: </strong>
                                     {item.connection}
                                   </p>
